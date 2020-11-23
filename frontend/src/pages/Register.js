@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
@@ -12,13 +11,17 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
+const usernameRegex =
+  "^(?=.{3,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+const passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Fidget and the Spinners
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -28,7 +31,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(10),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -49,6 +52,18 @@ const useStyles = makeStyles((theme) => ({
 export default function Register() {
   const classes = useStyles();
 
+  const [username, setUsername] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
+
+  ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
+    if (value !== password) {
+      return false;
+    }
+    return true;
+  });
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -57,46 +72,45 @@ export default function Register() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Create account
         </Typography>
-        <form className={classes.form} noValidate>
+        <ValidatorForm 
+        className={classes.form} 
+        noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
+            <Grid item xs={12}>
+              <TextValidator
+                name="username"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="username"
+                label="Username"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                autoComplete="off"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                validators={[`matchRegexp:${usernameRegex}`]}
+                errorMessages={["3-10 long. A-Z, 0-9 and , or _"]}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <TextValidator
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
+                autoComplete="off"
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
+                validators={[`isEmail`]}
+                errorMessages={["Email is not valid"]}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <TextValidator
                 variant="outlined"
                 required
                 fullWidth
@@ -105,12 +119,32 @@ export default function Register() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                validators={[`matchRegexp:${passwordRegex}`]}
+                errorMessages={["8- long, at least one: A-Z, a-z, 0-9"]}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextValidator
+                variant="outlined"
+                required
+                fullWidth
+                name="repeatPassword"
+                label="Repeat Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={passwordRepeat}
+                onChange={(e) => setPasswordRepeat(e.target.value)}
+                validators={[`isPasswordMatch`]}
+                errorMessages={["Passwords are not matching"]}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I have read and accept the general terms and conditions and the game rules."
               />
             </Grid>
           </Grid>
@@ -121,16 +155,16 @@ export default function Register() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+           Play Now
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+                Already registered? Login
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </ValidatorForm>
       </div>
       <Box mt={5}>
         <Copyright />
