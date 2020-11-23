@@ -141,15 +141,17 @@ export default function Register() {
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Play Now
-          </Button>
+          <Link to={"/register/character-creation"}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Play Now
+            </Button>
+          </Link>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
