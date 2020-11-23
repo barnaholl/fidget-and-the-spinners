@@ -141,6 +141,7 @@ export default function Register() {
               />
             </Grid>
           </Grid>
+          {/* TODO fix the button link*/}
           <Link to={"/register/character-creation"}>
             <Button
               type="submit"
