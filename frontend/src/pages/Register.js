@@ -106,7 +106,7 @@ export default function Register() {
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
                 validators={[`isEmail`]}
-                errorMessages={["Email is not valid"]}
+                errorMessages={["Please enter a valid email address"]}
               />
             </Grid>
             <Grid item xs={12}>
@@ -143,7 +143,7 @@ export default function Register() {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={<Checkbox value="allowExtraEmails" color="primary" required="true" />}
                 label="I have read and accept the general terms and conditions and the game rules."
               />
             </Grid>
