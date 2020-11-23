@@ -6,13 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="user-handler-service" />
+        <module name="item-handler-service" />
         <module name="server-registry" />
+        <module name="user-handler-service" />
         <module name="character-handler-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="character-handler-service" target="11" />
+      <module name="item-handler-service" target="11" />
       <module name="server-registry" target="11" />
       <module name="user-handler-service" target="11" />
     </bytecodeTargetLevel>
@@ -20,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="character-handler-service" options="-parameters" />
+      <module name="item-handler-service" options="-parameters" />
       <module name="server-registry" options="-parameters" />
       <module name="user-handler-service" options="-parameters" />
     </option>

@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/user-handler-service/pom.xml" />
         <option value="$PROJECT_DIR$/server-registry/pom.xml" />
         <option value="$PROJECT_DIR$/character-handler-service/pom.xml" />
+        <option value="$PROJECT_DIR$/item-handler-service/pom.xml" />
       </list>
     </option>
   </component>
