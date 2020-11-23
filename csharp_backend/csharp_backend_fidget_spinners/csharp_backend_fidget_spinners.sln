@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp_backend_fidget_spinners", "csharp_backend_fidget_spinners.csproj", "{65F0A5B2-EA8E-4D9D-B051-61D2F931F90A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65F0A5B2-EA8E-4D9D-B051-61D2F931F90A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F0A5B2-EA8E-4D9D-B051-61D2F931F90A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F0A5B2-EA8E-4D9D-B051-61D2F931F90A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F0A5B2-EA8E-4D9D-B051-61D2F931F90A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5254574B-3D5B-498F-B71C-A8965834BC88}
+	EndGlobalSection
+EndGlobal
