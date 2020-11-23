@@ -12,22 +12,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import Copyright from "../components/Copyright";
 
 const usernameRegex =
   "^(?=.{3,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
 const passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$";
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Fidget and the Spinners
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -74,9 +63,7 @@ export default function Register() {
         <Typography component="h1" variant="h5">
           Create account
         </Typography>
-        <ValidatorForm 
-        className={classes.form} 
-        noValidate>
+        <ValidatorForm className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextValidator
@@ -143,7 +130,13 @@ export default function Register() {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" required="true" />}
+                control={
+                  <Checkbox
+                    value="allowExtraEmails"
+                    color="primary"
+                    required="true"
+                  />
+                }
                 label="I have read and accept the general terms and conditions and the game rules."
               />
             </Grid>
@@ -155,7 +148,7 @@ export default function Register() {
             color="primary"
             className={classes.submit}
           >
-           Play Now
+            Play Now
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
