@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Main from "./pages/Main";
 import CharacterCreation from "./pages/CharacterCreation";
+import "./App.css";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route
-          exact path="/username/character-creation"
+          exact
+          path="/username/character-creation"
           component={CharacterCreation}
         />
       </div>
