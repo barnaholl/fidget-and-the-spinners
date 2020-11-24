@@ -666,3 +666,4 @@ $RECYCLE.BIN/
 # Ionide (cross platform F# VS Code tools) working folder
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudio,aspnetcore,csharp
+csharp_backend/csharp_backend_fidget_spinners/obj/Debug/netcoreapp3.1/csharp_backend_fidget_spinners.csprojAssemblyReference.cache
