@@ -8,15 +8,23 @@ namespace csharp_backend_fidget_spinners.Services
 {
     public class QuestGeneratorService
     {
-        private readonly Dictionary<string, string> quests;
+        private readonly Dictionary<string, string> questsTexts;
+        private Random random = new Random();
 
         public Quest GenerateQuest(Character character)
         {
-            Random random = new Random();
+            int NumOfQuestTexts = questsTexts.Count - 1;
+            int questTextIndex = random.Next(0, NumOfQuestTexts);
 
             Quest quest = new Quest
             {
-
+                Name = questsTexts.ElementAt(questTextIndex).Key,
+                Description = questsTexts.ElementAt(questTextIndex).Value,
+                //QuestTime = GenerateQuestTime(character.CharacterLevel),
+                EnergyCost = GenerateEnergyCost(),
+                RewardCoin = GenerateCoinReward(character.CharacterLevel),
+                RewardXP = GenerateXPReward(character.CharacterLevel),
+                //RewardItem = GenerateRewardItem(character.CharacterLevel)
             };
 
             return quest;
@@ -32,6 +40,19 @@ namespace csharp_backend_fidget_spinners.Services
             return 0;
         }
 
+        /*public TimeSpan GenerateQuestTime(int charlevel)
+        {
 
+        }*/
+
+        public float GenerateEnergyCost()
+        {
+            return 0;
+        }
+
+        /*public Item GenerateItemReward(int charlevel)
+        {
+
+        }*/
     }
 }
