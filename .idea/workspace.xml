@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c5a411f7-c995-4a1d-95e0-b2224768016e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/src/main/java/com/codecool/serviceregistry/ServiceRegistryApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-registry/src/test/java/com/codecool/serviceregistry/ServiceRegistryApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/src/main/java/com/codecool/userhandlerservice/UserHandlerServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-handler-service/src/test/java/com/codecool/userhandlerservice/UserHandlerServiceApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1kh61E91puI1JmGycjr757Gc18v" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="11" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ServiceRegistryApplication">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceRegistryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-registry" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.codecool.serviceregistry.ServiceRegistryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserHandlerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="user-handler-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.codecool.userhandlerservice.UserHandlerServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c5a411f7-c995-4a1d-95e0-b2224768016e" name="Default Changelist" comment="" />
+      <created>1606140266494</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606140266494</updated>
+      <workItem from="1606140268406" duration="1671000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="319" y="41" width="1024" height="852" key="#Project_Structure" timestamp="1606140349429">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="319" y="41" width="1024" height="852" key="#Project_Structure/72.27.1528.873@72.27.1528.873" timestamp="1606140349429" />
+    <state width="1016" height="228" key="GridCell.Tab.0.bottom" timestamp="1606141940196">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.0.bottom/72.27.1528.873@72.27.1528.873" timestamp="1606141940196" />
+    <state width="1016" height="228" key="GridCell.Tab.0.center" timestamp="1606141940195">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.0.center/72.27.1528.873@72.27.1528.873" timestamp="1606141940195" />
+    <state width="1016" height="228" key="GridCell.Tab.0.left" timestamp="1606141940195">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.0.left/72.27.1528.873@72.27.1528.873" timestamp="1606141940195" />
+    <state width="1016" height="228" key="GridCell.Tab.0.right" timestamp="1606141940196">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.0.right/72.27.1528.873@72.27.1528.873" timestamp="1606141940196" />
+    <state width="1016" height="228" key="GridCell.Tab.1.bottom" timestamp="1606141940197">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.1.bottom/72.27.1528.873@72.27.1528.873" timestamp="1606141940197" />
+    <state width="1016" height="228" key="GridCell.Tab.1.center" timestamp="1606141940196">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.1.center/72.27.1528.873@72.27.1528.873" timestamp="1606141940196" />
+    <state width="1016" height="228" key="GridCell.Tab.1.left" timestamp="1606141940196">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.1.left/72.27.1528.873@72.27.1528.873" timestamp="1606141940196" />
+    <state width="1016" height="228" key="GridCell.Tab.1.right" timestamp="1606141940197">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state width="1016" height="228" key="GridCell.Tab.1.right/72.27.1528.873@72.27.1528.873" timestamp="1606141940197" />
+    <state x="319" y="41" width="1024" height="852" key="SettingsEditor" timestamp="1606140515024">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="319" y="41" width="1024" height="852" key="SettingsEditor/72.27.1528.873@72.27.1528.873" timestamp="1606140515024" />
+    <state x="452" y="69" width="748" height="803" key="new project wizard" timestamp="1606140511229">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="452" y="69" width="748" height="803" key="new project wizard/72.27.1528.873@72.27.1528.873" timestamp="1606140511229" />
+  </component>
+</project>
