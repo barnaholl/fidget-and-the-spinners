@@ -1,7 +1,27 @@
-body {
-  background-image: url("./images/wallpaper.jpg");
-  background-repeat: no-repeat;
+.App{
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  background-image: url('./images/wallpaper.jpg');
   background-size: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
 }
 
 .MuiOutlinedInput-root {

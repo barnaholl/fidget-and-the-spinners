@@ -9,6 +9,7 @@ import "./App.css";
 function App() {
   return (
     <Router>
+      <div className="background-image"></div>
       <div className="App">
         <Route exact path="/" component={Main} />
         <Route exact path="/register" component={Register} />
