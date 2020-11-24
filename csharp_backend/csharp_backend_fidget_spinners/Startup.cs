@@ -19,6 +19,7 @@ namespace csharp_backend_fidget_spinners
         {
             services.AddControllers();
             services.AddScoped<IEnemyGenerator, EnemyGeneratorService>();
+            services.AddScoped<IFightSimulator, FightSimulator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
