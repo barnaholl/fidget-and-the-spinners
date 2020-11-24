@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\VS Projects\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj": {}
+    "C:\\Users\\mahle\\Desktop\\Codecool\\Jobhunt\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj": {}
   },
   "projects": {
-    "E:\\VS Projects\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj": {
+    "C:\\Users\\mahle\\Desktop\\Codecool\\Jobhunt\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\VS Projects\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj",
+        "projectUniqueName": "C:\\Users\\mahle\\Desktop\\Codecool\\Jobhunt\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj",
         "projectName": "csharp_backend_fidget_spinners",
-        "projectPath": "E:\\VS Projects\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj",
-        "packagesPath": "C:\\Users\\petho\\.nuget\\packages\\",
-        "outputPath": "E:\\VS Projects\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\obj\\",
+        "projectPath": "C:\\Users\\mahle\\Desktop\\Codecool\\Jobhunt\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\csharp_backend_fidget_spinners.csproj",
+        "packagesPath": "C:\\Users\\mahle\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mahle\\Desktop\\Codecool\\Jobhunt\\MasteryBranch\\fidget-and-the-spinners\\csharp_backend\\csharp_backend_fidget_spinners\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\petho\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mahle\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +29,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +41,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -55,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
