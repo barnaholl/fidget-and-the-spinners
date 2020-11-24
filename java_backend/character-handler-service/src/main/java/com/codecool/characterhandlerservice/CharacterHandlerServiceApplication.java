@@ -1,4 +1,4 @@
-package com.cool.characterhandlerservice;
+package com.codecool.characterhandlerservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
