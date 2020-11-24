@@ -1,3 +1,51 @@
 body {
   background-image: url("./images/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: 50px !important;
+}
+
+.white-color{
+  color:white;
+  border-radius: 50px;
+}
+
+#username{
+  color:white;
+  border-color: white;
+  border:solid;
+  border-radius: 50px;
+}
+
+#email{
+  color:white;
+  border-color: white;
+  border:solid;
+  border-radius: 50px;
+}
+
+#password{
+  color:white;
+  border-color: white;
+  border:solid;
+  border-radius: 50px;
+}
+
+#username-label{
+  color:white;
+}
+
+#email-label{
+  color:white;
+}
+
+#password-label{
+  color:white;
+}
+
+.MuiIconButton-label{
+  color:white;
 }
