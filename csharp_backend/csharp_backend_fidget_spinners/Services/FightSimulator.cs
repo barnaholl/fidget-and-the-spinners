@@ -4,60 +4,61 @@ using System.Linq;
 using System.Threading.Tasks;
 using csharp_backend_fidget_spinners.Models;
 using csharp_backend_fidget_spinners.Services;
+using csharp_backend_fidget_spinners.Services.CustomLogObj;
 using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 
 namespace csharp_backend_fidget_spinners.Services
 {
-    public class FightSimulator
+    public class FightSimulator : IFightSimulator
     {
 
         private Character CurrentCharacter;
         private EnemyGeneratorService EnemyGeneratorService;
         private Enemy Enemy;
         private Random RNG;
+        private List<FightLog> FightLog;
 
         public FightSimulator(Character currChar, EnemyGeneratorService enemyGeneratorService)
         {
             CurrentCharacter = currChar;
             EnemyGeneratorService = enemyGeneratorService;
             RNG = new Random();
+            FightLog = new List<FightLog>();
         }
 
-        public List<string> Fight()
+        public List<FightLog> Fight()
         {
-
-            List<string> roundsLog = new List<string>();
             Enemy = EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {
                 if (RNG.Next(0, 100) < Enemy.BlockChance)
                 {
-                    Enemy.HP -= CalculateCharDMG();
+                    int damageToDeal = CalculateCharDMG();
+                    Enemy.HP -= damageToDeal;
+                    LogRounds(CurrentCharacter.Name, damageToDeal);
                 }
                 else
                 {
-
+                    LogRounds(CurrentCharacter.Name, 0);
                 }
 
                 if(Enemy.HP > 0)
                 {
                     if(RNG.Next(0, 100) > CurrentCharacter.CharacterLevel + 2)
                     {
-                        CurrentCharacter.MotivationLevel -= CalculateEnemyDMG();
+                        int damageToDeal = CalculateEnemyDMG();
+                        CurrentCharacter.MotivationLevel -= damageToDeal;
+                        LogRounds(Enemy.Name, damageToDeal);
                     }
                     else
                     {
-
+                        LogRounds(Enemy.Name, 0);
                     }
                 }
-
-                //log current stats after round
-
             }
 
-
-            return roundsLog;
+            return FightLog;
         }
 
 
@@ -110,6 +111,17 @@ namespace csharp_backend_fidget_spinners.Services
             }
 
             return damage;
+        }
+
+        private void LogRounds(string attackersName, int damageDealt)
+        {
+            FightLog.Add(new FightLog
+            {
+                DamageDealer = attackersName,
+                DealtDMG = damageDealt,
+                OurHealthPoint = CurrentCharacter.MotivationLevel,
+                EnemyHealthPoint = Enemy.HP
+            });
         }
     }
 }
