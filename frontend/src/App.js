@@ -10,10 +10,10 @@ function App() {
     <Router>
       <div className="App">
         <Route exact path="/" component={Main} />
-        <Route path="/register" component={Register} />
+        <Route exact path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route
-          path="/register/character-creation"
+          exact path="/username/character-creation"
           component={CharacterCreation}
         />
       </div>
