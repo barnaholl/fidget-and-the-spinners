@@ -1,14 +1,9 @@
 package com.codecool.characterhandlerservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,10 +21,12 @@ public class Character {
     private Long characterExperience;
     private Long characterCurrency;
 
-    @OneToOne(mappedBy = "character")
-    private Set<Equipment> characterEquipment;
+    @OneToOne(cascade = {CascadeType.ALL})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Item> characterEquipment;
 
-    @OneToOne(mappedBy = "character")
+
     private List<Item> characterInventory;
 
 
