@@ -11,7 +11,6 @@ namespace csharp_backend_fidget_spinners.Services
 {
     public class FightSimulator : IFightSimulator
     {
-
         private Character CurrentCharacter;
         private EnemyGeneratorService EnemyGeneratorService;
         private Enemy Enemy;
@@ -20,15 +19,17 @@ namespace csharp_backend_fidget_spinners.Services
 
         public FightSimulator(Character currChar, EnemyGeneratorService enemyGeneratorService)
         {
-            CurrentCharacter = currChar;
             EnemyGeneratorService = enemyGeneratorService;
             RNG = new Random();
             FightLog = new List<FightLog>();
         }
 
-        public List<FightLog> Fight()
+        public List<FightLog> Fight(Character player)
         {
+            CurrentCharacter = player;
+
             Enemy = EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
+
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {

@@ -12,7 +12,6 @@ namespace csharp_backend_fidget_spinners.Services
     {
 
         private readonly string[] _nameOptions = { "Bug", "StackOverFlow Question", "Codewars Kata", "PA", "Hardware Problem", "Virus" };
-        private readonly string[] _classOptions = { "Frontend", "Backend", "Testing", "DevOps" };
 
         public Enemy GenerateEnemy(Character myChar)
         {
