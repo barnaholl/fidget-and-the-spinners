@@ -14,32 +14,92 @@ public class ItemFactoryService {
 
     public ItemFactoryService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-
-        System.out.println("AAAAAAAAA");
-        System.out.println(getRandomRarity());
-        System.out.println(getRandomRarity());
-        System.out.println(getRandomRarity());
-        System.out.println(getRandomRarity());
-        System.out.println(getRandomRarity());
-        System.out.println(getRandomRarity());
-        System.out.println(getRandomRarity());
-        System.out.println(getRandomRarity());
-
-
-    }
+            }
 
     public Item getRandomItem(Long playerLevel){
 
         EquipmentSlot equipmentSlot=getRandomEquipmentSlot();
+        Rarity rarity=getRandomRarity();
+        Long overallStats=setOverallStats(playerLevel,rarity);
+
+        Long problemSolvingStat=getRandomStat(overallStats);
+        overallStats-=problemSolvingStat;
+
+        Long algorithmizationStat=getRandomStat(overallStats);
+        overallStats-=algorithmizationStat;
+
+        Long designStat=getRandomStat(overallStats);
+        overallStats-=designStat;
+
+        Long cleanCodeStat=getRandomStat(overallStats);
+        overallStats-=cleanCodeStat;
+
+        Long testingStat=overallStats;
+
+
 
         Item item=Item.builder()
                 .equipmentSlot(equipmentSlot)
                 .name(getRandomName(equipmentSlot))
                 .itemLevel(playerLevel)
-                .rarity(getRandomRarity())
+                .rarity(rarity)
+                .problemSolving(problemSolvingStat)
+                .algorithmization(algorithmizationStat)
+                .design(designStat)
+                .cleanCode(cleanCodeStat)
+                .testing(testingStat)
+                .sellPrice(getSellPrice(playerLevel,rarity))
+                .buyPrice(getBuyPrice(playerLevel,rarity))
                 .build();
 
         return item;
+    }
+
+    private Long getBuyPrice(Long itemLevel,Rarity rarity) {
+        switch(rarity) {
+            case EPIC:
+                return itemLevel*4*4;
+            case RARE:
+                return itemLevel*3*3;
+            case UNCOMMON:
+                return itemLevel*2*3;
+            case COMMON:
+                return itemLevel*1*2;
+        }
+        return null;
+    }
+
+    private Long getSellPrice(Long itemLevel,Rarity rarity) {
+        switch(rarity) {
+            case EPIC:
+                return itemLevel*4;
+            case RARE:
+                return itemLevel*3;
+            case UNCOMMON:
+                return itemLevel*2;
+            case COMMON:
+                return itemLevel*1;
+        }
+        return null;
+    }
+
+    private Long getRandomStat(Long overallStat) {
+        Random random=new Random();
+        return Long.valueOf(random.nextInt(Math.toIntExact(overallStat)));
+    }
+
+    private Long setOverallStats(Long itemLevel, Rarity rarity) {
+        switch(rarity) {
+            case EPIC:
+                return itemLevel*4;
+            case RARE:
+                return itemLevel*3;
+            case UNCOMMON:
+                return itemLevel*2;
+            case COMMON:
+                return itemLevel*1;
+        }
+        return null;
     }
 
     private Rarity getRandomRarity() {
