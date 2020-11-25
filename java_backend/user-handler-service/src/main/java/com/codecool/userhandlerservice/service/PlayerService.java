@@ -8,6 +8,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,6 +23,13 @@ public class PlayerService {
         encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
+    public Optional<Player> getPlayerByUsername(String username) {
+        return allPlayers.findByUserName(username);
+    }
+
+    public List<Player> getAllPlayers() {
+        return allPlayers.findAllPlayers();
+    }
 
     public Player register(String username, String password, Set<Role> roles) {
         return allPlayers.save(

@@ -20,7 +20,7 @@ public class InitialPlayerCreator {
     public CommandLineRunner createUsers() {
         return args -> {
             userService.register("admin", "admin", Set.of(Role.USER, Role.ADMIN));
-            userService.register("user", "user");
+            userService.register("gamer", "gamer");
         };
     }
 }
