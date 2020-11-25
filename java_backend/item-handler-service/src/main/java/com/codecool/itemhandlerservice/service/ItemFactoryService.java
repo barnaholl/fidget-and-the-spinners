@@ -16,23 +16,43 @@ public class ItemFactoryService {
         this.itemRepository = itemRepository;
 
         System.out.println("AAAAAAAAA");
-        System.out.println(getRandomName(getRandomEquipmentSlot()));
-        System.out.println(getRandomName(getRandomEquipmentSlot()));
-        System.out.println(getRandomName(getRandomEquipmentSlot()));
-        System.out.println(getRandomName(getRandomEquipmentSlot()));
+        System.out.println(getRandomRarity());
+        System.out.println(getRandomRarity());
+        System.out.println(getRandomRarity());
+        System.out.println(getRandomRarity());
+        System.out.println(getRandomRarity());
+        System.out.println(getRandomRarity());
+        System.out.println(getRandomRarity());
+        System.out.println(getRandomRarity());
+
 
     }
 
-    public Item getRandomItem(){
+    public Item getRandomItem(Long playerLevel){
 
         EquipmentSlot equipmentSlot=getRandomEquipmentSlot();
 
         Item item=Item.builder()
                 .equipmentSlot(equipmentSlot)
                 .name(getRandomName(equipmentSlot))
+                .itemLevel(playerLevel)
+                .rarity(getRandomRarity())
                 .build();
 
         return item;
+    }
+
+    private Rarity getRandomRarity() {
+        Random random=new Random();
+        int chance=random.nextInt(100);
+            if(chance>90)
+                return Rarity.EPIC;
+            else if (chance>70)
+                return Rarity.RARE;
+            else if (chance>40)
+                return Rarity.UNCOMMON;
+            else
+                return Rarity.COMMON;
     }
 
     private EquipmentSlot getRandomEquipmentSlot() {
