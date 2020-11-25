@@ -24,7 +24,7 @@ public class Equipment {
     @ToString.Exclude
     private List<Item> equipmentItems;
 
-    @OneToOne(mappedBy = "statistics")
+    @OneToOne(mappedBy = "characterEquipment")
     private Character character;
 
 }

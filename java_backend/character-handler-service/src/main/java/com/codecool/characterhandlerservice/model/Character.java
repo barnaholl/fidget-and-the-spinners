@@ -1,5 +1,6 @@
 package com.codecool.characterhandlerservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,10 +25,12 @@ public class Character {
     @OneToOne(cascade = {CascadeType.ALL})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private List<Item> characterEquipment;
+    private Equipment characterEquipment;
 
-
-    private List<Item> characterInventory;
+    @OneToOne(cascade = {CascadeType.ALL})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Inventory characterInventory;
 
 
 
