@@ -8,20 +8,22 @@ namespace csharp_backend_fidget_spinners.Services
 {
     public class QuestGeneratorService
     {
-        private readonly Dictionary<string, string> questsTexts;
+        private Dictionary<string, string> questsTexts = new Dictionary<string, string>();
         private Random random = new Random();
+
+
 
         public Quest GenerateQuest(Character character)
         {
-            int NumOfQuestTexts = questsTexts.Count - 1;
-            int questTextIndex = random.Next(0, NumOfQuestTexts);
+            int questTextIndex = random.Next(0, questsTexts.Count);
+            int timeAndEnergyCost = GenerateTimeAndEnergyCost();
 
             Quest quest = new Quest
             {
                 Name = questsTexts.ElementAt(questTextIndex).Key,
                 Description = questsTexts.ElementAt(questTextIndex).Value,
-                //QuestTime = GenerateQuestTime(character.CharacterLevel),
-                EnergyCost = GenerateEnergyCost(),
+                QuestTime = timeAndEnergyCost,
+                EnergyCost = timeAndEnergyCost,
                 RewardCoin = GenerateCoinReward(character.CharacterLevel),
                 RewardXP = GenerateXPReward(character.CharacterLevel),
                 //RewardItem = GenerateRewardItem(character.CharacterLevel)
@@ -30,24 +32,19 @@ namespace csharp_backend_fidget_spinners.Services
             return quest;
         }
 
-        public int GenerateCoinReward(int charlevel)
+        public float GenerateCoinReward(int charlevel)
         {
-            return 0;
+            return (float)Math.Round(random.NextDouble() * 100 + ((10 + charlevel) / 10), 2);
         }
 
         public int GenerateXPReward(int charlevel)
         {
-            return 0;
+            return random.Next(20 + (charlevel * 5), 30 + (charlevel * 5));
         }
 
-        /*public TimeSpan GenerateQuestTime(int charlevel)
+        public int GenerateTimeAndEnergyCost()
         {
-
-        }*/
-
-        public float GenerateEnergyCost()
-        {
-            return 0;
+            return random.Next(3, 7);
         }
 
         /*public Item GenerateItemReward(int charlevel)

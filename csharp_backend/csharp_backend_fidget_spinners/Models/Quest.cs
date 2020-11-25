@@ -9,7 +9,7 @@ namespace csharp_backend_fidget_spinners.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public TimeSpan QuestTime { get; set; }
+        public int QuestTime { get; set; }
         public float EnergyCost { get; set; }
         public float RewardCoin { get; set; }
         public int RewardXP { get; set; }
