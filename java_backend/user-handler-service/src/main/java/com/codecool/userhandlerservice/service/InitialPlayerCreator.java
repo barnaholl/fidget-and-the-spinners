@@ -1,7 +1,6 @@
 package com.codecool.userhandlerservice.service;
 
 import com.codecool.userhandlerservice.model.Role;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +8,13 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Set;
 
 @Configuration
-@RequiredArgsConstructor
 public class InitialPlayerCreator {
 
     private final PlayerService userService;
+
+    public InitialPlayerCreator(PlayerService userService) {
+        this.userService = userService;
+    }
 
     @Bean
     public CommandLineRunner createUsers() {

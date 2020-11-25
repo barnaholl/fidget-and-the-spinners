@@ -4,18 +4,23 @@ import com.codecool.userhandlerservice.model.Player;
 import com.codecool.userhandlerservice.model.Role;
 import com.codecool.userhandlerservice.model.UserCredentials;
 import com.codecool.userhandlerservice.repository.PlayerRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-@RequiredArgsConstructor
 public class PlayerService {
 
     private final PlayerRepository allPlayers;
     private final PasswordEncoder encoder;
+
+    public PlayerService(PlayerRepository allPlayers) {
+        this.allPlayers = allPlayers;
+        encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
 
     public Player register(String username, String password, Set<Role> roles) {
         return allPlayers.save(
