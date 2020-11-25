@@ -32,9 +32,9 @@ namespace csharp_backend_fidget_spinners.Services
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {
-                if (RNG.Next(0, 100) < Enemy.BlockChance)
+                if (ChanceGenerator(Enemy.BlockChance))
                 {
-                    int damageToDeal = CalculateCharDMG();
+                    int damageToDeal = CurrentCharacter.CalculateDamage();
                     Enemy.HP -= damageToDeal;
                     LogRounds(CurrentCharacter.Name, damageToDeal);
                 }
@@ -45,9 +45,9 @@ namespace csharp_backend_fidget_spinners.Services
 
                 if(Enemy.HP > 0)
                 {
-                    if(RNG.Next(0, 100) > CurrentCharacter.CharacterLevel + 2)
+                    if(ChanceGenerator(CurrentCharacter.BlockChance))
                     {
-                        int damageToDeal = CalculateEnemyDMG();
+                        int damageToDeal = Enemy.CalculateEnemyDMG();
                         CurrentCharacter.MotivationLevel -= damageToDeal;
                         LogRounds(Enemy.Name, damageToDeal);
                     }
@@ -61,58 +61,6 @@ namespace csharp_backend_fidget_spinners.Services
             return FightLog;
         }
 
-
-        private int CalculateCharDMG()
-        {
-            int damage = 10;
-            switch (Enemy.Class)
-            {
-                case "Frontend":
-                    damage += Convert.ToInt32(CurrentCharacter.Design * 1.09);
-                    damage += Convert.ToInt32(CurrentCharacter.ProblemSolving * 1.12);
-                    damage += CurrentCharacter.Testing;
-                    damage += CurrentCharacter.Algorithm;
-                    break;
-                case "Backend":
-                    damage += Convert.ToInt32(CurrentCharacter.Algorithm * 1.14);
-                    damage += Convert.ToInt32(CurrentCharacter.ProblemSolving * 1.12);
-                    damage += CurrentCharacter.Testing;
-                    damage += CurrentCharacter.Design;
-                    break;
-                case "Testing":
-                    damage += Convert.ToInt32(CurrentCharacter.Testing * 1.3);
-                    damage += Convert.ToInt32(CurrentCharacter.ProblemSolving * 1.09);
-                    damage += CurrentCharacter.Design;
-                    damage += CurrentCharacter.Algorithm;
-                    break;
-
-                case "DevOps":
-                    damage += Convert.ToInt32(CurrentCharacter.Design * 1.09);
-                    damage += Convert.ToInt32(CurrentCharacter.ProblemSolving * 1.12);
-                    damage += Convert.ToInt32(CurrentCharacter.Testing * 1.2);
-                    damage += Convert.ToInt32(CurrentCharacter.Algorithm * 1.04);
-                    break;
-            }
-
-            if(RNG.Next(0,100) > 85){
-                damage *= 2;
-            }
-
-            return damage;
-        }
-
-        private int CalculateEnemyDMG()
-        {
-            int damage = Enemy.Damage;
-
-            if (RNG.Next(0, 100) > 85)
-            {
-                damage *= 2;
-            }
-
-            return damage;
-        }
-
         private void LogRounds(string attackersName, int damageDealt)
         {
             FightLog.Add(new FightLog
@@ -122,6 +70,18 @@ namespace csharp_backend_fidget_spinners.Services
                 OurHealthPoint = CurrentCharacter.MotivationLevel,
                 EnemyHealthPoint = Enemy.HP
             });
+        }
+
+        private bool ChanceGenerator(float chance)
+        {
+            bool isBlock = false;
+
+            if (RNG.Next(0, 100) < chance)
+            {
+                isBlock = true;
+            }
+
+            return isBlock;
         }
     }
 }
