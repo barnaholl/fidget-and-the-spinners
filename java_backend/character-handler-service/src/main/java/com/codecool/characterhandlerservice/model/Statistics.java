@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Data
 @AllArgsConstructor
@@ -21,13 +22,16 @@ public class Statistics {
     @GeneratedValue
     private Long id;
 
+    @OneToOne(mappedBy = "characterStatistics")
+    private Character character;
+
     private int problemSolving;
     private int design;
     private int algorithm;
     private int cleanCode;
     private int testing;
     private int energyLevel;
-    private int hitPoints;
+    private int motivation;
 
 
 }

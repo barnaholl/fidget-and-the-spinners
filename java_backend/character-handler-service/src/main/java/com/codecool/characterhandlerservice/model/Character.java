@@ -1,6 +1,7 @@
 package com.codecool.characterhandlerservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.inject.internal.cglib.core.$ClassNameReader;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,6 +33,8 @@ public class Character {
     @ToString.Exclude
     private Inventory characterInventory;
 
-
-
+    @OneToOne(cascade = {CascadeType.ALL})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Statistics characterStatistics;
 }

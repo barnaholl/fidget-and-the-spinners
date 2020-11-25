@@ -21,4 +21,7 @@ public class Item {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Equipment equipment;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Inventory inventory;
+
 }

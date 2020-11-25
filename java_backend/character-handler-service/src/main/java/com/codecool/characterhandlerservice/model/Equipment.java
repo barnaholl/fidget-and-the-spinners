@@ -18,10 +18,10 @@ public class Equipment {
     private Long id;
 
     @JsonIgnore
+    @ToString.Exclude
     @Singular
     @OneToMany(mappedBy = "equipment", cascade = {CascadeType.PERSIST})
     @EqualsAndHashCode.Exclude
-    @ToString.Exclude
     private List<Item> equipmentItems;
 
     @OneToOne(mappedBy = "characterEquipment")
