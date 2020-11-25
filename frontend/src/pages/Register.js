@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Copyright from "../components/Copyright";
+import '../App.css';
 
 const usernameRegex =
   "^(?=.{3,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
@@ -22,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(10),
     display: "flex",
+    padding: 20,
+    color: "white",
+    opacity: 0.7,
+    borderRadius: 10,
+    backgroundColor: "black",
     flexDirection: "column",
     alignItems: "center",
   },
@@ -30,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -65,7 +71,7 @@ export default function Register() {
         </Typography>
         <ValidatorForm className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} >
               <TextValidator
                 name="username"
                 variant="outlined"

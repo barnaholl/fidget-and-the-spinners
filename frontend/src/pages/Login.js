@@ -13,11 +13,17 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Copyright from "../components/Copyright";
+import "../App.css";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(10),
     display: "flex",
+    padding: 20,
+    color: "white",
+    opacity: 0.7,
+    borderRadius: 10,
+    backgroundColor: "black",
     flexDirection: "column",
     alignItems: "center",
   },
