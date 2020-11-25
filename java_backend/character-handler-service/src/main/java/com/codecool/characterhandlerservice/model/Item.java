@@ -18,10 +18,28 @@ public class Item {
     @GeneratedValue
     private Long id;
 
+    private String name;
+
     @ManyToOne(cascade = {CascadeType.ALL})
     private Equipment equipment;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     private Inventory inventory;
 
+    @Enumerated(EnumType.STRING)
+    private EquipmentSlot equipmentSlot;
+
+    @Enumerated(EnumType.STRING)
+    private Rarity rarity;
+
+    private Long itemLevel;
+
+    private Long problemSolving;
+    private Long design;
+    private Long algorithmization;
+    private Long cleanCode;
+    private Long testing;
+
+    private Long sellPrice;
+    private Long buyPrice;
 }
