@@ -1,13 +1,9 @@
 package com.codecool.characterhandlerservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -19,5 +15,12 @@ public class Equipment {
     @Id
     @GeneratedValue
     private Long id;
+
+    @JsonIgnore
+    @Singular
+    @OneToMany(mappedBy = "equipment", cascade = {CascadeType.PERSIST})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Item> helmet;
 
 }
