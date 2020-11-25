@@ -1,7 +1,7 @@
 package com.codecool.itemhandlerservice.entity;
 
 import com.codecool.itemhandlerservice.model.Rarity;
-import com.codecool.itemhandlerservice.model.Slot;
+import com.codecool.itemhandlerservice.model.EquipmentSlot;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,14 +23,14 @@ public class Item {
     private Long id;
     private String name;
 
-    private Slot slot;
+    private EquipmentSlot equipmentSlot;
 
     private Long itemLevel;
     private Rarity rarity;
 
     private Long problemSolving;
-    private Long frontEnd;
-    private Long backEnd;
+    private Long design;
+    private Long algorithmization;
     private Long cleanCode;
     private Long testing;
 
