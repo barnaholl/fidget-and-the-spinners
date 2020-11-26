@@ -15,6 +15,7 @@ public class CharacterService {
 
     private final CharacterRepository characterRepository;
     private final StatisticsService statisticsService;
+    private final EquipmentService equipmentService;
 
     private static final Long AMOUNT_OF_STARTER_CURRENCY = (long)1000;
 
