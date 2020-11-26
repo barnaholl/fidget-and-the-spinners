@@ -20,7 +20,7 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/player/{id}")
     public Optional<Player> getPlayerById(@PathVariable("id") Long id) {
         return playerService.getPlayerById(id);
     }
@@ -30,7 +30,7 @@ public class PlayerController {
         return playerService.getPlayerByUsername(username);
     }
 
-    @GetMapping("/players")
+    @GetMapping("/player/all")
     public List<Player> getAllPlayers() {
         return playerService.getAllPlayers();
     }

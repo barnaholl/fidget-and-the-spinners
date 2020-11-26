@@ -8,15 +8,14 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity(name="players")
 public class Player {
 
     @Id
     @GeneratedValue
-    @NonNull
     private Long id;
 
     @NotBlank
@@ -29,7 +28,6 @@ public class Player {
     @ElementCollection
     @Singular
     @NotEmpty
-    @NonNull
     private Set<String> roles;
 
 }
