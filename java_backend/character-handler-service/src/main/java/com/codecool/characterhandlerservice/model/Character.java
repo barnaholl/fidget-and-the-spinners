@@ -18,6 +18,8 @@ public class Character {
     @GeneratedValue
     private Long id;
 
+    private Long userId;
+
     private String characterName;
     private int characterLevel;
     private Long characterExperience;
