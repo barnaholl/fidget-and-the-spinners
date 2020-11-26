@@ -121,6 +121,8 @@ namespace csharp_backend_fidget_spinners.Services
             }
         }
 
+
+        // Get it from Java backend
         /*public Item GenerateItemReward(int charlevel)
         {
 
