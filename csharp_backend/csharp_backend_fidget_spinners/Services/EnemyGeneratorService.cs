@@ -24,8 +24,8 @@ namespace csharp_backend_fidget_spinners.Services
                 HP = GenerateHealth(myChar.CharacterLevel),
                 Armor = GenerateArmor(myChar.CharacterLevel),
                 Damage = 50,
-                BlockChance = 5,
-                CriticalDamageChance = 5
+                CompilerErrorChance = 5,
+                RuntimeErrorChance = 5
             };
 
             return enemy;

@@ -27,8 +27,8 @@ namespace csharp_backend_fidget_spinners.Models
         public int Algorithm { get; set; }
         public int Testing { get; set; }
         public int CleanCode { get; set; }
-        public int BlockChance { get; set; }
-        public int CriticalDamageChance { get; set; }
+        public int DebugChance { get; set; }
+        public int FastCoding { get; set; }
 
         public int CalculateDamage(int opponentsBlockChance)
         {
@@ -41,7 +41,7 @@ namespace csharp_backend_fidget_spinners.Models
             damage += Convert.ToInt32(Algorithm * 1.5);
             damage += Convert.ToInt32(CleanCode * 1.5);
 
-            if (RNG.Next(0, 100) > CriticalDamageChance)
+            if (RNG.Next(0, 100) > FastCoding)
             {
                 damage *= 2;
             }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using csharp_backend_fidget_spinners.Models;
-using csharp_backend_fidget_spinners.Services;
 using csharp_backend_fidget_spinners.Services.CustomLogObj;
 using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 
@@ -14,18 +13,12 @@ namespace csharp_backend_fidget_spinners.Services
         private Character CurrentCharacter;
         private IEnemyGenerator EnemyGeneratorService;
         private Enemy Enemy;
-        private Random RNG;
         private List<FightLog> FightLog;
-
-        public FightSimulator()
-        {
-        }
 
         public List<FightLog> Fight(Character player, IEnemyGenerator enemyGenerator)
         {
             CurrentCharacter = player;
             EnemyGeneratorService = enemyGenerator;
-            RNG = new Random();
             FightLog = new List<FightLog>();
 
             Enemy = EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
@@ -33,14 +26,14 @@ namespace csharp_backend_fidget_spinners.Services
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {
-                int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.BlockChance);
+                int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.CompilerErrorChance);
                 Enemy.HP -= dealtDamage;
 
                 LogRounds(CurrentCharacter.Name, dealtDamage);
 
                 if (Enemy.HP > 0)
                 {
-                    dealtDamage = Enemy.CalculateEnemyDMG(CurrentCharacter.BlockChance);
+                    dealtDamage = Enemy.CalculateEnemyDMG(CurrentCharacter.DebugChance);
 
                     CurrentCharacter.MotivationLevel -= dealtDamage;
 
@@ -61,18 +54,6 @@ namespace csharp_backend_fidget_spinners.Services
                 OurHealthPoint = CurrentCharacter.MotivationLevel,
                 EnemyHealthPoint = Enemy.HP
             });
-        }
-
-        private bool ChanceGenerator(float chance)
-        {
-            bool isBlock = false;
-
-            if (RNG.Next(0, 100) < chance)
-            {
-                isBlock = true;
-            }
-
-            return isBlock;
         }
     }
 }
