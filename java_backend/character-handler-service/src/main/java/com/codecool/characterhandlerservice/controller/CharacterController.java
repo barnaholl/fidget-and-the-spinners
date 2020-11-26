@@ -30,4 +30,8 @@ public class CharacterController {
         return ResponseEntity.ok(characterService.updateCharacter(gameCharacter));
     }
 
+    @DeleteMapping("")
+    public ResponseEntity<Boolean> deleteCharacter(@RequestBody GameCharacter gameCharacter) {
+        return ResponseEntity.ok(characterService.deleteCharacter(gameCharacter));
+    }
 }

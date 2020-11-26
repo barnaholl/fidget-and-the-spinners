@@ -53,4 +53,13 @@ public class CharacterService {
                 .characterInventory(initializeNewInventory())
                 .build();
     }
+
+    public GameCharacter updateCharacter(GameCharacter gameCharacter) {
+        return characterRepository.save(gameCharacter);
+    }
+
+    public boolean deleteCharacter(GameCharacter gameCharacter) {
+        characterRepository.delete(gameCharacter);
+        return characterRepository.getCharacterByUserId(gameCharacter.getUserId()).isEmpty();
+    }
 }
