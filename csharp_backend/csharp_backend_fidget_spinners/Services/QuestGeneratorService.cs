@@ -24,7 +24,7 @@ namespace csharp_backend_fidget_spinners.Services
         /// Generate a quest based on character level
         /// </summary>
         /// <param name="character"></param>
-        /// <returns></returns>
+        /// <returns>A randomly generated quest</returns>
 
         public Quest GenerateQuest(Character character)
         {
