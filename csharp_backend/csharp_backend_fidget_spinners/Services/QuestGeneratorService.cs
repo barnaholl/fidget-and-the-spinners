@@ -1,4 +1,5 @@
 ﻿using csharp_backend_fidget_spinners.Models;
+using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,6 @@ namespace csharp_backend_fidget_spinners.Services
                 RewardCoin = GenerateCoinReward(character.CharacterLevel, questDifficulty),
                 RewardXP = GenerateXPReward(character.CharacterLevel, questDifficulty),
                 //RewardItem = GenerateRewardItem(character.CharacterLevel),
-                //Enemy = GenerateEnemy()
             };
 
             return quest;
