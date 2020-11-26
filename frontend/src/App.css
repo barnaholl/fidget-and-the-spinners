@@ -59,8 +59,14 @@
   flex-grow: 1;
 }
 
-.align-center{
+.align-content-center{
   align-content: center;
+}
+
+.stat-box{
+  width: 70% !important;
+  margin:auto;
+  margin-top: 5%;
 }
 
 #username {
