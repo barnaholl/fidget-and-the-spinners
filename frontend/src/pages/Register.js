@@ -140,14 +140,14 @@ export default function Register() {
                   <Checkbox
                     value="allowExtraEmails"
                     color="primary"
-                    required="true"
+                    required={true}
                   />
                 }
                 label="I have read and accept the general terms and conditions and the game rules."
               />
             </Grid>
           </Grid>
-          <Link to={"/username/character-creation"}>
+          <Link to={"/home"}>
             <Button
               type="submit"
               fullWidth
