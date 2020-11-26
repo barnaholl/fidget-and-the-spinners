@@ -29,9 +29,7 @@ public class CharacterService {
 
     public GameCharacter saveNewCharacter(Long userId, String characterName) {
         GameCharacter newGameCharacter = initializeNewCharacter(userId, characterName);
-        Equipment newEquipment = initializeNewEquipment();
-        Inventory newInventory = initializeNewInventory();
-        return characterRepository.save();
+        return characterRepository.save(newGameCharacter);
     }
 
     private Inventory initializeNewInventory() {
@@ -51,6 +49,8 @@ public class CharacterService {
                 .characterName(characterName)
                 .userId(userId)
                 .energyLevel(1)
+                .characterEquipment(initializeNewEquipment())
+                .characterInventory(initializeNewInventory())
                 .build();
     }
 }
