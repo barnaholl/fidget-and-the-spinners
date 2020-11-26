@@ -23,7 +23,7 @@ public class Statistics {
     private Long id;
 
     @OneToOne(mappedBy = "characterStatistics")
-    private Character character;
+    private GameCharacter gameCharacter;
 
     private int problemSolving;
     private int design;

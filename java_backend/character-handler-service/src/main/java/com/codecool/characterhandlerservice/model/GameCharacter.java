@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Character {
+public class GameCharacter {
 
     @Id
     @GeneratedValue

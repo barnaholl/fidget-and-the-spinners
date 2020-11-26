@@ -25,6 +25,6 @@ public class Inventory {
     private List<Item> equipmentItems;
 
     @OneToOne(mappedBy = "characterInventory")
-    private Character character;
+    private GameCharacter gameCharacter;
 
 }
