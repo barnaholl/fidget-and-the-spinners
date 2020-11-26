@@ -59,6 +59,16 @@
   flex-grow: 1;
 }
 
+.align-content-center {
+  align-content: center;
+}
+
+.stat-box {
+  width: 70% !important;
+  margin: auto;
+  margin-top: 5%;
+}
+
 #username {
   color: white;
   border-color: white;
