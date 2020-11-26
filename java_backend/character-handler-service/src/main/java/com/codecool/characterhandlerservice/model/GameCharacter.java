@@ -22,6 +22,7 @@ public class GameCharacter {
 
     private String characterName;
     private int characterLevel;
+    private int energyLevel;
     private Long characterExperience;
     private Long characterCurrency;
 

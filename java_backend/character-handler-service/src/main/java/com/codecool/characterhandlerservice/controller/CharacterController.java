@@ -21,8 +21,8 @@ public class CharacterController {
     }
 
     @PostMapping("")
-    public ResponseEntity<GameCharacter> saveCharacter(@RequestBody Long userId) {
-        return ResponseEntity.ok(characterService.saveCharacter(userId));
+    public ResponseEntity<GameCharacter> saveCharacter(@RequestBody Long userId, String characterName) {
+        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
     }
 
 }
