@@ -17,16 +17,18 @@ namespace csharp_backend_fidget_spinners.Controller
     public class FightController : ControllerBase
     {
         private readonly IFightSimulator _fightSimulator;
+        private readonly IEnemyGenerator _enemyGenerator;
 
-        public FightController(IFightSimulator fightSimualtor)
+        public FightController(IFightSimulator fightSimualtor, IEnemyGenerator enemyGenerator)
         {
             _fightSimulator = fightSimualtor;
+            _enemyGenerator = enemyGenerator;
         }
 
         [HttpPost]
-        public List<FightLog> SimulateFight(Character player)
+        public List<FightLog> SimulateFight([FromBody] Character player)
         {
-            return _fightSimulator.Fight(player);
+            return _fightSimulator.Fight(player, _enemyGenerator);
         }
     }
 }

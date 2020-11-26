@@ -19,12 +19,13 @@ namespace csharp_backend_fidget_spinners.Services
 
             Enemy enemy = new Enemy
             {
-                Name = _nameOptions[randomGenerator.Next(0, 5)],
+                Name = _nameOptions[randomGenerator.Next(0, 6)],
                 Class = GetRandomClass(),
                 HP = GenerateHealth(myChar.CharacterLevel),
                 Armor = GenerateArmor(myChar.CharacterLevel),
-                BlockChance = 0.1f,
-                CriticalDamageChance = 0.1f
+                Damage = 50,
+                BlockChance = 5,
+                CriticalDamageChance = 5
             };
 
             return enemy;
@@ -32,7 +33,7 @@ namespace csharp_backend_fidget_spinners.Services
 
         public int GenerateHealth (int myCharacterLevel)
         {
-            return 10 * (10 + myCharacterLevel);
+            return 100 * (10 + myCharacterLevel);
         }
 
         public int GenerateArmor(int myCharacterLevel)

@@ -24,12 +24,14 @@ namespace csharp_backend_fidget_spinners.Models
         public int HP { get; set; }
         public int Armor { get; set; }
         public int Damage { get; set; }
-        public float BlockChance { get; set; }
-        public float CriticalDamageChance { get; set; }
+        public int BlockChance { get; set; }
+        public int CriticalDamageChance { get; set; }
 
-        public int CalculateEnemyDMG()
+        public int CalculateEnemyDMG(int opponentsBlockChance)
         {
-            int damage = Damage;
+            if (RNG.Next(0, 100) < opponentsBlockChance) return 0;
+
+            int damage = Damage + RNG.Next(0, 10);
 
             if (RNG.Next(0, 100) > 85)
             {

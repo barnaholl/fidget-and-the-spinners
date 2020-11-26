@@ -12,51 +12,41 @@ namespace csharp_backend_fidget_spinners.Services
     public class FightSimulator : IFightSimulator
     {
         private Character CurrentCharacter;
-        private EnemyGeneratorService EnemyGeneratorService;
+        private IEnemyGenerator EnemyGeneratorService;
         private Enemy Enemy;
         private Random RNG;
         private List<FightLog> FightLog;
 
-        public FightSimulator(Character currChar, EnemyGeneratorService enemyGeneratorService)
+        public FightSimulator()
         {
-            EnemyGeneratorService = enemyGeneratorService;
-            RNG = new Random();
-            FightLog = new List<FightLog>();
         }
 
-        public List<FightLog> Fight(Character player)
+        public List<FightLog> Fight(Character player, IEnemyGenerator enemyGenerator)
         {
             CurrentCharacter = player;
+            EnemyGeneratorService = enemyGenerator;
+            RNG = new Random();
+            FightLog = new List<FightLog>();
 
             Enemy = EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
 
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {
-                if (ChanceGenerator(Enemy.BlockChance))
-                {
-                    int damageToDeal = CurrentCharacter.CalculateDamage();
-                    Enemy.HP -= damageToDeal;
-                    LogRounds(CurrentCharacter.Name, damageToDeal);
-                }
-                else
-                {
-                    LogRounds(CurrentCharacter.Name, 0);
-                }
+                int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.BlockChance);
+                Enemy.HP -= dealtDamage;
 
-                if(Enemy.HP > 0)
+                LogRounds(CurrentCharacter.Name, dealtDamage);
+
+                if (Enemy.HP > 0)
                 {
-                    if(ChanceGenerator(CurrentCharacter.BlockChance))
-                    {
-                        int damageToDeal = Enemy.CalculateEnemyDMG();
-                        CurrentCharacter.MotivationLevel -= damageToDeal;
-                        LogRounds(Enemy.Name, damageToDeal);
-                    }
-                    else
-                    {
-                        LogRounds(Enemy.Name, 0);
-                    }
+                    dealtDamage = Enemy.CalculateEnemyDMG(CurrentCharacter.BlockChance);
+
+                    CurrentCharacter.MotivationLevel -= dealtDamage;
+
+                    LogRounds(Enemy.Name, dealtDamage);
                 }
+                
             }
 
             return FightLog;
