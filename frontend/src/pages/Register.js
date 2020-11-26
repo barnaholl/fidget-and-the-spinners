@@ -147,7 +147,7 @@ export default function Register() {
               />
             </Grid>
           </Grid>
-          <Link to={"/home"}>
+          <Link to={"/landing"}>
             <Button
               type="submit"
               fullWidth
