@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace csharp_backend_fidget_spinners.Services
 {
-    public class QuestGeneratorService
+    public class QuestGeneratorService : IQuestGenerator
     {
         /// <summary>
         /// Properties
@@ -16,8 +16,8 @@ namespace csharp_backend_fidget_spinners.Services
         private Dictionary<string, string> questsTexts = new Dictionary<string, string>();
         private Random random = new Random();
         private readonly string[] questDifficulties = { "short", "medium", "long" };
-        private string[] questNames = { "test1", "test2", "test3" };
-        private string[] questDescriptions = { "desc1", "desc2", "desc3" };
+        private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA" };
+        private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all" };
 
 
         /// <summary>
