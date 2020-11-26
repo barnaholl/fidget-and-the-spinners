@@ -2,19 +2,32 @@ package com.codecool.itemhandlerservice.service;
 
 import com.codecool.itemhandlerservice.entity.Item;
 import com.codecool.itemhandlerservice.model.*;
-import com.codecool.itemhandlerservice.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class ItemFactoryService {
-    private final ItemRepository itemRepository;
-    private final int NUMBER_OF_STATS=5;
 
-    public ItemFactoryService(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
-    }
+    private static final int NUMBER_OF_STATS=5;
+
+    private static final int EPIC_ITEM_SELL_PRICE = 4;
+    private static final int RARE_ITEM_SELL_PRICE = 3;
+    private static final int UNCOMMON_ITEM_SELL_PRICE = 2;
+    private static final int COMMON_ITEM_SELL_PRICE = 1;
+
+    private static final int EPIC_ITEM_BUY_PRICE = 16;
+    private static final int RARE_ITEM_BUY_PRICE = 9;
+    private static final int UNCOMMON_ITEM_BUY_PRICE = 4;
+    private static final int COMMON_ITEM_BUY_PRICE = 2;
+
+    private static final int EPIC_ITEM_STAT_MULTIPLIER=4;
+    private static final int RARE_ITEM_STAT_MULTIPLIER = 3;
+    private static final int UNCOMMON_ITEM_STAT_MULTIPLIER = 2;
+    private static final int COMMON_ITEM_STAT_MULTIPLIER = 1;
+
+
+
 
     public Item getRandomItem(Long playerLevel){
 
@@ -50,13 +63,13 @@ public class ItemFactoryService {
     private Long getBuyPrice(Long itemLevel,Rarity rarity) {
         switch(rarity) {
             case EPIC:
-                return itemLevel*4*4;
+                return itemLevel*EPIC_ITEM_BUY_PRICE;
             case RARE:
-                return itemLevel*3*3;
+                return itemLevel*RARE_ITEM_BUY_PRICE;
             case UNCOMMON:
-                return itemLevel*2*3;
+                return itemLevel*UNCOMMON_ITEM_BUY_PRICE;
             case COMMON:
-                return itemLevel*1*2;
+                return itemLevel*COMMON_ITEM_BUY_PRICE;
         }
         return null;
     }
@@ -64,13 +77,13 @@ public class ItemFactoryService {
     private Long getSellPrice(Long itemLevel,Rarity rarity) {
         switch(rarity) {
             case EPIC:
-                return itemLevel*4;
+                return itemLevel*EPIC_ITEM_SELL_PRICE;
             case RARE:
-                return itemLevel*3;
+                return itemLevel*RARE_ITEM_SELL_PRICE;
             case UNCOMMON:
-                return itemLevel*2;
+                return itemLevel*UNCOMMON_ITEM_SELL_PRICE;
             case COMMON:
-                return itemLevel*1;
+                return itemLevel*COMMON_ITEM_SELL_PRICE;
         }
         return null;
     }
@@ -96,20 +109,20 @@ public class ItemFactoryService {
     private Long setOverallStats(Long itemLevel, Rarity rarity) {
         switch(rarity) {
             case EPIC:
-                return itemLevel*4;
+                return itemLevel*EPIC_ITEM_STAT_MULTIPLIER;
             case RARE:
-                return itemLevel*3;
+                return itemLevel*RARE_ITEM_STAT_MULTIPLIER;
             case UNCOMMON:
-                return itemLevel*2;
+                return itemLevel*UNCOMMON_ITEM_STAT_MULTIPLIER;
             case COMMON:
-                return itemLevel*1;
+                return itemLevel*COMMON_ITEM_STAT_MULTIPLIER;
         }
         return null;
     }
 
     private Rarity getRandomRarity() {
         Random random=new Random();
-        int chance=random.nextInt(100);
+        int chance=random.nextInt(100+1);
             if(chance>90)
                 return Rarity.EPIC;
             else if (chance>70)
