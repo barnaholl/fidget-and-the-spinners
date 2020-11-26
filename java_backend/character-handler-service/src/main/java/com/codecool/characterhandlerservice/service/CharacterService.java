@@ -19,7 +19,11 @@ public class CharacterService {
     private final InventoryService inventoryService;
     private final EquipmentService equipmentService;
 
-    private static final Long AMOUNT_OF_STARTER_CURRENCY = (long)1000;
+    private static final Long AMOUNT_OF_STARTER_CURRENCY = (long) 1000;
+    private static final Long AMOUNT_OF_STARTER_EXPERIENCE = (long) 0;
+    private static final int CHARACTER_STARTER_ENERGY_LEVEL = 1;
+    private static final int CHARACTER_STARTER_LEVEL = 1;
+
 
     public GameCharacter getCharacterByUserId(Long userId) {
         return characterRepository
@@ -40,17 +44,21 @@ public class CharacterService {
         return equipmentService.getNewEquipment();
     }
 
+    private Statistics initializeStarterStatistics() {
+        return statisticsService.getStarterStatistics();
+    }
+
     private GameCharacter initializeNewCharacter(Long userId, String characterName) {
         return GameCharacter.builder()
-                .characterStatistics(statisticsService.getStarterStatistics())
-                .characterCurrency(AMOUNT_OF_STARTER_CURRENCY)
-                .characterExperience((long)0)
-                .characterLevel(1)
-                .characterName(characterName)
-                .userId(userId)
-                .energyLevel(1)
+                .characterStatistics(initializeStarterStatistics())
                 .characterEquipment(initializeNewEquipment())
                 .characterInventory(initializeNewInventory())
+                .characterCurrency(AMOUNT_OF_STARTER_CURRENCY)
+                .characterExperience(AMOUNT_OF_STARTER_EXPERIENCE)
+                .characterLevel(CHARACTER_STARTER_LEVEL)
+                .energyLevel(CHARACTER_STARTER_ENERGY_LEVEL)
+                .characterName(characterName)
+                .userId(userId)
                 .build();
     }
 
