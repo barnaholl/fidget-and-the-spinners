@@ -18,8 +18,8 @@ function CharacterCreation() {
       <Typography variant="h3" component="h2">
         Username
       </Typography>
-      <FormLabel component="legend">Choose your class:</FormLabel>
-      <FormGroup>
+      <FormGroup className="align-center" style={{ textAlign: "center" }}>
+        <FormLabel component="legend">Choose your class:</FormLabel>
         <FormControlLabel
           control={<Checkbox name="frontend" />}
           label="Frontend"
