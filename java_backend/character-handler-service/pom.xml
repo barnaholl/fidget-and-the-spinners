@@ -11,8 +11,8 @@
 	<groupId>com.cool</groupId>
 	<artifactId>character-handler-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>character-handler-service</name>
-	<description>character-handler-service</description>
+	<name>gameCharacter-handler-service</name>
+	<description>gameCharacter-handler-service</description>
 
 	<properties>
 		<java.version>11</java.version>
