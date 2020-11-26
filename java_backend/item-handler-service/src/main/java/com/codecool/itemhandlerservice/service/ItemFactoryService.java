@@ -5,16 +5,16 @@ import com.codecool.itemhandlerservice.model.*;
 import com.codecool.itemhandlerservice.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ItemFactoryService {
     private final ItemRepository itemRepository;
+    private final int NUMBER_OF_STATS=5;
 
     public ItemFactoryService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-            }
+    }
 
     public Item getRandomItem(Long playerLevel){
 
@@ -22,23 +22,17 @@ public class ItemFactoryService {
         Rarity rarity=getRandomRarity();
         Long overallStats=setOverallStats(playerLevel,rarity);
 
-        Long problemSolvingStat=getRandomStat(overallStats);
-        overallStats-=problemSolvingStat;
+        Long[] stats=getRandomStats(overallStats);
 
-        Long algorithmizationStat=getRandomStat(overallStats);
-        overallStats-=algorithmizationStat;
-
-        Long designStat=getRandomStat(overallStats);
-        overallStats-=designStat;
-
-        Long cleanCodeStat=getRandomStat(overallStats);
-        overallStats-=cleanCodeStat;
-
-        Long testingStat=overallStats;
+        Long problemSolvingStat=stats[0];
+        Long algorithmizationStat=stats[1];
+        Long designStat=stats[2];
+        Long cleanCodeStat=stats[3];
+        Long testingStat=stats[4];
 
 
 
-        Item item=Item.builder()
+        return Item.builder()
                 .equipmentSlot(equipmentSlot)
                 .name(getRandomName(equipmentSlot))
                 .itemLevel(playerLevel)
@@ -51,8 +45,6 @@ public class ItemFactoryService {
                 .sellPrice(getSellPrice(playerLevel,rarity))
                 .buyPrice(getBuyPrice(playerLevel,rarity))
                 .build();
-
-        return item;
     }
 
     private Long getBuyPrice(Long itemLevel,Rarity rarity) {
@@ -83,9 +75,22 @@ public class ItemFactoryService {
         return null;
     }
 
-    private Long getRandomStat(Long overallStat) {
+    private Long[] getRandomStats(Long overallStats) {
         Random random=new Random();
-        return Long.valueOf(random.nextInt(Math.toIntExact(overallStat)));
+        Long[] stats= {0L, 0L, 0L, 0L, 0L};
+        int i=0;
+        while (overallStats>0){
+            if(i==NUMBER_OF_STATS)
+                i=0;
+            if(random.nextBoolean()){
+                int addedStat=random.nextInt(Math.toIntExact(overallStats)+1);
+                overallStats-=addedStat;
+                stats[i]+=addedStat;
+            }
+            i++;
+
+        }
+        return stats;
     }
 
     private Long setOverallStats(Long itemLevel, Rarity rarity) {
