@@ -19,7 +19,7 @@ function CharacterCreation() {
         Username
       </Typography>
       <FormLabel component="legend">Choose your class:</FormLabel>
-      <FormGroup>
+      <FormGroup className="align-center">
         <FormControlLabel
           control={<Checkbox name="frontend" />}
           label="Frontend"

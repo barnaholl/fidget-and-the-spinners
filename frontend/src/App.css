@@ -59,6 +59,10 @@
   flex-grow: 1;
 }
 
+.align-center{
+  align-content: center;
+}
+
 #username {
   color: white;
   border-color: white;
