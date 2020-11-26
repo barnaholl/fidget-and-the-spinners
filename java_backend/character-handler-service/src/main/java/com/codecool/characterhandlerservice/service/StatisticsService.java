@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StatisticsService {
 
-    private static final int STARTER_VALUE_OF_BASE_STATS = 10;
+    private static final int STARTER_VALUE_OF_BASE_STATS = 1;
 
     public Statistics getStarterStatistics() {
         return Statistics.builder()
@@ -18,6 +18,8 @@ public class StatisticsService {
                 .motivation(STARTER_VALUE_OF_BASE_STATS)
                 .problemSolving(STARTER_VALUE_OF_BASE_STATS)
                 .testing(STARTER_VALUE_OF_BASE_STATS)
+                .debugChance(STARTER_VALUE_OF_BASE_STATS)
+                .fastCoding(STARTER_VALUE_OF_BASE_STATS)
                 .build();
     }
 }

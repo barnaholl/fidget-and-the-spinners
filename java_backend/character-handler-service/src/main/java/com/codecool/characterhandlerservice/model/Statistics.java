@@ -28,6 +28,8 @@ public class Statistics {
     private int cleanCode;
     private int testing;
     private int motivation;
+    private int fastCoding;
+    private int debugChance;
 
 
 }
