@@ -2,9 +2,7 @@ package com.codecool.userhandlerservice.model;
 
 import lombok.*;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
@@ -17,6 +15,12 @@ import java.util.Set;
 public class Player {
 
     @Id
+    @GeneratedValue
+    @NonNull
+    private Long id;
+
+    @NotBlank
+    @Column(nullable = false, unique = true)
     private String userName;
 
     @NotBlank
@@ -25,6 +29,7 @@ public class Player {
     @ElementCollection
     @Singular
     @NotEmpty
-    private Set<Role> roles;
+    @NonNull
+    private Set<String> roles;
 
 }

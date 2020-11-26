@@ -30,7 +30,7 @@ public class PlayerControllerTests {
     @BeforeEach
     void initialize() {
         playerService = new PlayerService(allPlayers);
-        playerController = new PlayerController(playerService);
+        playerController = new PlayerController(playerService, allPlayers);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class PlayerControllerTests {
 
     @Test
     void testValidInputForGetPlayersThenReturns200StatusCode() throws Exception {
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new PlayerController(this.playerService)).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new PlayerController(this.playerService, allPlayers)).build();
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/players")
                 .accept(MediaType.APPLICATION_JSON))
@@ -56,7 +56,7 @@ public class PlayerControllerTests {
 
     @Test
     void testValidInputForPostThenReturns4xxStatusCode() throws Exception {
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new PlayerController(this.playerService)).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new PlayerController(this.playerService, allPlayers)).build();
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/players")
                 .accept(MediaType.APPLICATION_JSON))

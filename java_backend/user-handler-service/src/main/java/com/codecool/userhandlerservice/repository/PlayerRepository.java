@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface PlayerRepository extends JpaRepository<Player, String> {
+public interface PlayerRepository extends JpaRepository<Player, Long> {
 
-    Optional<Player> findByUserName(String s);
+    Optional<Player> findByUserName(String username);
 
     @Query("SELECT p FROM players AS p")
     List<Player> findAllPlayers();
