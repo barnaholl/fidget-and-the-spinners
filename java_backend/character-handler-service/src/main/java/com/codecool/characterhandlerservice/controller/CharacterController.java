@@ -1,5 +1,6 @@
 package com.codecool.characterhandlerservice.controller;
 
+import com.codecool.characterhandlerservice.service.CharacterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
