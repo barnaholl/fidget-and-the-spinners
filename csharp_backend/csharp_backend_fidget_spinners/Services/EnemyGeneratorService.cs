@@ -1,5 +1,6 @@
 ﻿using csharp_backend_fidget_spinners.Models;
 using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
+using csharp_backend_fidget_spinners.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,6 @@ namespace csharp_backend_fidget_spinners.Services
     {
 
         private readonly string[] _nameOptions = { "Bug", "StackOverFlow Question", "Codewars Kata", "PA", "Hardware Problem", "Virus" };
-        private readonly string[] _classOptions = { "Frontend", "Backend", "Testing", "DevOps" };
 
         public Enemy GenerateEnemy(Character myChar)
         {
@@ -19,12 +19,13 @@ namespace csharp_backend_fidget_spinners.Services
 
             Enemy enemy = new Enemy
             {
-                Name = _nameOptions[randomGenerator.Next(0, 5)],
-                Class = _classOptions[randomGenerator.Next(0,3)],
+                Name = _nameOptions[randomGenerator.Next(0, 6)],
+                Class = GetRandomClass(),
                 HP = GenerateHealth(myChar.CharacterLevel),
                 Armor = GenerateArmor(myChar.CharacterLevel),
-                BlockChance = 0.1f,
-                CriticalDamageChance = 0.1f
+                Damage = 50,
+                BlockChance = 5,
+                CriticalDamageChance = 5
             };
 
             return enemy;
@@ -32,12 +33,20 @@ namespace csharp_backend_fidget_spinners.Services
 
         public int GenerateHealth (int myCharacterLevel)
         {
-            return 100 * (10 + myCharacterLevel) / 10;
+            return 100 * (10 + myCharacterLevel);
         }
 
         public int GenerateArmor(int myCharacterLevel)
         {
             return 1 * (10 + myCharacterLevel);
+        }
+
+        private EnemyClassENUM GetRandomClass()
+        {
+            Array values = Enum.GetValues(typeof(EnemyClassENUM));
+            Random random = new Random();
+            EnemyClassENUM randomClass = (EnemyClassENUM)values.GetValue(random.Next(values.Length));
+            return randomClass;
         }
     }
 }
