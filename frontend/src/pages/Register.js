@@ -6,14 +6,13 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Copyright from "../components/Copyright";
-import '../App.css';
+import "../App.css";
 
 const usernameRegex =
   "^(?=.{3,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
@@ -71,7 +70,7 @@ export default function Register() {
         </Typography>
         <ValidatorForm className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} >
+            <Grid item xs={12}>
               <TextValidator
                 name="username"
                 variant="outlined"
@@ -160,16 +159,12 @@ export default function Register() {
           </Link>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to={"/login"}>
-                Already registered? Login
-              </Link>
+              <Link to={"/login"}>Already registered? Login</Link>
             </Grid>
           </Grid>
         </ValidatorForm>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
+      <Copyright />
     </Container>
   );
 }

@@ -2,10 +2,10 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Copyright from "../components/Copyright";
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import Stickman from '../images/stickman.png';
-import '../App.css';
+import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+import Stickman from "../images/stickman.png";
+import "../App.css";
 
 function CharacterCreation() {
   return (
@@ -13,27 +13,27 @@ function CharacterCreation() {
       <div className="character-creation-div">
         <div className="left-arrows">
           <Button>
-            <KeyboardArrowLeftIcon/>
+            <KeyboardArrowLeftIcon />
           </Button>
           <Button>
-            <KeyboardArrowLeftIcon/>
+            <KeyboardArrowLeftIcon />
           </Button>
           <Button>
-            <KeyboardArrowLeftIcon/>
+            <KeyboardArrowLeftIcon />
           </Button>
         </div>
         <div className="character-box">
-          <img src={Stickman} alt="stickman"/>
+          <img src={Stickman} alt="stickman" />
         </div>
         <div className="right-arrows">
           <Button>
-            <KeyboardArrowRightIcon/>
+            <KeyboardArrowRightIcon />
           </Button>
           <Button>
-            <KeyboardArrowRightIcon/>
+            <KeyboardArrowRightIcon />
           </Button>
           <Button>
-            <KeyboardArrowRightIcon/>
+            <KeyboardArrowRightIcon />
           </Button>
         </div>
       </div>
