@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Running production version in docker
+
+Build the container with
+
+```bash
+docker build -f Dockerfile.prod -t f-s-fe-prod:latest .
+```
+
+*Need to be in the /frontend directory*
+
+Run the container with:
+
+TODO
+
 ## Available Scripts
 
 In the project directory, you can run:
