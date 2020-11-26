@@ -1,5 +1,5 @@
 package com.codecool.itemhandlerservice.model;
 
 public enum FrameworkName {
-    SPRING,ANGULAR,REACTJS,FLUTTER,ANDROIDSTUDIO
+    SPRING,ANGULAR,REACT_JS,FLUTTER,ANDROID_STUDIO
 }
