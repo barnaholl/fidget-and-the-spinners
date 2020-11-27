@@ -37,7 +37,7 @@ public class PlayerController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserCredentials student) {
-        playerService.register(student.getUsername(), student.getPassword());
+        playerService.registerData(student);
         return ResponseEntity.status(HttpStatus.CREATED).body(student.getUsername());
     }
 

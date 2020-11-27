@@ -54,8 +54,8 @@ public class PlayerService {
         );
     }
 
-    public Player register(UserCredentials userCredentials) {
-        return register(userCredentials.getUsername(), userCredentials.getPassword());
+    public Player registerData(UserCredentials player) {
+        return register(player.getUsername(), player.getPassword());
     }
 
 }
