@@ -12,14 +12,17 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Character {
+public class GameCharacter {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    private Long userId;
+
     private String characterName;
     private int characterLevel;
+    private int energyLevel;
     private Long characterExperience;
     private Long characterCurrency;
 

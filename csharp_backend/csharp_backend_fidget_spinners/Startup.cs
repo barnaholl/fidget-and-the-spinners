@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using csharp_backend_fidget_spinners.Services;
+using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +17,9 @@ namespace csharp_backend_fidget_spinners
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+            services.AddScoped<IEnemyGenerator, EnemyGeneratorService>();
+            services.AddScoped<IFightSimulator, FightSimulator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -28,10 +33,7 @@ namespace csharp_backend_fidget_spinners
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
