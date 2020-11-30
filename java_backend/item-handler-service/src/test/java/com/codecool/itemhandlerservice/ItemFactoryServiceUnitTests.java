@@ -344,6 +344,11 @@ public class ItemFactoryServiceUnitTests {
         }
 
     }
+    @Test
+    void getRandomItemBuyPriceIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getBuyPrice()).isNotNull();
+    }
 
 
 
