@@ -32,8 +32,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         .filter(cookie -> cookie.getName().equals(TOKEN))
                         .findFirst();
         if (jwtToken.isPresent()) {
-            UsernamePasswordAuthenticationToken userToken = jwtTokenUtil
-                    .validateTokenAndExtractUserSpringToken(jwtToken.get().getValue());
+            UsernamePasswordAuthenticationToken userToken = jwtTokenUtil.validateTokenAndExtractUserSpringToken(jwtToken.get().getValue());
             SecurityContextHolder.getContext().setAuthentication(userToken);
         }
         filterChain.doFilter(request, response);

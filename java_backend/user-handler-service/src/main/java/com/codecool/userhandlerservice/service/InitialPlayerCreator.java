@@ -1,5 +1,6 @@
 package com.codecool.userhandlerservice.service;
 
+import com.codecool.userhandlerservice.model.Role;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,7 @@ public class InitialPlayerCreator {
     @Bean
     public CommandLineRunner createUsers() {
         return args -> {
-            userService.register("admin", "admin", Set.of("USER", "ADMIN"), "admin@admin.com");
+            userService.register("admin", "admin", Set.of(Role.USER, Role.ADMIN), "admin@admin.com");
             userService.register("gamer", "gamer", "user@user.com");
         };
     }

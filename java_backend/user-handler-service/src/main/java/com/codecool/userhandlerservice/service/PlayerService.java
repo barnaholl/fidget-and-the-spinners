@@ -1,6 +1,7 @@
 package com.codecool.userhandlerservice.service;
 
 import com.codecool.userhandlerservice.model.Player;
+import com.codecool.userhandlerservice.model.Role;
 import com.codecool.userhandlerservice.model.UserCredentials;
 import com.codecool.userhandlerservice.repository.PlayerRepository;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -34,7 +35,7 @@ public class PlayerService {
         return allPlayers.findAllPlayers();
     }
 
-    public Player register(String username, String password, Set<String> roles, String email) {
+    public Player register(String username, String password, Set<Role> roles, String email) {
         return allPlayers.save(
                 Player.builder()
                         .userName(username)
@@ -50,7 +51,7 @@ public class PlayerService {
                 Player.builder()
                         .userName(username)
                         .hashedPassword(encoder.encode(password))
-                        .role("USER")
+                        .role(Role.USER)
                         .email(email)
                         .build()
         );

@@ -30,7 +30,7 @@ public class Player {
     @ElementCollection
     @Singular
     @NotEmpty
-    private Set<String> roles;
+    private Set<Role> roles;
 
     @NotBlank
     @Email
