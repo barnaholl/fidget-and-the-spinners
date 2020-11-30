@@ -301,6 +301,12 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getDebugging()).isEqualTo(0L);
     }
 
+    @Test
+    void getRandomItemCodingSpeedIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getCodingSpeed()).isNotNull();
+    }
+
 
 
 }
