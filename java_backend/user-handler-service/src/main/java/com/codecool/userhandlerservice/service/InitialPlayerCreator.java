@@ -18,8 +18,8 @@ public class InitialPlayerCreator {
     @Bean
     public CommandLineRunner createUsers() {
         return args -> {
-            userService.register("admin", "admin", Set.of("USER", "ADMIN"));
-            userService.register("gamer", "gamer");
+            userService.register("admin", "admin", Set.of("USER", "ADMIN"), "admin@admin.com");
+            userService.register("gamer", "gamer", "user@user.com");
         };
     }
 }

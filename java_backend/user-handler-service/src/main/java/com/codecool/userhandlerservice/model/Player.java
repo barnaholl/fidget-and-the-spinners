@@ -1,8 +1,10 @@
 package com.codecool.userhandlerservice.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
@@ -29,5 +31,9 @@ public class Player {
     @Singular
     @NotEmpty
     private Set<String> roles;
+
+    @NotBlank
+    @Email
+    private String email;
 
 }

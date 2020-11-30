@@ -12,4 +12,10 @@ import lombok.NoArgsConstructor;
 public class UserCredentials {
     private String username;
     private String password;
+    private String email;
+
+    public UserCredentials(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

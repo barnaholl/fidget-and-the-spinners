@@ -34,28 +34,30 @@ public class PlayerService {
         return allPlayers.findAllPlayers();
     }
 
-    public Player register(String username, String password, Set<String> roles) {
+    public Player register(String username, String password, Set<String> roles, String email) {
         return allPlayers.save(
                 Player.builder()
                         .userName(username)
                         .hashedPassword(encoder.encode(password))
                         .roles(roles)
+                        .email(email)
                         .build()
         );
     }
 
-    public Player register(String username, String password) {
+    public Player register(String username, String password, String email) {
         return allPlayers.save(
                 Player.builder()
                         .userName(username)
                         .hashedPassword(encoder.encode(password))
                         .role("USER")
+                        .email(email)
                         .build()
         );
     }
 
     public Player registerData(UserCredentials player) {
-        return register(player.getUsername(), player.getPassword());
+        return register(player.getUsername(), player.getPassword(), player.getEmail());
     }
 
 }
