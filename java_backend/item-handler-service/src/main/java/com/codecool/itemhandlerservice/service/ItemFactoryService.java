@@ -51,12 +51,12 @@ public class ItemFactoryService {
         if(rarity==Rarity.RARE){
             motivation=getMotivation(playerLevel,rarity);
         }
+
         if(rarity==Rarity.EPIC){
             motivation=getMotivation(playerLevel,rarity);
             debugging=getRandomSecondaryStat();
             codingSpeed=getRandomSecondaryStat();
         }
-
 
 
         return Item.builder()
@@ -117,6 +117,7 @@ public class ItemFactoryService {
         return null;
     }
 
+
     private Long[] getRandomBaseStats(Long overallStats) {
         Random random=new Random();
         Long[] stats= {0L, 0L, 0L, 0L, 0L};
@@ -171,39 +172,22 @@ public class ItemFactoryService {
     private String getRandomName(EquipmentSlot equipmentSlot) {
         switch(equipmentSlot) {
             case LANGUAGE:
-                return getRandomProgrammingLanguageName();
+                return getRandomNameByType(ProgrammingLanguageName.class);
             case IDEA:
-                return getRandomIdeaName();
+                return getRandomNameByType(IdeaName.class);
             case FRAMEWORK:
-                return getRandomFramework();
+                return getRandomNameByType(FrameworkName.class);
             case COMPUTER:
-                return getRandomComputer();
+                return getRandomNameByType(ComputerName.class);
         }
         return null;
     }
 
-    private String getRandomComputer() {
+    private <T extends Enum<T>> String getRandomNameByType(Class<T> enumeration) {
         Random random=new Random();
-        int i=random.nextInt(ComputerName.values().length);
-        return String.valueOf(Arrays.stream(ComputerName.values()).toArray()[i]);
+        int i=random.nextInt(enumeration.getEnumConstants().length);
+        return String.valueOf(enumeration.getEnumConstants()[i]);
     }
 
-    private String getRandomFramework() {
-        Random random=new Random();
-        int i=random.nextInt(FrameworkName.values().length);
-        return String.valueOf(Arrays.stream(FrameworkName.values()).toArray()[i]);
-    }
-
-    private String getRandomIdeaName() {
-        Random random=new Random();
-        int i=random.nextInt(IdeaName.values().length);
-        return String.valueOf(Arrays.stream(IdeaName.values()).toArray()[i]);
-    }
-
-    private String getRandomProgrammingLanguageName() {
-        Random random=new Random();
-        int i=random.nextInt(ProgrammingLanguageName.values().length);
-        return String.valueOf(Arrays.stream(ProgrammingLanguageName.values()).toArray()[i]);
-    }
 
 }
