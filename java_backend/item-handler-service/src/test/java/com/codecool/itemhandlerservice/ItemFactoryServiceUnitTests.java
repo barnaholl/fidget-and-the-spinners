@@ -239,12 +239,6 @@ public class ItemFactoryServiceUnitTests {
             assertThat(item.getTesting()).isBetween(0L,overallStats);
         }
     }
-
-    @Test
-    void getRandomItemMotivationIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
-        assertThat(item.getMotivation()).isNotNull();
-    }
     @Test
     void getRandomItemSumOfStatsIsIsEqualsOverallStats(){
         Item item=itemFactoryService.getRandomItem(1L);
@@ -273,6 +267,13 @@ public class ItemFactoryServiceUnitTests {
     }
 
     @Test
+    void getRandomItemMotivationIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getMotivation()).isNotNull();
+    }
+
+
+    @Test
     void getRandomItemMotivationInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
         if(item.getRarity()==Rarity.RARE){
@@ -285,5 +286,12 @@ public class ItemFactoryServiceUnitTests {
             assertThat(item.getMotivation()).isEqualTo(0);
         }
     }
+    @Test
+    void getRandomItemDebuggingIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getDebugging()).isNotNull();
+    }
+
+
 
 }
