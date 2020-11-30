@@ -307,6 +307,15 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getCodingSpeed()).isNotNull();
     }
 
+    @Test
+    void getRandomItemCodingSpeedIsInRange(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        if(item.getRarity()==Rarity.EPIC){
+            assertThat(item.getCodingSpeed()).isBetween(0L,5L);
+        }
+        assertThat(item.getCodingSpeed()).isEqualTo(0L);
+    }
+
 
 
 }
