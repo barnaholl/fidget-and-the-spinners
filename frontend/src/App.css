@@ -77,6 +77,15 @@
 
 .character-box {
   flex-grow: 1;
+  
+.align-content-center {
+  align-content: center;
+}
+
+.stat-box {
+  width: 70% !important;
+  margin: auto;
+  margin-top: 5%;
 }
 
 #username {
@@ -114,4 +123,14 @@
 
 .MuiIconButton-label {
   color: white;
+}
+
+footer {
+  bottom: 0;
+  text-align: center;
+  position: fixed;
+}
+
+.align-center {
+  align-content: center;
 }
