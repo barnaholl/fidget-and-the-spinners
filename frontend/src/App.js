@@ -7,6 +7,8 @@ import "./App.css";
 import Landing from "./pages/Landing";
 import Character from "./pages/Character";
 
+{/* A JSX comment */}
+
 function App() {
   return (
     <Router>
