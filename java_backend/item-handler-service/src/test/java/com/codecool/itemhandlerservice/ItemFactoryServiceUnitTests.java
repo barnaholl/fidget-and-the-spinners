@@ -240,4 +240,24 @@ public class ItemFactoryServiceUnitTests {
         }
     }
 
+    @Test
+    void getRandomItemMotivationIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getMotivation()).isNotNull();
+    }
+
+    @Test
+    void getRandomItemMotivationInRange(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        if(item.getRarity()==Rarity.RARE){
+            assertThat(item.getMotivation()).isEqualTo(item.getMotivation()*2);
+        }
+        else if(item.getRarity()==Rarity.EPIC){
+            assertThat(item.getMotivation()).isEqualTo(item.getMotivation()*4);
+        }
+        else {
+            assertThat(item.getMotivation()).isEqualTo(0);
+        }
+    }
+
 }
