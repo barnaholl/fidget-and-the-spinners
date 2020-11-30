@@ -344,10 +344,34 @@ public class ItemFactoryServiceUnitTests {
         }
 
     }
+
     @Test
     void getRandomItemBuyPriceIsNotNull(){
         Item item=itemFactoryService.getRandomItem(1L);
         assertThat(item.getBuyPrice()).isNotNull();
+    }
+
+    @Test
+    void getRandomItemBuyPriceIsEqualsWithExpected(){
+        Item item=itemFactoryService.getRandomItem(1L);
+
+        if(item.getRarity()==Rarity.COMMON){
+            Long sellPrice=item.getItemLevel()*2;
+            assertThat(item.getBuyPrice()).isEqualTo(sellPrice);
+        }
+        else if(item.getRarity()==Rarity.UNCOMMON){
+            Long sellPrice=item.getItemLevel()*4;
+            assertThat(item.getBuyPrice()).isEqualTo(sellPrice);
+        }
+        else if(item.getRarity()==Rarity.RARE){
+            Long sellPrice=item.getItemLevel()*9;
+            assertThat(item.getBuyPrice()).isEqualTo(sellPrice);
+        }
+        else{
+            Long sellPrice=item.getItemLevel()*16;
+            assertThat(item.getBuyPrice()).isEqualTo(sellPrice);
+        }
+
     }
 
 
