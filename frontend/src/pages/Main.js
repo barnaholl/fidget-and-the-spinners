@@ -2,7 +2,6 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import Copyright from "../components/Copyright";
 
 export default function Main() {
   return (
@@ -18,7 +17,6 @@ export default function Main() {
           Register
         </Button>
       </Link>
-      <Copyright />
     </Container>
   );
 }

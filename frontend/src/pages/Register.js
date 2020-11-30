@@ -15,7 +15,7 @@ import Copyright from "../components/Copyright";
 import "../App.css";
 
 const usernameRegex =
-  "^(?=.{3,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+  "^(?=.{3,16}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
 const passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$";
 
 const useStyles = makeStyles((theme) => ({
@@ -83,7 +83,7 @@ export default function Register() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 validators={[`matchRegexp:${usernameRegex}`]}
-                errorMessages={["3-10 long. A-Z, 0-9 and , or _"]}
+                errorMessages={["Please enter 3-16 characters, use letters A-Z, numbers 0-9 and , or _"]}
               />
             </Grid>
             <Grid item xs={12}>

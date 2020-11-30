@@ -131,3 +131,11 @@ footer {
 .align-center {
   align-content: center;
 }
+
+#login-button {
+  margin: 1rem;
+}
+
+#register-button {
+  margin: 1rem;
+}
