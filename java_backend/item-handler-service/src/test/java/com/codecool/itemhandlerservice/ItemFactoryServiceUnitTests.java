@@ -245,6 +245,32 @@ public class ItemFactoryServiceUnitTests {
         Item item=itemFactoryService.getRandomItem(1L);
         assertThat(item.getMotivation()).isNotNull();
     }
+    @Test
+    void getRandomItemSumOfStatsIsIsEqualsOverallStats(){
+        Item item=itemFactoryService.getRandomItem(1L);
+
+        if(item.getRarity()==Rarity.COMMON){
+            Long overallStats=item.getItemLevel();
+            Long sumOfStats=item.getTesting()+item.getProblemSolving()+item.getAlgorithmization()+item.getDesign()+item.getCleanCode();
+            assertThat(sumOfStats).isEqualTo(overallStats);
+        }
+        else if(item.getRarity()==Rarity.UNCOMMON){
+            Long overallStats=item.getItemLevel()*2;
+            Long sumOfStats=item.getTesting()+item.getProblemSolving()+item.getAlgorithmization()+item.getDesign()+item.getCleanCode();
+            assertThat(sumOfStats).isEqualTo(overallStats);
+        }
+        else if(item.getRarity()==Rarity.RARE){
+            Long overallStats=item.getItemLevel()*3;
+            Long sumOfStats=item.getTesting()+item.getProblemSolving()+item.getAlgorithmization()+item.getDesign()+item.getCleanCode();
+            assertThat(sumOfStats).isEqualTo(overallStats);
+        }
+        else{
+            Long overallStats=item.getItemLevel()*4;
+            Long sumOfStats=item.getTesting()+item.getProblemSolving()+item.getAlgorithmization()+item.getDesign()+item.getCleanCode();
+            assertThat(sumOfStats).isEqualTo(overallStats);
+        }
+
+    }
 
     @Test
     void getRandomItemMotivationInRange(){
