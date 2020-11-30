@@ -11,7 +11,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,21 +22,12 @@ public class JwtTokenUtil {
     @Value("${jwt.expiration.minutes}")
     private int jwtExpirationMinutes;
 
-//    @Value("${security.jwt.token.secret-key:secret}")
-    private String key = "thisIsALongerKeyWorkPlease";
-
     private Key secretKey;
 
     @PostConstruct
-    protected void init() {
-        byte[] encodedKey = Base64.getEncoder().encode(key.getBytes());
-        this.secretKey = new SecretKeySpec(encodedKey, 0, encodedKey.length, "HmacSHA512");
+    private void initKey() {
+        secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
-
-//    @PostConstruct
-//    private void initKey() {
-//        secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-//    }
 
     public UsernamePasswordAuthenticationToken validateTokenAndExtractUserSpringToken(String token) {
         Claims claims = Jwts.parserBuilder()
