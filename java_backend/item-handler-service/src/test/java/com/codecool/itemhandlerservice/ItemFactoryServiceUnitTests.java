@@ -110,6 +110,53 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getProblemSolving()).isNotNull();
     }
 
+    @Test
+    void getRandomItemProblemSolvingIsInRange(){
+        Item item=itemFactoryService.getRandomItem(1L);
 
+        if(item.getRarity()==Rarity.COMMON){
+            Long overallStats=item.getItemLevel();
+            assertThat(item.getProblemSolving()).isBetween(0L,overallStats);
+        }
+        else if(item.getRarity()==Rarity.UNCOMMON){
+            Long overallStats=item.getItemLevel()*2;
+            assertThat(item.getProblemSolving()).isBetween(0L,overallStats);
+        }
+        else if(item.getRarity()==Rarity.RARE){
+            Long overallStats=item.getItemLevel()*3;
+            assertThat(item.getProblemSolving()).isBetween(0L,overallStats);
+        }
+        else{
+            Long overallStats=item.getItemLevel()*4;
+            assertThat(item.getProblemSolving()).isBetween(0L,overallStats);
+        }
+    }
+    @Test
+    void getRandomItemDesignIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getDesign()).isNotNull();
+    }
+
+    @Test
+    void getRandomItemDesignInRange(){
+        Item item=itemFactoryService.getRandomItem(1L);
+
+        if(item.getRarity()==Rarity.COMMON){
+            Long overallStats=item.getItemLevel();
+            assertThat(item.getDesign()).isBetween(0L,overallStats);
+        }
+        else if(item.getRarity()==Rarity.UNCOMMON){
+            Long overallStats=item.getItemLevel()*2;
+            assertThat(item.getDesign()).isBetween(0L,overallStats);
+        }
+        else if(item.getRarity()==Rarity.RARE){
+            Long overallStats=item.getItemLevel()*3;
+            assertThat(item.getDesign()).isBetween(0L,overallStats);
+        }
+        else{
+            Long overallStats=item.getItemLevel()*4;
+            assertThat(item.getDesign()).isBetween(0L,overallStats);
+        }
+    }
 
 }
