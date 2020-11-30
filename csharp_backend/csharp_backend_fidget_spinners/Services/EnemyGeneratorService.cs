@@ -12,14 +12,14 @@ namespace csharp_backend_fidget_spinners.Services
     {
 
         private readonly string[] _nameOptions = { "Bug", "StackOverFlow Question", "Codewars Kata", "PA", "Hardware Problem", "Virus" };
+        Random randomGenerator = new Random();
 
         public Enemy GenerateEnemy(Character myChar)
         {
-            Random randomGenerator = new Random();
 
             Enemy enemy = new Enemy
             {
-                Name = _nameOptions[randomGenerator.Next(0, 6)],
+                Name = GetRandomName(),
                 Class = GetRandomClass(),
                 HP = GenerateHealth(myChar.CharacterLevel),
                 Armor = GenerateArmor(myChar.CharacterLevel),
@@ -41,12 +41,17 @@ namespace csharp_backend_fidget_spinners.Services
             return 1 * (10 + myCharacterLevel);
         }
 
-        private EnemyClassENUM GetRandomClass()
+        public virtual EnemyClassENUM GetRandomClass()
         {
             Array values = Enum.GetValues(typeof(EnemyClassENUM));
             Random random = new Random();
             EnemyClassENUM randomClass = (EnemyClassENUM)values.GetValue(random.Next(values.Length));
             return randomClass;
+        }
+
+        public virtual string GetRandomName()
+        {
+            return _nameOptions[randomGenerator.Next(0, 6)];
         }
     }
 }
