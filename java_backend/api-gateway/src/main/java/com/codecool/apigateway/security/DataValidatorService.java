@@ -2,7 +2,7 @@ package com.codecool.apigateway.security;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
@@ -15,52 +15,47 @@ public class DataValidatorService {
 
     private final String passwordPattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 
-    public boolean isValidUsername(String username, List<String> errorList) {
-        errorList.clear();
+    public boolean isValidUsername(String username) {
         boolean valid = true;
         if (username.length() < 6) {
-            errorList.add("at least 6 characters");
             valid = false;
         }
         if (username.contains(" ")) {
-            errorList.add("no whitespaces");
             valid = false;
         }
         if (!upperCaseLetters.matcher(username).find()) {
-            errorList.add("at least 1 uppercase letter");
             valid = false;
         }
         return valid;
     }
 
-    public boolean isValidPassword(String password, List<String> errorList) {
-        errorList.clear();
+    public boolean isValidPassword(String password) {
         boolean valid = true;
         if (password.length() < 8) {
-            errorList.add("at least 8 characters");
             valid = false;
         }
         if (!specialCharacters.matcher(password).find()) {
-            errorList.add("at least 1 special character");
             valid = false;
         }
         if (!upperCaseLetters.matcher(password).find()) {
-            errorList.add("at least 1 uppercase letter");
             valid = false;
         }
         if (!lowerCaseLetters.matcher(password).find()) {
-            errorList.add("at least 1 lowercase letter");
             valid = false;
         }
         if (!digitsPattern.matcher(password).find()) {
-            errorList.add("at least 1 digit");
             valid = false;
         }
         if (password.contains(" ")) {
-            errorList.add("no whitespaces");
             valid = false;
         }
         return valid;
+    }
+
+    public boolean isValidEmail(String email){
+        Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+        Matcher isMatch = pattern.matcher(email);
+        return isMatch.matches();
     }
 
 }
