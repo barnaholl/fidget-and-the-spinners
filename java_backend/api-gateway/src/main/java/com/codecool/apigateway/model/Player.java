@@ -16,4 +16,5 @@ public class Player {
     private String userName;
     private String hashedPassword;
     private Set<String> roles;
+    private String email;
 }
