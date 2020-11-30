@@ -316,6 +316,12 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getCodingSpeed()).isEqualTo(0L);
     }
 
+    @Test
+    void getRandomItemSellPriceIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getSellPrice()).isNotNull();
+    }
+
 
 
 }
