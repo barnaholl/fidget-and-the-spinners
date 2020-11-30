@@ -1,8 +1,7 @@
 package com.codecool.itemhandlerservice;
 
 import com.codecool.itemhandlerservice.entity.Item;
-import com.codecool.itemhandlerservice.model.ComputerName;
-import com.codecool.itemhandlerservice.model.Rarity;
+import com.codecool.itemhandlerservice.model.*;
 import com.codecool.itemhandlerservice.service.ItemFactoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +41,13 @@ public class ItemFactoryServiceUnitTests {
         List<String> computerNames = Stream.of(ComputerName.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
-        List<String> frameworkNames = Stream.of(ComputerName.values())
+        List<String> frameworkNames = Stream.of(FrameworkName.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
-        List<String> ideaNames = Stream.of(ComputerName.values())
+        List<String> ideaNames = Stream.of(IdeaName.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
-        List<String> programmingLanguageNames = Stream.of(ComputerName.values())
+        List<String> programmingLanguageNames = Stream.of(ProgrammingLanguageName.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
 
@@ -69,11 +68,9 @@ public class ItemFactoryServiceUnitTests {
     void getRandomItemEquipmentSlotIsInEnum(){
         Item item=itemFactoryService.getRandomItem(1L);
 
-        List<String> equipmentSlots = Stream.of(ComputerName.values())
-                .map(Enum::name)
-                .collect(Collectors.toList());
+        List<EquipmentSlot> equipmentSlots = Arrays.asList(EquipmentSlot.values());
 
-        assertThat(item.getName()).isIn(equipmentSlots);
+        assertThat(item.getEquipmentSlot()).isIn(equipmentSlots);
     }
 
     @Test
@@ -298,7 +295,9 @@ public class ItemFactoryServiceUnitTests {
         if(item.getRarity()==Rarity.EPIC){
             assertThat(item.getDebugging()).isBetween(0L,5L);
         }
-        assertThat(item.getDebugging()).isEqualTo(0L);
+        else{
+            assertThat(item.getDebugging()).isEqualTo(0L);
+        }
     }
 
     @Test
