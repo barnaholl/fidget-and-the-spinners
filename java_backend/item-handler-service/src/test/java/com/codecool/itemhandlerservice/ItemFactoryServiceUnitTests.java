@@ -104,6 +104,12 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getRarity()).isIn(rarity);
     }
 
+    @Test
+    void getRandomItemProblemSolvingIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getProblemSolving()).isNotNull();
+    }
+
 
 
 }
