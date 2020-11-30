@@ -184,6 +184,32 @@ public class ItemFactoryServiceUnitTests {
             assertThat(item.getAlgorithmization()).isBetween(0L,overallStats);
         }
     }
+    @Test
+    void getRandomItemCleanCodeIsNotNull(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        assertThat(item.getCleanCode()).isNotNull();
+    }
+    @Test
+    void getRandomItemCleanCodeInRange(){
+        Item item=itemFactoryService.getRandomItem(1L);
+
+        if(item.getRarity()==Rarity.COMMON){
+            Long overallStats=item.getItemLevel();
+            assertThat(item.getCleanCode()).isBetween(0L,overallStats);
+        }
+        else if(item.getRarity()==Rarity.UNCOMMON){
+            Long overallStats=item.getItemLevel()*2;
+            assertThat(item.getCleanCode()).isBetween(0L,overallStats);
+        }
+        else if(item.getRarity()==Rarity.RARE){
+            Long overallStats=item.getItemLevel()*3;
+            assertThat(item.getCleanCode()).isBetween(0L,overallStats);
+        }
+        else{
+            Long overallStats=item.getItemLevel()*4;
+            assertThat(item.getCleanCode()).isBetween(0L,overallStats);
+        }
+    }
 
 
 }
