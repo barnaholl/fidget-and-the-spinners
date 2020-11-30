@@ -25,7 +25,7 @@ public class ItemFactoryService {
     private static final int RARE_ITEM_STAT_MULTIPLIER = 3;
     private static final int UNCOMMON_ITEM_STAT_MULTIPLIER = 2;
     private static final int COMMON_ITEM_STAT_MULTIPLIER = 1;
-    private static final int MOTIVATON_BY_LEVEL = 2;
+    private static final int MOTIVATION_BY_LEVEL = 2;
 
 
     public Item getRandomItem(Long playerLevel){
@@ -84,9 +84,9 @@ public class ItemFactoryService {
 
     private Long getMotivation(Long itemLevel,Rarity rarity) {
         if(rarity==Rarity.EPIC){
-            return itemLevel*MOTIVATON_BY_LEVEL*2;
+            return itemLevel*MOTIVATION_BY_LEVEL*2;
         }
-        return itemLevel*MOTIVATON_BY_LEVEL;
+        return itemLevel*MOTIVATION_BY_LEVEL;
     }
 
     private Long getBuyPrice(Long itemLevel,Rarity rarity) {
