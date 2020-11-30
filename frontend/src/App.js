@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import CharacterCreation from "./pages/CharacterCreation";
 import "./App.css";
 import Landing from "./pages/Landing";
+import Character from "./pages/Character";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           path="/username/character-creation"
           component={CharacterCreation}
         />
+        <Route path="/character" component={Character}/>
       </div>
     </Router>
   );

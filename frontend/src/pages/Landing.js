@@ -2,12 +2,13 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Copyright from "../components/Copyright";
-import '../../src/App.css'
+import Container from "@material-ui/core/Container";
+import '../App.css';
 
 
 function Landing() {
     return (
-        <div align="center">
+      <Container component="main" maxWidth="xs" className="align-text-center">
           <h3>Welcome Traveler!</h3>
           <p>Beyond this point you will find adventures, success and failures. </p>
           <p>At some point you might wish you had never started it.</p> 
@@ -23,8 +24,8 @@ function Landing() {
             </Button>
           </Link>
           <Copyright />
-        </div>
-    )
+        </Container>
+        );
 }
 
 export default Landing

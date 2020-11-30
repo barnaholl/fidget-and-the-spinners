@@ -79,6 +79,10 @@
   align-content: center;
 }
 
+.align-text-center{
+  text-align: center;
+}
+
 .stat-box {
   width: 70% !important;
   margin: auto;
