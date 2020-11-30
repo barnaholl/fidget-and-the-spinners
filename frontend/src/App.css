@@ -59,7 +59,27 @@
   flex-grow: 1;
 }
 
-.align-content-center{
+.left-arrows {
+  display: flex;
+  flex: 0 0 50px;
+  margin-right: auto;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.right-arrows {
+  display: flex;
+  flex: 0 0 50px;
+  margin-left: auto;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.character-box {
+  flex-grow: 1;
+}
+
+.align-content-center {
   align-content: center;
 }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Copyright from "../components/Copyright";
@@ -98,7 +99,12 @@ function CharacterCreation() {
             ))}
           </TableBody>
         </Table>
-    </TableContainer>
+        <Link to={"/character"}>
+          <Button type="submit" fullWidth color="primary" id="create-character-btn">
+              Create
+          </Button>
+        </Link>
+      </TableContainer>
       <Copyright />
     </Container>
   );
