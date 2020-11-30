@@ -292,6 +292,15 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getDebugging()).isNotNull();
     }
 
+    @Test
+    void getRandomItemDebuggingIsInRange(){
+        Item item=itemFactoryService.getRandomItem(1L);
+        if(item.getRarity()==Rarity.EPIC){
+            assertThat(item.getDebugging()).isBetween(0L,5L);
+        }
+        assertThat(item.getDebugging()).isEqualTo(0L);
+    }
+
 
 
 }
