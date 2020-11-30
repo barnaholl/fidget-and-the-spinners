@@ -33,7 +33,9 @@ public class Item {
     private Long algorithmization;
     private Long cleanCode;
     private Long testing;
+
     private Long motivation;
+
     private Long debugging;
     private Long codingSpeed;
 
