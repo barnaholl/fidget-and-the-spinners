@@ -31,6 +31,8 @@ public class PlayerService {
         return allPlayers.findByUserName(username);
     }
 
+    public Optional<Player> getPlayerByEmail(String email) {return allPlayers.findByEmail(email); }
+
     public List<Player> getAllPlayers() {
         return allPlayers.findAllPlayers();
     }
@@ -60,5 +62,4 @@ public class PlayerService {
     public Player registerData(UserCredentials player) {
         return register(player.getUsername(), player.getPassword(), player.getEmail());
     }
-
 }
