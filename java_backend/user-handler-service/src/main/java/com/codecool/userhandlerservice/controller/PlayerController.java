@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 public class PlayerController {
 
@@ -20,17 +21,22 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @GetMapping("/player/{id}")
-    public Optional<Player> getPlayerById(@PathVariable("id") Long id) {
+    @GetMapping("/id")
+    public Optional<Player> getPlayerById(@RequestParam("id") Long id) {
         return playerService.getPlayerById(id);
     }
 
-    @GetMapping("/{username}")
-    public Optional<Player> getPlayerByUsername(@PathVariable("username") String username) {
+    @GetMapping("/player")
+    public Optional<Player> getPlayerByUsername(@RequestParam("username") String username) {
         return playerService.getPlayerByUsername(username);
     }
 
-    @GetMapping("/player/all")
+    @GetMapping("/email")
+    public Optional<Player> getPlayerByEmail(@RequestParam("email") String email) {
+        return playerService.getPlayerByEmail(email);
+    }
+
+    @GetMapping("/all")
     public List<Player> getAllPlayers() {
         return playerService.getAllPlayers();
     }
