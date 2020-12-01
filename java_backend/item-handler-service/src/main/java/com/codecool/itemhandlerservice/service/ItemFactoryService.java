@@ -9,7 +9,7 @@ import java.util.*;
 @Service
 public class ItemFactoryService {
 
-    private static final int NUMBER_OF_STATS=5;
+    private static final int NUMBER_OF_BASE_STATS=5;
 
     private static final int EPIC_ITEM_SELL_PRICE = 4;
     private static final int RARE_ITEM_SELL_PRICE = 3;
@@ -25,8 +25,7 @@ public class ItemFactoryService {
     private static final int RARE_ITEM_STAT_MULTIPLIER = 3;
     private static final int UNCOMMON_ITEM_STAT_MULTIPLIER = 2;
     private static final int COMMON_ITEM_STAT_MULTIPLIER = 1;
-
-
+    private static final int MOTIVATION_BY_LEVEL = 2;
 
 
     public Item getRandomItem(Long playerLevel){
@@ -35,7 +34,7 @@ public class ItemFactoryService {
         Rarity rarity=getRandomRarity();
         Long overallStats=setOverallStats(playerLevel,rarity);
 
-        Long[] stats=getRandomStats(overallStats);
+        Long[] stats=getRandomBaseStats(overallStats);
 
         Long problemSolvingStat=stats[0];
         Long algorithmizationStat=stats[1];
@@ -43,6 +42,21 @@ public class ItemFactoryService {
         Long cleanCodeStat=stats[3];
         Long testingStat=stats[4];
 
+        Long motivation=0L;
+
+        Long debugging=0L;
+        Long codingSpeed=0L;
+
+
+        if(rarity==Rarity.RARE){
+            motivation=getMotivation(playerLevel,rarity);
+        }
+
+        if(rarity==Rarity.EPIC){
+            motivation=getMotivation(playerLevel,rarity);
+            debugging=getRandomSecondaryStat();
+            codingSpeed=getRandomSecondaryStat();
+        }
 
 
         return Item.builder()
@@ -55,9 +69,24 @@ public class ItemFactoryService {
                 .design(designStat)
                 .cleanCode(cleanCodeStat)
                 .testing(testingStat)
+                .motivation(motivation)
+                .debugging(debugging)
+                .codingSpeed(codingSpeed)
                 .sellPrice(getSellPrice(playerLevel,rarity))
                 .buyPrice(getBuyPrice(playerLevel,rarity))
                 .build();
+    }
+
+    private Long getRandomSecondaryStat() {
+        Random random=new Random();
+        return (long) random.nextInt(6);
+    }
+
+    private Long getMotivation(Long itemLevel,Rarity rarity) {
+        if(rarity==Rarity.EPIC){
+            return itemLevel*MOTIVATION_BY_LEVEL*2;
+        }
+        return itemLevel*MOTIVATION_BY_LEVEL;
     }
 
     private Long getBuyPrice(Long itemLevel,Rarity rarity) {
@@ -88,12 +117,13 @@ public class ItemFactoryService {
         return null;
     }
 
-    private Long[] getRandomStats(Long overallStats) {
+
+    private Long[] getRandomBaseStats(Long overallStats) {
         Random random=new Random();
         Long[] stats= {0L, 0L, 0L, 0L, 0L};
         int i=0;
         while (overallStats>0){
-            if(i==NUMBER_OF_STATS)
+            if(i==NUMBER_OF_BASE_STATS)
                 i=0;
             if(random.nextBoolean()){
                 int addedStat=random.nextInt(Math.toIntExact(overallStats)+1);
@@ -142,39 +172,22 @@ public class ItemFactoryService {
     private String getRandomName(EquipmentSlot equipmentSlot) {
         switch(equipmentSlot) {
             case LANGUAGE:
-                return getRandomProgrammingLanguageName();
+                return getRandomNameByType(ProgrammingLanguageName.class);
             case IDEA:
-                return getRandomIdeaName();
+                return getRandomNameByType(IdeaName.class);
             case FRAMEWORK:
-                return getRandomFramework();
+                return getRandomNameByType(FrameworkName.class);
             case COMPUTER:
-                return getRandomComputer();
+                return getRandomNameByType(ComputerName.class);
         }
         return null;
     }
 
-    private String getRandomComputer() {
+    private <T extends Enum<T>> String getRandomNameByType(Class<T> enumeration) {
         Random random=new Random();
-        int i=random.nextInt(ComputerName.values().length);
-        return String.valueOf(Arrays.stream(ComputerName.values()).toArray()[i]);
+        int i=random.nextInt(enumeration.getEnumConstants().length);
+        return String.valueOf(enumeration.getEnumConstants()[i]);
     }
 
-    private String getRandomFramework() {
-        Random random=new Random();
-        int i=random.nextInt(FrameworkName.values().length);
-        return String.valueOf(Arrays.stream(FrameworkName.values()).toArray()[i]);
-    }
-
-    private String getRandomIdeaName() {
-        Random random=new Random();
-        int i=random.nextInt(IdeaName.values().length);
-        return String.valueOf(Arrays.stream(IdeaName.values()).toArray()[i]);
-    }
-
-    private String getRandomProgrammingLanguageName() {
-        Random random=new Random();
-        int i=random.nextInt(ProgrammingLanguageName.values().length);
-        return String.valueOf(Arrays.stream(ProgrammingLanguageName.values()).toArray()[i]);
-    }
 
 }
