@@ -21,7 +21,13 @@ services:
         BACKEND_URL: java-prod:3000 # can be just exposed
     ports:
       - 8080:80
+  eureka:
+    image: springcloud/eureka
+    expose:
+      - 8761
 
   # java-prod:
+  #   env:
+  #     EUREKA_HOST: eureka:8761
 
 # TODO: add Java and FE prod services
