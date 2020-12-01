@@ -26,7 +26,8 @@ namespace csharp_backend_fidget_spinners.Services
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {
-                int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.CompilerErrorChance);
+                int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.CompilerErrorChance, Enemy.Class);
+                dealtDamage -= (dealtDamage - (Enemy.Armor / 2) > 0) ? (Enemy.Armor / 2) : 0;
                 Enemy.HP -= dealtDamage;
 
                 LogRounds(CurrentCharacter.Name, dealtDamage);

@@ -30,16 +30,36 @@ namespace csharp_backend_fidget_spinners.Models
         public int DebugChance { get; set; }
         public int FastCoding { get; set; }
 
-        public int CalculateDamage(int opponentsBlockChance)
+        public int CalculateDamage(int opponentsBlockChance, EnemyClassENUM _class)
         {
             if (RNG.Next(0, 100) < opponentsBlockChance) return 0;
 
             int damage = 10 + RNG.Next(0, 10);
-            damage += Convert.ToInt32(Design * 1.5);
+
+            damage += Design + ProblemSolving + Testing + Algorithm + CleanCode;
+
+            switch (_class)
+            {
+                case EnemyClassENUM.Frontend:
+                    damage += Design * 2 + CleanCode;
+                    break;
+                case EnemyClassENUM.Backend:
+                    damage += ProblemSolving * 2 + Algorithm * 2;
+                    break;
+                case EnemyClassENUM.DevOps:
+                    damage += Convert.ToInt32(ProblemSolving * 1.5 + Testing);
+                    break;
+                case EnemyClassENUM.Testing:
+                    damage += Testing * 2 + CleanCode;
+                    break;
+            }
+
+
+            /*damage += Convert.ToInt32(Design * 1.5);
             damage += Convert.ToInt32(ProblemSolving * 1.5);
             damage += Convert.ToInt32(Testing * 1.5);
             damage += Convert.ToInt32(Algorithm * 1.5);
-            damage += Convert.ToInt32(CleanCode * 1.5);
+            damage += Convert.ToInt32(CleanCode * 1.5);*/
 
             if (RNG.Next(0, 100) > FastCoding)
             {
