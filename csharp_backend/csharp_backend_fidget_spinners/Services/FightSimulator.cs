@@ -55,5 +55,16 @@ namespace csharp_backend_fidget_spinners.Services
                 EnemyHealthPoint = Enemy.HP
             });
         }
+
+
+        public int LastKnownCharacterHP()
+        {
+            return CurrentCharacter.MotivationLevel;
+        }
+
+        public int LastKnownEnemyHP()
+        {
+            return Enemy.HP;
+        }
     }
 }
