@@ -4,6 +4,7 @@ using csharp_backend_fidget_spinners.Services.CustomLogObj;
 using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 using NSubstitute;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace csharp_backend_fidget_spinners_tests
 {
@@ -36,25 +37,25 @@ namespace csharp_backend_fidget_spinners_tests
         }
 
         [Test]
-        public void FightTest_CharacterHP_Should_Decrease()
+        public async Task FightTest_CharacterHP_Should_Decrease()
         {
-            _fightSimulator.Fight(_character, _enemyGeneratorService);
+            await _fightSimulator.Fight(_character, _enemyGeneratorService);
 
             Assert.True(_fightSimulator.LastKnownCharacterHP() < 300);
         }
 
         [Test]
-        public void FightTest_EnemyHP_Should_Decrease()
+        public async Task FightTest_EnemyHP_Should_Decrease()
         {
-            _fightSimulator.Fight(_character, _enemyGeneratorService);
+            await _fightSimulator.Fight(_character, _enemyGeneratorService);
 
             Assert.True(_fightSimulator.LastKnownEnemyHP() < 240);
         }
 
         [Test]
-        public void FightTest_Someone_Should_Win()
+        public async Task FightTest_Someone_Should_Win()
         {
-            _fightSimulator.Fight(_character, _enemyGeneratorService);
+            await _fightSimulator.Fight(_character, _enemyGeneratorService);
 
 
             Assert.True(_fightSimulator.LastKnownCharacterHP() <= 0 || _fightSimulator.LastKnownEnemyHP() <= 0);

@@ -5,6 +5,8 @@ using csharp_backend_fidget_spinners.Models.Enums;
 using NUnit.Framework;
 using System;
 using NSubstitute;
+using System.Threading.Tasks;
+
 
 namespace csharp_backend_fidget_spinners_tests
 {
@@ -91,7 +93,7 @@ namespace csharp_backend_fidget_spinners_tests
             serviceMocked.GetRandomClass().Returns(returnValueENUM);
 
             //Act
-            Enemy resultEnemy = serviceMocked.GenerateEnemy(_testPlayer);
+            Enemy resultEnemy = serviceMocked.GenerateEnemy(_testPlayer).Result;
 
             //Asserts
             Assert.AreEqual(expectedEnemy.Name, resultEnemy.Name);

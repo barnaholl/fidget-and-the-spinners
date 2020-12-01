@@ -26,9 +26,9 @@ namespace csharp_backend_fidget_spinners.Controller
         }
 
         [HttpPost]
-        public List<FightLog> SimulateFight([FromBody] Character player)
+        public async Task<List<FightLog>> SimulateFight([FromBody] Character player)
         {
-            return _fightSimulator.Fight(player, _enemyGenerator);
+            return await _fightSimulator.Fight(player, _enemyGenerator);
         }
     }
 }

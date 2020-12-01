@@ -9,6 +9,6 @@ namespace csharp_backend_fidget_spinners.Services.ServiceInterfaces
 {
     public interface IFightSimulator
     {
-        public List<FightLog> Fight(Character player, IEnemyGenerator enemyGenerator);
+        public Task<List<FightLog>> Fight(Character player, IEnemyGenerator enemyGenerator);
     }
 }

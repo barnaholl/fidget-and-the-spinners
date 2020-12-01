@@ -15,14 +15,13 @@ namespace csharp_backend_fidget_spinners.Services
         private Enemy Enemy;
         private List<FightLog> FightLog;
 
-        public List<FightLog> Fight(Character player, IEnemyGenerator enemyGenerator)
+        public async Task<List<FightLog>> Fight(Character player, IEnemyGenerator enemyGenerator)
         {
             CurrentCharacter = player;
             EnemyGeneratorService = enemyGenerator;
             FightLog = new List<FightLog>();
 
-            Enemy = EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
-
+            Enemy = await EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {

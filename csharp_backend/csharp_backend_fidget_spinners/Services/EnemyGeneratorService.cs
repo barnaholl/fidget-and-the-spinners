@@ -14,7 +14,7 @@ namespace csharp_backend_fidget_spinners.Services
         private readonly string[] _nameOptions = { "Bug", "StackOverFlow Question", "Codewars Kata", "PA", "Hardware Problem", "Virus" };
         Random randomGenerator = new Random();
 
-        public Enemy GenerateEnemy(Character myChar)
+        public async Task<Enemy> GenerateEnemy(Character myChar)
         {
 
             Enemy enemy = new Enemy
