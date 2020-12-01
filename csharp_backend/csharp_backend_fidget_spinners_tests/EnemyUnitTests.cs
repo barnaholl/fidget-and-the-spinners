@@ -39,7 +39,7 @@ namespace csharp_backend_fidget_spinners_tests
         [Test]
         public void GenerateHealthTest_ShouldReturn_220()
         {
-            int expectedHP = 220;
+            int expectedHP = 260;
 
             int generatedHP = _enemyGenerator.GenerateHealth(_testPlayer.CharacterLevel);
 
@@ -57,6 +57,16 @@ namespace csharp_backend_fidget_spinners_tests
         }
 
         [Test]
+        public void GenerateBaseDamage_ShouldReturn_35()
+        {
+            int expectedDamage = 30;
+
+            int generatedDamage = _enemyGenerator.GenerateBaseDamage(_testPlayer.CharacterLevel);
+
+            Assert.AreEqual(expectedDamage, generatedDamage);
+        }
+
+        [Test]
         public void GenerateEnemyTest_ShouldReturn_ExpectedEnemy()
         {
 
@@ -65,9 +75,9 @@ namespace csharp_backend_fidget_spinners_tests
             {
                 Name = "Bug",
                 Class = EnemyClassENUM.Backend,
-                HP = 220,
+                HP = 260,
                 Armor = 11,
-                Damage = 50,
+                Damage = 30,
                 CompilerErrorChance = 5,
                 RuntimeErrorChance = 5
             };

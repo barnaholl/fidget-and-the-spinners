@@ -23,7 +23,7 @@ namespace csharp_backend_fidget_spinners.Services
                 Class = GetRandomClass(),
                 HP = GenerateHealth(myChar.CharacterLevel),
                 Armor = GenerateArmor(myChar.CharacterLevel),
-                Damage = 50,
+                Damage = GenerateBaseDamage(myChar.CharacterLevel),
                 CompilerErrorChance = 5,
                 RuntimeErrorChance = 5
             };
@@ -34,6 +34,11 @@ namespace csharp_backend_fidget_spinners.Services
         public int GenerateHealth (int myCharacterLevel)
         {
             return 20 * (12 + myCharacterLevel);
+        }
+
+        public int GenerateBaseDamage(int myCharacterLevel)
+        {
+            return 5 * (5 + myCharacterLevel);
         }
 
         public int GenerateArmor(int myCharacterLevel)
