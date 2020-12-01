@@ -44,8 +44,6 @@ public class ItemFactoryControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(itemController).build();
         MvcResult result=mockMvc.perform(request).andReturn();
         assertThat(result.getResponse().getContentAsString().contains("\"itemLevel\":1")).isTrue();
-        //System.out.println(result.getResponse().getContentAsString());
-
     }
 
 
