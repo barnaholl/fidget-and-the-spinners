@@ -55,10 +55,6 @@
   justify-content: space-between;
 }
 
-.character-box {
-  flex-grow: 1;
-}
-
 .left-arrows {
   display: flex;
   flex: 0 0 50px;
@@ -81,6 +77,10 @@
 
 .align-content-center {
   align-content: center;
+}
+
+.align-text-center{
+  text-align: center;
 }
 
 .stat-box {
@@ -130,4 +130,16 @@ footer {
   bottom: 0;
   text-align: center;
   position: fixed;
+}
+
+.align-center {
+  align-content: center;
+}
+
+#login-button {
+  margin: 1rem;
+}
+
+#register-button {
+  margin: 1rem;
 }

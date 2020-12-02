@@ -10,12 +10,12 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 import Stickman from "../images/stickman.png";
 import { makeStyles } from "@material-ui/core/styles";
 import "../App.css";
@@ -27,17 +27,16 @@ const useStyles = makeStyles({
 });
 
 function createData(name, value) {
-  return { name, value};
+  return { name, value };
 }
 
 const rows = [
-  createData('Problem solving', 0),
-  createData('Design', 0),
-  createData('Algorithm', 0),
-  createData('Testing', 0),
-  createData('Clean code', 0),
+  createData("Problem solving", 0),
+  createData("Design", 0),
+  createData("Algorithm", 0),
+  createData("Testing", 0),
+  createData("Clean code", 0),
 ];
-
 
 function CharacterCreation() {
   const classes = useStyles();
@@ -47,8 +46,8 @@ function CharacterCreation() {
       <Typography variant="h3" component="h2">
         Username
       </Typography>
-      <FormLabel component="legend">Choose your class:</FormLabel>
-      <FormGroup className="align-content-center">
+      <FormGroup className="align-center" style={{ textAlign: "center" }}>
+        <FormLabel component="legend">Choose your class:</FormLabel>
         <FormControlLabel
           control={<Checkbox name="frontend" />}
           label="Frontend"
