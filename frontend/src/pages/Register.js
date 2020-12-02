@@ -68,7 +68,7 @@ export default function Register() {
         <Typography component="h1" variant="h5">
           Create account
         </Typography>
-        <ValidatorForm className={classes.form} noValidate>
+        <ValidatorForm className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextValidator
