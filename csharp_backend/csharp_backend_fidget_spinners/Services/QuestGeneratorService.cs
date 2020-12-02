@@ -3,12 +3,12 @@ using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace csharp_backend_fidget_spinners.Services
 {
     public class QuestGeneratorService : IQuestGenerator
     {
+
         /// <summary>
         /// Properties
         /// </summary>
@@ -19,6 +19,14 @@ namespace csharp_backend_fidget_spinners.Services
         private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA" };
         private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all" };
 
+        private int CharLevelMultiplier = 2;
+
+        private int ShortMinReward = 10;
+        private int ShortMaxReward = 20;
+        private int MediumMinReward = 25;
+        private int MediumMaxReward = 35;
+        private int LongMinReward = 40;
+        private int LongMaxReward = 50;
 
         /// <summary>
         /// Generate a quest based on character level
@@ -32,6 +40,7 @@ namespace csharp_backend_fidget_spinners.Services
             string questDifficulty = questDifficulties[random.Next(0, questDifficulties.Length)];
             int questTextIndex = random.Next(0, questsTexts.Count);
             int timeAndEnergyCost = GenerateTimeAndEnergyCost(questDifficulty);
+            bool hasItemReward = HasItemReward();
 
             Quest quest = new Quest
             {
@@ -39,8 +48,8 @@ namespace csharp_backend_fidget_spinners.Services
                 Description = questsTexts.ElementAt(questTextIndex).Value,
                 QuestTime = timeAndEnergyCost,
                 EnergyCost = timeAndEnergyCost,
-                RewardCoin = GenerateCoinReward(character.CharacterLevel, questDifficulty),
-                RewardXP = GenerateXPReward(character.CharacterLevel, questDifficulty),
+                RewardCoin = GenerateCoinReward(character.CharacterLevel, questDifficulty, hasItemReward),
+                RewardXP = GenerateXPReward(character.CharacterLevel, questDifficulty, hasItemReward),
                 //RewardItem = GenerateRewardItem(character.CharacterLevel),
             };
 
@@ -54,18 +63,21 @@ namespace csharp_backend_fidget_spinners.Services
         /// <param name="difficulty"></param>
         /// <returns>A random integer</returns>
 
-        public int GenerateCoinReward(int charlevel, string difficulty)
+        public int GenerateCoinReward(int charlevel, string difficulty, bool hasItemReward)
         {
             switch(difficulty)
             {
                 case "short":
-                    return random.Next(10 + (charlevel * 2), (20 + (charlevel * 2)) + 1);
+                    int shortReward = random.Next(ShortMinReward + (charlevel * CharLevelMultiplier), (ShortMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? shortReward : shortReward - (charlevel + 5);
 
                 case "medium":
-                    return random.Next(20 + (charlevel * 2), (30 + (charlevel * 2)) + 1);
+                    int MediumReward = random.Next(MediumMinReward + (charlevel * CharLevelMultiplier), (MediumMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? MediumReward : MediumReward - (charlevel + 5);
 
                 case "long":
-                    return random.Next(30 + (charlevel * 2), (40 + (charlevel * 2)) + 1);
+                    int LongReward = random.Next(LongMinReward + (charlevel * CharLevelMultiplier), (LongMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? LongReward : LongReward - (charlevel + 5);
 
                 default:
                     return 0;
@@ -79,18 +91,21 @@ namespace csharp_backend_fidget_spinners.Services
         /// <param name="difficulty"></param>
         /// <returns>Random integer</returns>
 
-        public int GenerateXPReward(int charlevel, string difficulty)
+        public int GenerateXPReward(int charlevel, string difficulty, bool hasItemReward)
         {
             switch(difficulty)
             {
                 case "short":
-                    return random.Next(20 + (charlevel * 2), (30 + (charlevel * 2)) + 1);
+                    int shortReward = random.Next(ShortMinReward + (charlevel * CharLevelMultiplier), (ShortMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? shortReward : shortReward - (charlevel + 5);
 
                 case "medium":
-                    return random.Next(30 + (charlevel * 2), (40 + (charlevel * 2)) + 1);
+                    int MediumReward = random.Next(MediumMinReward + (charlevel * CharLevelMultiplier), (MediumMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? MediumReward : MediumReward - (charlevel + 5);
 
                 case "long":
-                    return random.Next(40 + (charlevel * 2), (50 + (charlevel * 2)) + 1);
+                    int LongReward = random.Next(LongMinReward + (charlevel * CharLevelMultiplier), (LongMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? LongReward : LongReward - (charlevel + 5);
 
                 default:
                     return 0;
@@ -121,12 +136,7 @@ namespace csharp_backend_fidget_spinners.Services
             }
         }
 
-
-        // Get it from Java backend
-        /*public Item GenerateItemReward(int charlevel)
-        {
-
-        }*/
+        public bool HasItemReward() => (random.Next(1, 101) < 25);
 
         private void FillQuestTexts()
         {
