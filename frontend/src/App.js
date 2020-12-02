@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import CharacterCreation from "./pages/CharacterCreation";
 import "./App.css";
 import Landing from "./pages/Landing";
+import Grid from "@material-ui/core/Grid";
 import Character from "./pages/Character";
 import Kitchen from "./pages/Kitchen";
 

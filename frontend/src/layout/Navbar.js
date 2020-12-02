@@ -9,6 +9,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { Link } from "react-router-dom";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
 
 const drawerWidth = 240;
 
@@ -55,7 +56,7 @@ export default function LeftSideBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Container className={classes.root}>
       <CssBaseline />
       <Drawer
         className={classes.drawer}
@@ -89,6 +90,6 @@ export default function LeftSideBar() {
           ))}
         </List>
       </Drawer>
-    </div>
+    </Container>
   );
 }
