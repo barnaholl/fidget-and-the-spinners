@@ -15,7 +15,6 @@ namespace csharp_backend_fidget_spinners.Services
 
         private Dictionary<string, string> questsTexts = new Dictionary<string, string>();
         private Random random = new Random();
-        private readonly string[] questDifficulties = { "short", "medium", "long" };
         private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA" };
         private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all" };
 
@@ -34,10 +33,9 @@ namespace csharp_backend_fidget_spinners.Services
         /// <param name="character"></param>
         /// <returns>A randomly generated quest</returns>
 
-        public Quest GenerateQuest(Character character)
+        public Quest GenerateQuest(Character character, string questDifficulty)
         {
             FillQuestTexts();
-            string questDifficulty = questDifficulties[random.Next(0, questDifficulties.Length)];
             int questTextIndex = random.Next(0, questsTexts.Count);
             int timeAndEnergyCost = GenerateTimeAndEnergyCost(questDifficulty);
             bool hasItemReward = HasItemReward();
