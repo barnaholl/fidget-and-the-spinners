@@ -6,7 +6,9 @@ import Main from "./pages/Main";
 import CharacterCreation from "./pages/CharacterCreation";
 import "./App.css";
 import Landing from "./pages/Landing";
+import Grid from "@material-ui/core/Grid";
 import Character from "./pages/Character";
+import Navbar from "./layout/Navbar";
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
           path="/username/character-creation"
           component={CharacterCreation}
         />
-        <Route path="/character" component={Character}/>
+        <Route path="/character" component={Character} />
       </div>
     </Router>
   );
