@@ -6,14 +6,31 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import { Link } from "react-router-dom";
 import ListItemText from "@material-ui/core/ListItemText";
+import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 
 const drawerWidth = 240;
 
+var barIcons = [
+  { Kitchen: "/kitchen" },
+  { Arena: "/arena" },
+  { shop1: "/shop1" },
+  { shop2: "/shop2" },
+  { Dungeon: "/dungeon" },
+  { Fortress: "/fortress" },
+  { Guild: "/guild" },
+  { Mail: "/mail" },
+  { "Hall of Fame": "/hall-of-fame" },
+];
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -43,31 +60,33 @@ export default function LeftSideBar() {
       <CssBaseline />
       <Drawer
         className={classes.drawer}
-        variant="permanent"
+        variant='permanent'
         classes={{
           paper: classes.drawerPaper,
         }}
-        anchor="left"
+        anchor='left'
+        contentalign='center'
       >
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {[
-            "Kitchen",
-            "Arena",
-            "Shop1",
-            "Shop2",
-            "Stable",
-            "Dungeon",
-            "Fortress",
-            "Guild",
-            "Mail",
-            "Hall of Fame",
-          ].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {barIcons.map((item) => (
+            <Link
+              key={Object.entries(item)[0][0]}
+              to={Object.entries(item)[0][1]}
+            >
+              <Button
+                fullWidth
+                variant='outlined'
+                color='primary'
+                size='medium'
+              >
+                <ListItem button key={Object.entries(item)[0][0]}>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={Object.entries(item)[0][0]} />
+                </ListItem>
+              </Button>
+            </Link>
           ))}
         </List>
       </Drawer>
