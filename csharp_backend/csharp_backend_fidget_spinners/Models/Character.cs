@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp_backend_fidget_spinners.Models
 {
-    //Our Character in the game!!
+    //Our Character in the game!
     public class Character
     {
         private Random RNG;
@@ -54,12 +54,21 @@ namespace csharp_backend_fidget_spinners.Models
                     break;
             }
 
+            if (RNG.Next(0, 100) > FastCoding)
+            {
+                damage *= 2;
+            }
 
-            /*damage += Convert.ToInt32(Design * 1.5);
-            damage += Convert.ToInt32(ProblemSolving * 1.5);
-            damage += Convert.ToInt32(Testing * 1.5);
-            damage += Convert.ToInt32(Algorithm * 1.5);
-            damage += Convert.ToInt32(CleanCode * 1.5);*/
+            return damage;
+        }
+
+        public int CalculateDamage(int opponentsBlockChance)
+        {
+            if (RNG.Next(0, 100) < opponentsBlockChance) return 0;
+
+            int damage = 10 + RNG.Next(0, 10);
+
+            damage += Design + ProblemSolving + Testing + Algorithm + CleanCode; 
 
             if (RNG.Next(0, 100) > FastCoding)
             {
