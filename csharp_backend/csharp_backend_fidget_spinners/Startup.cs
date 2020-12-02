@@ -20,6 +20,7 @@ namespace csharp_backend_fidget_spinners
             services.AddControllers();
             services.AddScoped<IEnemyGenerator, EnemyGeneratorService>();
             services.AddScoped<IQuestGenerator, QuestGeneratorService>();
+            services.AddScoped<IArenaFightSimulator, ArenaSimulator>();
             services.AddScoped<IFightSimulator, FightSimulator>();
         }
 

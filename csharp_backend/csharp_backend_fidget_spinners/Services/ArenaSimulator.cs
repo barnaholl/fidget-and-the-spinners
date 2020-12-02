@@ -13,18 +13,41 @@ namespace csharp_backend_fidget_spinners.Services
 
         private Character Player1;
         private Character Player2;
-        private List<ArenaFightLog> FightLog;
+        private List<ArenaFightLog> ArenaFightLog;
 
-        public Task<List<ArenaFightLog>> ArenaFight(Character player1, Character player2)
+        public async Task<List<ArenaFightLog>> ArenaFight(Character player1, Character player2)
         {
-            throw new NotImplementedException();
+
+            Player1 = player1;
+            Player2 = player2;
+            ArenaFightLog = new List<ArenaFightLog>();
+
+            while (Player1.MotivationLevel > 0 && Player2.MotivationLevel > 0)
+            {
+                int player1Damage = Player1.CalculateDamage(Player2.DebugChance);
+
+                Player2.MotivationLevel -= player1Damage;
+
+                LogRounds(Player1.Name, player1Damage);
+
+                if(Player2.MotivationLevel > 0)
+                {
+                    int player2Damage = Player2.CalculateDamage(Player1.DebugChance);
+
+                    player1.MotivationLevel -= player2Damage;
+
+                    LogRounds(Player2.Name, player2Damage);
+                }
+            }
+
+            return ArenaFightLog;
         }
 
 
 
         private void LogRounds(string attackersName, int damageDealt)
         {
-            FightLog.Add(new ArenaFightLog
+            ArenaFightLog.Add(new ArenaFightLog
             {
                 DamageDealer = attackersName,
                 DealtDMG = damageDealt,

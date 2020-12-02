@@ -35,8 +35,9 @@ namespace csharp_backend_fidget_spinners.Controller
                 player2 = players[1];
                 return await _arenaSimulator.ArenaFight(player1, player2);
             } 
-            catch (Exception e)
+            catch (ArgumentOutOfRangeException e)
             {
+                Console.WriteLine("Bad Post-Request body!");
                 Console.WriteLine(e + e.Message);
 
                 return new List<ArenaFightLog> 

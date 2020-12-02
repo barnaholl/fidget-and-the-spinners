@@ -62,5 +62,21 @@ namespace csharp_backend_fidget_spinners.Models
             return damage;
         }
 
+        public int CalculateDamage(int opponentsBlockChance)
+        {
+            if (RNG.Next(0, 100) < opponentsBlockChance) return 0;
+
+            int damage = 10 + RNG.Next(0, 10);
+
+            damage += Design + ProblemSolving + Testing + Algorithm + CleanCode; 
+
+            if (RNG.Next(0, 100) > FastCoding)
+            {
+                damage *= 2;
+            }
+
+            return damage;
+        }
+
     }
 }
