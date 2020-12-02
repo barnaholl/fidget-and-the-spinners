@@ -56,7 +56,6 @@ namespace csharp_backend_fidget_spinners.Services
             });
         }
 
-
         public int LastKnownCharacterHP()
         {
             return CurrentCharacter.MotivationLevel;
