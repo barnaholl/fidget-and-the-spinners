@@ -13,18 +13,6 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(name, value) {
-  return { name, value };
-}
-
-const rows = [
-  createData("Problem solving", 0),
-  createData("Design", 0),
-  createData("Algorithm", 0),
-  createData("Testing", 0),
-  createData("Clean code", 0),
-];
-
 const char1 = [
   {
     ProblemSolving: 0,
@@ -36,10 +24,8 @@ const char1 = [
 ];
 
 export default function Stats() {
-  const [character, setcharacter] = useState(char1[0]);
+  const [character] = useState(char1[0]);
   const classes = useStyles();
-
-  console.log(character);
 
   return (
     <TableContainer component={Paper}>
@@ -47,7 +33,6 @@ export default function Stats() {
         <TableBody>
           {Object.entries(character).map((stat) => (
             <TableRow key={stat[0]}>
-              {console.log(stat)}
               <TableCell component="th" scope="row" width="70%" align="left">
                 {stat[0]}
               </TableCell>
