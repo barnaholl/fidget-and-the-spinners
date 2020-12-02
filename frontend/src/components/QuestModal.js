@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -23,7 +22,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   const { in: open, children, onEnter, onExited, ...other } = props;
   const style = useSpring({
     from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
+    to: { opacity: open ? 1 : 0, width: "30%" },
     onStart: () => {
       if (open && onEnter) {
         onEnter();
@@ -43,16 +42,31 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   );
 });
 
-Fade.propTypes = {
-  children: PropTypes.element,
-  in: PropTypes.bool.isRequired,
-  onEnter: PropTypes.func,
-  onExited: PropTypes.func,
-};
-
-export default function SpringModal() {
+export default function QuestModal() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+  const DUMMYQUESTS = [
+    {
+      id: 1,
+      name: "Baklava",
+      description:
+        "You might wander far off the land, but do you have what it takes to sail along powerful tidalwaves?",
+    },
+    {
+      id: 2,
+      name: "Kilimanjaro",
+      description: "Roaming to the East was never an easy task.",
+    },
+    {
+      id: 3,
+      name: "Tulok",
+      description:
+        "At the feet of the grandiose Mount Everest you will find this rare beast. He's too sacred to hunt, but bring me his milk",
+    },
+  ];
+
+  const [actualQuest, setActualQuest] = useState(DUMMYQUESTS[0]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -64,12 +78,12 @@ export default function SpringModal() {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <button type='button' onClick={handleOpen}>
         Take Quest
       </button>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -81,8 +95,21 @@ export default function SpringModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Take Quest</h2>
-            <p id="spring-modal-description">Choose your quest here</p>
+            <h2 id='spring-modal-title'>Take Quest</h2>
+            <p id='spring-modal-description'>Choose your quest here</p>
+            <button onClick={() => setActualQuest(DUMMYQUESTS[0])}>
+              Quest 1
+            </button>
+            <button onClick={() => setActualQuest(DUMMYQUESTS[1])}>
+              Quest 2
+            </button>
+            <button onClick={() => setActualQuest(DUMMYQUESTS[2])}>
+              Quest 3
+            </button>
+            <div>
+              <h4>{actualQuest.name}</h4>
+              <h5>{actualQuest.description}</h5>
+            </div>
           </div>
         </Fade>
       </Modal>
