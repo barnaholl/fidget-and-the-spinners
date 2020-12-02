@@ -5,9 +5,9 @@ import Register from "./pages/Register";
 import CharacterCreation from "./pages/CharacterCreation";
 import "./App.css";
 import Landing from "./pages/Landing";
+import Grid from "@material-ui/core/Grid";
 import Character from "./pages/Character";
-
-{/* A JSX comment */}
+import Kitchen from "./pages/Kitchen";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           component={CharacterCreation}
         />
         <Route path="/character" component={Character}/>
+        <Route path="/kitchen" component={Kitchen}/>
       </div>
     </Router>
   );
