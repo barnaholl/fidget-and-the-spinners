@@ -13,7 +13,6 @@ namespace csharp_backend_fidget_spinners.Services
         /// Properties
         /// </summary>
 
-        private Dictionary<string, string> questsTexts = new Dictionary<string, string>();
         private Random random = new Random();
         private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA" };
         private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all" };
@@ -35,15 +34,14 @@ namespace csharp_backend_fidget_spinners.Services
 
         public Quest GenerateQuest(Character player, string questDifficulty)
         {
-            FillQuestTexts();
-            int questTextIndex = random.Next(0, questsTexts.Count);
+            int questTextIndex = random.Next(0, questNames.Length);
             int timeAndEnergyCost = GenerateTimeAndEnergyCost(questDifficulty);
             bool hasItemReward = HasItemReward();
 
             Quest quest = new Quest
             {
-                Name = questsTexts.ElementAt(questTextIndex).Key,
-                Description = questsTexts.ElementAt(questTextIndex).Value,
+                Name = questNames[questTextIndex],
+                Description = questDescriptions[questTextIndex],
                 QuestTime = player.Energy < 4 ? player.Energy : timeAndEnergyCost,
                 EnergyCost = player.Energy < 4 ? player.Energy : timeAndEnergyCost,
                 RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, hasItemReward),
@@ -167,13 +165,5 @@ namespace csharp_backend_fidget_spinners.Services
         }
 
         public bool HasItemReward() => (random.Next(1, 101) < 25);
-
-        private void FillQuestTexts()
-        {
-            for (int i = 0; i < questNames.Length -1; i++)
-            {
-                questsTexts.Add(questNames[i], questDescriptions[i]);
-            }
-        }
     }
 }
