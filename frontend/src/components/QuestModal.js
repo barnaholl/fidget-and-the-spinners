@@ -31,6 +31,7 @@ const Fade = forwardRef(function Fade(props, ref) {
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0, width: "30%" },
+
     onStart: () => {
       if (open && onEnter) {
         onEnter();
