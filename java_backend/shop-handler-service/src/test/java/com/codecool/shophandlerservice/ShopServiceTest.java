@@ -47,4 +47,13 @@ class ShopServiceTest {
 		assertThat(item.getId()).isNotNull();
 	}
 
+	@Test
+	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsNotNull() {
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1,1);
+
+		Item item=itemRepository.findAll().get(0);
+
+		assertThat(item.getCharacterId()).isNotNull();
+	}
+
 }
