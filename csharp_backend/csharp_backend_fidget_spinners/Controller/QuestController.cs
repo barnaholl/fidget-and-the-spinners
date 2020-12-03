@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace csharp_backend_fidget_spinners.Controller
 {
+    //TODO: 3 quests: short, medium, long; if low on energy, only give short quests
+
     [Route("api/[controller]")]
     [ApiController]
     public class QuestController : ControllerBase
@@ -21,9 +23,9 @@ namespace csharp_backend_fidget_spinners.Controller
         }
 
         [HttpPost]
-        public Quest QuestGenerator(Character player)
+        public List<Quest> QuestGenerator(Character player)
         {
-            return _questGenerator.GenerateQuest(player);
+            return _questGenerator.GenerateQuestList(player);
         }
     }
 }

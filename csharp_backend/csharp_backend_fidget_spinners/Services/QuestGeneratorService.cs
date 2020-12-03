@@ -3,22 +3,28 @@ using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace csharp_backend_fidget_spinners.Services
 {
     public class QuestGeneratorService : IQuestGenerator
     {
+
         /// <summary>
         /// Properties
         /// </summary>
 
-        private Dictionary<string, string> questsTexts = new Dictionary<string, string>();
         private Random random = new Random();
-        private readonly string[] questDifficulties = { "short", "medium", "long" };
         private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA" };
         private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all" };
 
+        private int CharLevelMultiplier = 2;
+
+        private int ShortMinReward = 10;
+        private int ShortMaxReward = 20;
+        private int MediumMinReward = 25;
+        private int MediumMaxReward = 35;
+        private int LongMinReward = 40;
+        private int LongMaxReward = 50;
 
         /// <summary>
         /// Generate a quest based on character level
@@ -26,25 +32,56 @@ namespace csharp_backend_fidget_spinners.Services
         /// <param name="character"></param>
         /// <returns>A randomly generated quest</returns>
 
-        public Quest GenerateQuest(Character character)
+        public Quest GenerateQuest(Character player, string questDifficulty)
         {
-            FillQuestTexts();
-            string questDifficulty = questDifficulties[random.Next(0, questDifficulties.Length)];
-            int questTextIndex = random.Next(0, questsTexts.Count);
+            int questTextIndex = random.Next(0, questNames.Length);
             int timeAndEnergyCost = GenerateTimeAndEnergyCost(questDifficulty);
+            bool hasItemReward = HasItemReward();
 
             Quest quest = new Quest
             {
-                Name = questsTexts.ElementAt(questTextIndex).Key,
-                Description = questsTexts.ElementAt(questTextIndex).Value,
-                QuestTime = timeAndEnergyCost,
-                EnergyCost = timeAndEnergyCost,
-                RewardCoin = GenerateCoinReward(character.CharacterLevel, questDifficulty),
-                RewardXP = GenerateXPReward(character.CharacterLevel, questDifficulty),
+                Name = questNames[questTextIndex],
+                Description = questDescriptions[questTextIndex],
+                QuestTime = player.Energy < 4 ? player.Energy : timeAndEnergyCost,
+                EnergyCost = player.Energy < 4 ? player.Energy : timeAndEnergyCost,
+                RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, hasItemReward),
+                RewardXP = GenerateXPReward(player.CharacterLevel, questDifficulty, hasItemReward),
                 //RewardItem = GenerateRewardItem(character.CharacterLevel),
             };
 
             return quest;
+        }
+
+        /// <summary>
+        /// Generate a list of quests based on player's energy level
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>A list of three quests</returns>
+
+        public List<Quest> GenerateQuestList(Character player)
+        {
+            List<Quest> quests = new List<Quest>();
+
+            if(player.Energy > 3 && player.Energy < 10)
+            {
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "medium"));
+
+                return quests;
+            } else if (player.Energy < 4)
+            {
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "short"));
+
+                return quests;
+            }
+            quests.Add(GenerateQuest(player, "short"));
+            quests.Add(GenerateQuest(player, "medium"));
+            quests.Add(GenerateQuest(player, "long"));
+
+            return quests;
         }
 
         /// <summary>
@@ -54,18 +91,21 @@ namespace csharp_backend_fidget_spinners.Services
         /// <param name="difficulty"></param>
         /// <returns>A random integer</returns>
 
-        public int GenerateCoinReward(int charlevel, string difficulty)
+        public int GenerateCoinReward(int charlevel, string difficulty, bool hasItemReward)
         {
             switch(difficulty)
             {
                 case "short":
-                    return random.Next(10 + (charlevel * 2), (20 + (charlevel * 2)) + 1);
+                    int shortReward = random.Next(ShortMinReward + (charlevel * CharLevelMultiplier), (ShortMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? shortReward : shortReward - (charlevel + 5);
 
                 case "medium":
-                    return random.Next(20 + (charlevel * 2), (30 + (charlevel * 2)) + 1);
+                    int MediumReward = random.Next(MediumMinReward + (charlevel * CharLevelMultiplier), (MediumMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? MediumReward : MediumReward - (charlevel + 5);
 
                 case "long":
-                    return random.Next(30 + (charlevel * 2), (40 + (charlevel * 2)) + 1);
+                    int LongReward = random.Next(LongMinReward + (charlevel * CharLevelMultiplier), (LongMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? LongReward : LongReward - (charlevel + 5);
 
                 default:
                     return 0;
@@ -79,18 +119,21 @@ namespace csharp_backend_fidget_spinners.Services
         /// <param name="difficulty"></param>
         /// <returns>Random integer</returns>
 
-        public int GenerateXPReward(int charlevel, string difficulty)
+        public int GenerateXPReward(int charlevel, string difficulty, bool hasItemReward)
         {
             switch(difficulty)
             {
                 case "short":
-                    return random.Next(20 + (charlevel * 2), (30 + (charlevel * 2)) + 1);
+                    int shortReward = random.Next(ShortMinReward + (charlevel * CharLevelMultiplier), (ShortMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? shortReward : shortReward - (charlevel + 5);
 
                 case "medium":
-                    return random.Next(30 + (charlevel * 2), (40 + (charlevel * 2)) + 1);
+                    int MediumReward = random.Next(MediumMinReward + (charlevel * CharLevelMultiplier), (MediumMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? MediumReward : MediumReward - (charlevel + 5);
 
                 case "long":
-                    return random.Next(40 + (charlevel * 2), (50 + (charlevel * 2)) + 1);
+                    int LongReward = random.Next(LongMinReward + (charlevel * CharLevelMultiplier), (LongMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    return hasItemReward ? LongReward : LongReward - (charlevel + 5);
 
                 default:
                     return 0;
@@ -111,29 +154,16 @@ namespace csharp_backend_fidget_spinners.Services
                     return random.Next(1, 4);
 
                 case "medium":
-                    return random.Next(3, 7);
+                    return random.Next(4, 7);
 
                 case "long":
-                    return random.Next(6, 10);
+                    return random.Next(7, 10);
 
                 default:
                     return 0;
             }
         }
 
-
-        // Get it from Java backend
-        /*public Item GenerateItemReward(int charlevel)
-        {
-
-        }*/
-
-        private void FillQuestTexts()
-        {
-            for (int i = 0; i < questNames.Length -1; i++)
-            {
-                questsTexts.Add(questNames[i], questDescriptions[i]);
-            }
-        }
+        public bool HasItemReward() => (random.Next(1, 101) < 25);
     }
 }
