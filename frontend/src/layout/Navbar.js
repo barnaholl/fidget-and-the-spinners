@@ -33,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
+  // appBar: {
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   marginLeft: drawerWidth,
+  // },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -61,12 +61,12 @@ export default function LeftSideBar() {
       <CssBaseline />
       <Drawer
         className={classes.drawer}
-        variant="permanent"
+        variant='permanent'
         classes={{
           paper: classes.drawerPaper,
         }}
-        anchor="left"
-        contentalign="center"
+        anchor='left'
+        contentalign='center'
       >
         <div className={classes.toolbar} />
         <Divider />
@@ -78,9 +78,9 @@ export default function LeftSideBar() {
             >
               <Button
                 fullWidth
-                variant="outlined"
-                color="primary"
-                size="medium"
+                variant='outlined'
+                color='primary'
+                size='medium'
               >
                 <ListItem button key={Object.entries(item)[0][0]}>
                   <ListItemIcon></ListItemIcon>

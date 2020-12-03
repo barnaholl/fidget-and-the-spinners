@@ -15,7 +15,7 @@ function App() {
       <div className='App'>
         <Route exact path='/' component={Landing} />
         <Route exact path='/register' component={Register} />
-        <Route path='/login' component={Login} />
+        <Route exact path='/login' component={Login} />
         <Route
           exact
           path='/username/character-creation'
@@ -23,6 +23,7 @@ function App() {
         />
         <Route path='/character' component={Character} />
         <Route path='/kitchen' component={Kitchen} />
+        {/* <Copyright /> */}
       </div>
     </Router>
   );
