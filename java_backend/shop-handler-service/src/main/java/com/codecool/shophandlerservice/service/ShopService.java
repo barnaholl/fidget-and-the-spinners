@@ -1,5 +1,6 @@
 package com.codecool.shophandlerservice.service;
 
+import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,9 @@ public class ShopService {
         this.itemServiceCaller = itemServiceCaller;
     }
 
-    public void getNewItemToCharacter(){
-        
+    public void getNewItemByCharacterIdAndCharacterLevel(int characterId, int characterLevel){
+        Item item=itemServiceCaller.getItem(characterLevel);
+        item.setCharacterId((long) characterId);
+        itemRepository.save(item);
     }
 }
