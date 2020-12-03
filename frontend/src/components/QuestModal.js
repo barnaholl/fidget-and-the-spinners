@@ -16,6 +16,14 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  rewards: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  item: {
+    order: 3,
+  },
 }));
 
 const Fade = React.forwardRef(function Fade(props, ref) {
@@ -52,17 +60,20 @@ export default function QuestModal() {
       name: "Baklava",
       description:
         "You might wander far off the land, but do you have what it takes to sail along powerful tidalwaves?",
+      rewards: { gold: 1234, xp: 2345, minutesToComplete: 20 },
     },
     {
       id: 2,
       name: "Kilimanjaro",
       description: "Roaming to the East was never an easy task.",
+      rewards: { gold: 4321, xp: 321, minutesToComplete: 45 },
     },
     {
       id: 3,
       name: "Tulok",
       description:
         "At the feet of the grandiose Mount Everest you will find this rare beast. He's too sacred to hunt, but bring me his milk",
+      rewards: { gold: 678, xp: 3456, minutesToComplete: 35 },
     },
   ];
 
@@ -109,6 +120,12 @@ export default function QuestModal() {
             <div>
               <h4>{actualQuest.name}</h4>
               <h5>{actualQuest.description}</h5>
+            </div>
+            <h4>Reward:</h4>
+            <div className={classes.rewards}>
+              {Object.entries(actualQuest.rewards).map((reward) => (
+                <div className='item'>{reward[1]}</div>
+              ))}
             </div>
           </div>
         </Fade>
