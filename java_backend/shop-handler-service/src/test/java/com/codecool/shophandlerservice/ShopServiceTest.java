@@ -56,4 +56,24 @@ class ShopServiceTest {
 		assertThat(item.getCharacterId()).isNotNull();
 	}
 
+	@Test
+	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsEqualsToParameter() {
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1,1);
+
+		Item item=itemRepository.findAll().get(0);
+
+		assertThat(item.getCharacterId()).isEqualTo(1);
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {1, 1, 5, 3, 7})
+	void getNewItemByCharacterIdAndCharacterLevelCharacterIdsAreEqualsToParameters(Integer characterId) {
+		shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,1);
+
+		int iteration=itemRepository.findAll().size()-1;
+		Item item=itemRepository.findAll().get(iteration);
+
+		assertThat(item.getCharacterId()).isEqualTo((long)characterId);
+	}
+
 }
