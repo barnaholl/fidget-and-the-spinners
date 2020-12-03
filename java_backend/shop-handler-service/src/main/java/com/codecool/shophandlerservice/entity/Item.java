@@ -1,15 +1,11 @@
-package com.codecool.itemhandlerservice.entity;
+package com.codecool.shophandlerservice.entity;
 
-import com.codecool.itemhandlerservice.model.Rarity;
-import com.codecool.itemhandlerservice.model.EquipmentSlot;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -18,15 +14,15 @@ import javax.persistence.Id;
 @Data
 public class Item {
 
-    @Id
     @GeneratedValue
+    @Id
     private Long id;
     private String name;
 
-    private EquipmentSlot equipmentSlot;
+    private String equipmentSlot;
 
     private Long itemLevel;
-    private Rarity rarity;
+    private String rarity;
 
     private Long problemSolving;
     private Long design;
@@ -41,4 +37,7 @@ public class Item {
 
     private Long sellPrice;
     private Long buyPrice;
+
+    private Long characterId;
+
 }
