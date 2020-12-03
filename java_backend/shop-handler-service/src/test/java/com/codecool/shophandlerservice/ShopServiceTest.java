@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -74,6 +76,15 @@ class ShopServiceTest {
 		Item item=itemRepository.findAll().get(iteration);
 
 		assertThat(item.getCharacterId()).isEqualTo(characterId);
+	}
+
+
+	@Test
+	void getItemsByCharacterIdIsEmpty() {
+
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+
+		assertThat(items).isEmpty();
 	}
 
 }
