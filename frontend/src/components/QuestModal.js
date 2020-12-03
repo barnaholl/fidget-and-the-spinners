@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Fade = React.forwardRef(function Fade(props, ref) {
+const Fade = forwardRef(function Fade(props, ref) {
   const { in: open, children, onEnter, onExited, ...other } = props;
   const style = useSpring({
     from: { opacity: 0 },
@@ -65,7 +65,8 @@ export default function QuestModal() {
     {
       id: 2,
       name: "Kilimanjaro",
-      description: "Roaming to the East was never an easy task.",
+      description:
+        "Roaming to the East was never an easy task. Collect your courage and be ready to be brave",
       rewards: { gold: 4321, xp: 321, minutesToComplete: 45 },
     },
     {
@@ -123,8 +124,10 @@ export default function QuestModal() {
             </div>
             <h4>Reward:</h4>
             <div className={classes.rewards}>
-              {Object.entries(actualQuest.rewards).map((reward) => (
-                <div className='item'>{reward[1]}</div>
+              {Object.entries(actualQuest.rewards).map((reward, id) => (
+                <div key={id} id={reward[0]} className='item'>
+                  {reward[1]}
+                </div>
               ))}
             </div>
           </div>
