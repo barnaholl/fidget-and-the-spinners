@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class ShopControllerTest {
     @Test
-    public void test(){
+    public void getItemByCharacter(){
 
     }
 }

@@ -22,7 +22,7 @@ class ShopServiceTest {
 
 	@Test
 	void getNewItemByCharacterIdAndCharacterLevelIsSaving() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1,10);
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,10L);
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(1);
@@ -30,9 +30,9 @@ class ShopServiceTest {
 
 	@Test
 	void getNewItemByCharacterIdAndCharacterLevelIsSavingMultipleTimes() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1,1);
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1,5);
-		shopService.getNewItemByCharacterIdAndCharacterLevel(3,1);
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,5L);
+		shopService.getNewItemByCharacterIdAndCharacterLevel(3L,1L);
 
 		int size=itemRepository.findAll().size();
 
@@ -40,7 +40,7 @@ class ShopServiceTest {
 	}
 	@Test
 	void getNewItemByCharacterIdAndCharacterLevelItemIdIsNotNull() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1,1);
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
@@ -49,7 +49,7 @@ class ShopServiceTest {
 
 	@Test
 	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsNotNull() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1,1);
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
@@ -58,7 +58,7 @@ class ShopServiceTest {
 
 	@Test
 	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsEqualsToParameter() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1,1);
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
@@ -66,14 +66,14 @@ class ShopServiceTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = {1, 1, 5, 3, 7})
-	void getNewItemByCharacterIdAndCharacterLevelCharacterIdsAreEqualsToParameters(Integer characterId) {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,1);
+	@ValueSource(longs = {1, 1, 5, 3, 7})
+	void getNewItemByCharacterIdAndCharacterLevelCharacterIdsAreEqualsToParameters(Long characterId) {
+		shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,1L);
 
 		int iteration=itemRepository.findAll().size()-1;
 		Item item=itemRepository.findAll().get(iteration);
 
-		assertThat(item.getCharacterId()).isEqualTo((long)characterId);
+		assertThat(item.getCharacterId()).isEqualTo(characterId);
 	}
 
 }
