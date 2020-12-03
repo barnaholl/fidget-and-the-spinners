@@ -1,5 +1,6 @@
 package com.codecool.shophandlerservice;
 
+import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
 import com.codecool.shophandlerservice.service.ShopService;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,14 @@ class ShopServiceTest {
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(3);
+	}
+	@Test
+	void getNewItemByCharacterIdAndCharacterLevelItemIdIsNotNull() {
+		shopService.getNewItemByCharacterIdAndCharacterLevel(1,1);
+
+		Item item=itemRepository.findAll().get(0);
+
+		assertThat(item.getId()).isNotNull();
 	}
 
 }
