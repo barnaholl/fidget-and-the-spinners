@@ -16,19 +16,19 @@ public class ItemServiceCallerTest {
 
     @Test
     public void getItemIsNotNull(){
-        Item item=itemServiceCaller.getItem(1);
+        Item item=itemServiceCaller.getItem(1L);
         assertThat(item).isNotNull();
     }
 
     @Test
     public void getItemIdIsNull(){
-        Item item=itemServiceCaller.getItem(1);
+        Item item=itemServiceCaller.getItem(1L);
         assertThat(item.getId()).isNull();
     }
 
     @Test
     public void getItemCharacterIdIsNull(){
-        Item item=itemServiceCaller.getItem(1);
+        Item item=itemServiceCaller.getItem(1L);
         assertThat(item.getCharacterId()).isNull();
     }
 }

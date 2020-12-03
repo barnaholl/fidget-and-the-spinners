@@ -15,9 +15,9 @@ public class ShopService {
         this.itemServiceCaller = itemServiceCaller;
     }
 
-    public void getNewItemByCharacterIdAndCharacterLevel(int characterId, int characterLevel){
+    public void getNewItemByCharacterIdAndCharacterLevel(Long characterId, Long characterLevel){
         Item item=itemServiceCaller.getItem(characterLevel);
-        item.setCharacterId((long) characterId);
+        item.setCharacterId(characterId);
         itemRepository.save(item);
     }
 }
