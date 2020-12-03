@@ -18,6 +18,7 @@ var barIcons = [
   { Arena: "/arena" },
   { shop1: "/shop1" },
   { shop2: "/shop2" },
+  { Character: "/character" },
   { Dungeon: "/dungeon" },
   { Fortress: "/fortress" },
   { Guild: "/guild" },
@@ -60,12 +61,12 @@ export default function LeftSideBar() {
       <CssBaseline />
       <Drawer
         className={classes.drawer}
-        variant='permanent'
+        variant="permanent"
         classes={{
           paper: classes.drawerPaper,
         }}
-        anchor='left'
-        contentalign='center'
+        anchor="left"
+        contentalign="center"
       >
         <div className={classes.toolbar} />
         <Divider />
@@ -77,9 +78,9 @@ export default function LeftSideBar() {
             >
               <Button
                 fullWidth
-                variant='outlined'
-                color='primary'
-                size='medium'
+                variant="outlined"
+                color="primary"
+                size="medium"
               >
                 <ListItem button key={Object.entries(item)[0][0]}>
                   <ListItemIcon></ListItemIcon>
