@@ -95,4 +95,17 @@ class ShopServiceTest {
 		assertThat(items).isNotEmpty();
 	}
 
+	@Test
+	void getItemsByCharacterIdSizeIsEquals3() {
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(1L).build());
+
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+		int size=items.size();
+
+		assertThat(size).isEqualTo(3);
+	}
+
+
 }
