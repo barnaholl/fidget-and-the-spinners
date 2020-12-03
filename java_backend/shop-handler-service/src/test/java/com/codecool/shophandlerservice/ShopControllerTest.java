@@ -1,6 +1,7 @@
 package com.codecool.shophandlerservice;
 
 import com.codecool.shophandlerservice.controller.ShopController;
+import com.codecool.shophandlerservice.repository.ItemRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -22,6 +24,10 @@ public class ShopControllerTest {
 
     @Autowired
     private ShopController shopController;
+
+    @Autowired
+    private ItemRepository itemRepository;
+
 
     @Test
     void getNewItemByCharacterIdAndCharacterLevelIsSuccessful() throws Exception {
@@ -37,6 +43,18 @@ public class ShopControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
+
+    @Test
+    void getNewItemByCharacterIdAndCharacterLevelElementIsInDB() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/1/1");
+        mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
+
+        mockMvc.perform(request);
+        int size = itemRepository.findAll().size();
+
+        assertThat(size).isEqualTo(1);
+    }
+
 
 
 
