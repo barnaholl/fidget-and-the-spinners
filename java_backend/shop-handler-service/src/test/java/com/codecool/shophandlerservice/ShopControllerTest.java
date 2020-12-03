@@ -55,6 +55,13 @@ public class ShopControllerTest {
         assertThat(size).isEqualTo(1);
     }
 
+    @Test
+    void getItemsByCharacterIdIsSuccessful() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/1");
+        mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
+        mockMvc.perform(request).andExpect(status().is2xxSuccessful());
+    }
+
 
 
 
