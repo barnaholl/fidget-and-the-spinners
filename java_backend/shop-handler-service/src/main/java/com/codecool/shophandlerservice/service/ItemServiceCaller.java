@@ -19,7 +19,6 @@ public class ItemServiceCaller {
 
     public Item getItem(Integer playerLevel){
         return restTemplate.getForEntity(itemHandlerUrl+playerLevel, Item.class).getBody();
-
     }
 
 

@@ -25,4 +25,10 @@ public class ItemServiceCallerTest {
         Item item=itemServiceCaller.getItem(1);
         assertThat(item.getId()).isNull();
     }
+
+    @Test
+    public void getItemCharacterIdIsNull(){
+        Item item=itemServiceCaller.getItem(1);
+        assertThat(item.getCharacterId()).isNull();
+    }
 }
