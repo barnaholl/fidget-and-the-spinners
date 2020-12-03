@@ -33,7 +33,7 @@ namespace csharp_backend_fidget_spinners.Services
         /// <param name="character"></param>
         /// <returns>A randomly generated quest</returns>
 
-        public Quest GenerateQuest(Character character, string questDifficulty)
+        public Quest GenerateQuest(Character player, string questDifficulty)
         {
             FillQuestTexts();
             int questTextIndex = random.Next(0, questsTexts.Count);
@@ -46,12 +46,56 @@ namespace csharp_backend_fidget_spinners.Services
                 Description = questsTexts.ElementAt(questTextIndex).Value,
                 QuestTime = timeAndEnergyCost,
                 EnergyCost = timeAndEnergyCost,
-                RewardCoin = GenerateCoinReward(character.CharacterLevel, questDifficulty, hasItemReward),
-                RewardXP = GenerateXPReward(character.CharacterLevel, questDifficulty, hasItemReward),
+                RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, hasItemReward),
+                RewardXP = GenerateXPReward(player.CharacterLevel, questDifficulty, hasItemReward),
                 //RewardItem = GenerateRewardItem(character.CharacterLevel),
             };
 
             return quest;
+        }
+
+        /// <summary>
+        /// Generate a list of quests based on player's energy level
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>A list of three quests</returns>
+
+        public List<Quest> GenerateQuestList(Character player)
+        {
+            List<Quest> quests = new List<Quest>();
+
+            if(player.Energy > 3 && player.Energy < 10)
+            {
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "medium"));
+
+                return quests;
+            } else if (player.Energy < 4)
+            {
+                var quest1 = GenerateQuest(player, "short");
+                var quest2 = GenerateQuest(player, "short");
+                var quest3 = GenerateQuest(player, "short");
+
+                quest1.EnergyCost = player.Energy;
+                quest2.EnergyCost = player.Energy;
+                quest3.EnergyCost = player.Energy;
+
+                quest1.QuestTime = player.Energy;
+                quest2.QuestTime = player.Energy;
+                quest3.QuestTime = player.Energy;
+
+                quests.Add(quest1);
+                quests.Add(quest2);
+                quests.Add(quest3);
+
+                return quests;
+            }
+            quests.Add(GenerateQuest(player, "short"));
+            quests.Add(GenerateQuest(player, "medium"));
+            quests.Add(GenerateQuest(player, "long"));
+
+            return quests;
         }
 
         /// <summary>
