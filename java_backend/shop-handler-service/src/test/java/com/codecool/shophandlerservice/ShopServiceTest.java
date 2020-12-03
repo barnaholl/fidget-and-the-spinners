@@ -87,4 +87,12 @@ class ShopServiceTest {
 		assertThat(items).isEmpty();
 	}
 
+	@Test
+	void getItemsByCharacterIdIsNotEmpty() {
+		itemRepository.save(Item.builder().characterId(1L).build());
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+
+		assertThat(items).isNotEmpty();
+	}
+
 }
