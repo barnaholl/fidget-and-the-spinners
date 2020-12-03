@@ -19,4 +19,10 @@ public class ItemServiceCallerTest {
         Item item=itemServiceCaller.getItem(1);
         assertThat(item).isNotNull();
     }
+
+    @Test
+    public void getItemIdIsNull(){
+        Item item=itemServiceCaller.getItem(1);
+        assertThat(item.getId()).isNull();
+    }
 }

@@ -15,6 +15,7 @@ public class ItemServiceCaller {
     }
 
     private final String itemHandlerUrl="http://localhost:8071/";//"http://item-handler-service/";
+    //private final String itemHandlerUrl="http://item-handler-service/";
 
     public Item getItem(Integer playerLevel){
         return restTemplate.getForEntity(itemHandlerUrl+playerLevel, Item.class).getBody();
