@@ -44,8 +44,8 @@ namespace csharp_backend_fidget_spinners.Services
             {
                 Name = questsTexts.ElementAt(questTextIndex).Key,
                 Description = questsTexts.ElementAt(questTextIndex).Value,
-                QuestTime = timeAndEnergyCost,
-                EnergyCost = timeAndEnergyCost,
+                QuestTime = player.Energy < 4 ? player.Energy : timeAndEnergyCost,
+                EnergyCost = player.Energy < 4 ? player.Energy : timeAndEnergyCost,
                 RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, hasItemReward),
                 RewardXP = GenerateXPReward(player.CharacterLevel, questDifficulty, hasItemReward),
                 //RewardItem = GenerateRewardItem(character.CharacterLevel),
@@ -73,21 +73,9 @@ namespace csharp_backend_fidget_spinners.Services
                 return quests;
             } else if (player.Energy < 4)
             {
-                var quest1 = GenerateQuest(player, "short");
-                var quest2 = GenerateQuest(player, "short");
-                var quest3 = GenerateQuest(player, "short");
-
-                quest1.EnergyCost = player.Energy;
-                quest2.EnergyCost = player.Energy;
-                quest3.EnergyCost = player.Energy;
-
-                quest1.QuestTime = player.Energy;
-                quest2.QuestTime = player.Energy;
-                quest3.QuestTime = player.Energy;
-
-                quests.Add(quest1);
-                quests.Add(quest2);
-                quests.Add(quest3);
+                quests.Add(GenerateQuest(player, "short"););
+                quests.Add(GenerateQuest(player, "short"););
+                quests.Add(GenerateQuest(player, "short"););
 
                 return quests;
             }
