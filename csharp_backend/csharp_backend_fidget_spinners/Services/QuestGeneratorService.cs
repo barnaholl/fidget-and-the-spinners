@@ -73,9 +73,9 @@ namespace csharp_backend_fidget_spinners.Services
                 return quests;
             } else if (player.Energy < 4)
             {
-                quests.Add(GenerateQuest(player, "short"););
-                quests.Add(GenerateQuest(player, "short"););
-                quests.Add(GenerateQuest(player, "short"););
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "short"));
 
                 return quests;
             }
@@ -156,10 +156,10 @@ namespace csharp_backend_fidget_spinners.Services
                     return random.Next(1, 4);
 
                 case "medium":
-                    return random.Next(3, 7);
+                    return random.Next(4, 7);
 
                 case "long":
-                    return random.Next(6, 10);
+                    return random.Next(7, 10);
 
                 default:
                     return 0;
