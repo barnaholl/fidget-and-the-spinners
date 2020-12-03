@@ -96,7 +96,7 @@ class ShopServiceTest {
 	}
 
 	@Test
-	void getItemsByCharacterIdSizeIsEquals3() {
+	void getItemsByCharacterIdFindEveryElement() {
 		itemRepository.save(Item.builder().characterId(1L).build());
 		itemRepository.save(Item.builder().characterId(1L).build());
 		itemRepository.save(Item.builder().characterId(1L).build());
@@ -106,6 +106,22 @@ class ShopServiceTest {
 
 		assertThat(size).isEqualTo(3);
 	}
+
+	@Test
+	void getItemsByCharacterIdSFindEveryRelevantElement() {
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(2L).build());
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(10L).build());
+
+
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+		int size=items.size();
+
+		assertThat(size).isEqualTo(2);
+	}
+
+
 
 
 }
