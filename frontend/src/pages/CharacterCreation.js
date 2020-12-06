@@ -1,8 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import Copyright from "../components/Copyright";
 import Typography from "@material-ui/core/Typography";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormLabel from "@material-ui/core/FormLabel";
@@ -42,24 +41,24 @@ function CharacterCreation() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Typography variant="h3" component="h2">
+    <Container component='main' maxWidth='xs'>
+      <Typography variant='h3' component='h2'>
         Username
       </Typography>
-      <FormGroup className="align-center" style={{ textAlign: "center" }}>
-        <FormLabel component="legend">Choose your class:</FormLabel>
+      <FormGroup className='align-center' style={{ textAlign: "center" }}>
+        <FormLabel component='legend'>Choose your class:</FormLabel>
         <FormControlLabel
-          control={<Checkbox name="frontend" />}
-          label="Frontend"
+          control={<Checkbox name='frontend' />}
+          label='Frontend'
         />
         <FormControlLabel
-          control={<Checkbox name="backend" />}
-          label="Backend"
+          control={<Checkbox name='backend' />}
+          label='Backend'
         />
-        <FormControlLabel control={<Checkbox name="tester" />} label="Tester" />
+        <FormControlLabel control={<Checkbox name='tester' />} label='Tester' />
       </FormGroup>
-      <div className="character-creation-div">
-        <div className="left-arrows">
+      <div className='character-creation-div'>
+        <div className='left-arrows'>
           <Button>
             <KeyboardArrowLeftIcon />
           </Button>
@@ -70,10 +69,10 @@ function CharacterCreation() {
             <KeyboardArrowLeftIcon />
           </Button>
         </div>
-        <div className="character-box">
-          <img src={Stickman} alt="stickman" />
+        <div className='character-box'>
+          <img src={Stickman} alt='stickman' />
         </div>
-        <div className="right-arrows">
+        <div className='right-arrows'>
           <Button>
             <KeyboardArrowRightIcon />
           </Button>
@@ -85,26 +84,30 @@ function CharacterCreation() {
           </Button>
         </div>
       </div>
-      <TableContainer component={Paper} className="stat-box">
-        <Table className={classes.table} aria-label="simple table">
+      <TableContainer component={Paper} className='stat-box'>
+        <Table className={classes.table} aria-label='simple table'>
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.name}>
-                <TableCell component="th" scope="row" width="70%" align="left">
+                <TableCell component='th' scope='row' width='70%' align='left'>
                   {row.name}
                 </TableCell>
-                <TableCell align="left">{row.value}</TableCell>
+                <TableCell align='left'>{row.value}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
         <Link to={"/character"}>
-          <Button type="submit" fullWidth color="primary" id="create-character-btn">
-              Create
+          <Button
+            type='submit'
+            fullWidth
+            color='primary'
+            id='create-character-btn'
+          >
+            Create
           </Button>
         </Link>
       </TableContainer>
-      <Copyright />
     </Container>
   );
 }

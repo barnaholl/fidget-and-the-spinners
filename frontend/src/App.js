@@ -1,12 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CharacterCreation from "./pages/CharacterCreation";
-import "./App.css";
 import Landing from "./pages/Landing";
 import Character from "./pages/Character";
 import Kitchen from "./pages/Kitchen";
+import Copyright from "./components/Copyright";
+import Container from "@material-ui/core/Container";
+import styled from "styled-components";
+
+const CopyrightContainer = styled(Container)({});
+
+const Footer = styled.footer`
+  width: -webkit-fill-available;
+  display: "flex";
+`;
 
 function App() {
   return (
@@ -23,7 +33,11 @@ function App() {
         />
         <Route path='/character' component={Character} />
         <Route path='/kitchen' component={Kitchen} />
-        {/* <Copyright /> */}
+        <Footer>
+          <CopyrightContainer>
+            <Copyright />
+          </CopyrightContainer>
+        </Footer>
       </div>
     </Router>
   );
