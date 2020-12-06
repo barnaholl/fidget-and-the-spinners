@@ -52,7 +52,7 @@ public class ItemFactoryService {
             motivation=getMotivation(playerLevel,rarity);
         }
 
-        if(rarity==Rarity.EPIC){
+        else if(rarity==Rarity.EPIC){
             motivation=getMotivation(playerLevel,rarity);
             debugging=getRandomSecondaryStat();
             codingSpeed=getRandomSecondaryStat();
