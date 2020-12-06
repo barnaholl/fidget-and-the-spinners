@@ -11,13 +11,12 @@ public class ItemServiceCaller {
 
     public ItemServiceCaller(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        System.out.println(getItem(5));
     }
 
     private final String itemHandlerUrl="http://localhost:8071/";//"http://item-handler-service/";
     //private final String itemHandlerUrl="http://item-handler-service/";
 
-    public Item getItem(Integer playerLevel){
+    public Item getItem(Long playerLevel){
         return restTemplate.getForEntity(itemHandlerUrl+playerLevel, Item.class).getBody();
     }
 
