@@ -3,6 +3,7 @@ package com.codecool.itemhandlerservice;
 import com.codecool.itemhandlerservice.entity.Item;
 import com.codecool.itemhandlerservice.model.*;
 import com.codecool.itemhandlerservice.service.ItemFactoryService;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,6 +35,38 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemNameIsInEnum(){
+        Item item=itemFactoryService.getRandomItem(1L);
+
+        List<String> names=new ArrayList<>();
+
+        List<String> computerNames = Stream.of(ComputerName.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+        List<String> frameworkNames = Stream.of(FrameworkName.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+        List<String> ideaNames = Stream.of(IdeaName.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+        List<String> programmingLanguageNames = Stream.of(ProgrammingLanguageName.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+        List<String> accessoryNames = Stream.of(AccessoryName.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
+
+        names.addAll(computerNames);
+        names.addAll(frameworkNames);
+        names.addAll(ideaNames);
+        names.addAll(programmingLanguageNames);
+        names.addAll(accessoryNames);
+
+
+        assertThat(item.getName()).isIn(names);
+    }
+
+    @RepeatedTest(100)
+    void getRandomItemNamesAreInEnum(){
         Item item=itemFactoryService.getRandomItem(1L);
 
         List<String> names=new ArrayList<>();
