@@ -50,11 +50,16 @@ public class ItemFactoryServiceUnitTests {
         List<String> programmingLanguageNames = Stream.of(ProgrammingLanguageName.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
+        List<String> accessoryNames = Stream.of(AccessoryName.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
 
         names.addAll(computerNames);
         names.addAll(frameworkNames);
         names.addAll(ideaNames);
         names.addAll(programmingLanguageNames);
+        names.addAll(accessoryNames);
+
 
         assertThat(item.getName()).isIn(names);
     }
