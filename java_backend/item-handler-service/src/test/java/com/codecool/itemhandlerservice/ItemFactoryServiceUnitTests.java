@@ -3,8 +3,12 @@ package com.codecool.itemhandlerservice;
 import com.codecool.itemhandlerservice.entity.Item;
 import com.codecool.itemhandlerservice.model.*;
 import com.codecool.itemhandlerservice.service.ItemFactoryService;
+import lombok.EqualsAndHashCode;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,6 +25,12 @@ public class ItemFactoryServiceUnitTests {
 
     @Autowired
     private ItemFactoryService itemFactoryService;
+
+    @ParameterizedTest
+    @ValueSource(longs = {0, -1,-15,Long.MIN_VALUE})
+    public void getRandomItemBadArgsThrowsIllegalArgumentException(Long param){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getRandomItem(param));
+    }
 
     @Test
     void getRandomItemIsReturnWithItem(){

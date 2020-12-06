@@ -29,6 +29,9 @@ public class ItemFactoryService {
 
 
     public Item getRandomItem(Long playerLevel){
+        if (playerLevel <= 0) {
+            throw new IllegalArgumentException("Input should be positive");
+        }
 
         EquipmentSlot equipmentSlot=getRandomEquipmentSlot();
         Rarity rarity=getRandomRarity();
