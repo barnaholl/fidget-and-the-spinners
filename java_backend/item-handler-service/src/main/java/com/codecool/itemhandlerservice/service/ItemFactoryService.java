@@ -179,6 +179,8 @@ public class ItemFactoryService {
                 return getRandomNameByType(FrameworkName.class);
             case COMPUTER:
                 return getRandomNameByType(ComputerName.class);
+            case ACCESSORY:
+                return getRandomNameByType(AccessoryName.class);
         }
         return null;
     }
@@ -188,6 +190,5 @@ public class ItemFactoryService {
         int i=random.nextInt(enumeration.getEnumConstants().length);
         return String.valueOf(enumeration.getEnumConstants()[i]);
     }
-
 
 }
