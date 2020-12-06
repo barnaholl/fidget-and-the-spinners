@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -75,5 +77,51 @@ class ShopServiceTest {
 
 		assertThat(item.getCharacterId()).isEqualTo(characterId);
 	}
+
+
+	@Test
+	void getItemsByCharacterIdIsEmpty() {
+
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+
+		assertThat(items).isEmpty();
+	}
+
+	@Test
+	void getItemsByCharacterIdIsNotEmpty() {
+		itemRepository.save(Item.builder().characterId(1L).build());
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+
+		assertThat(items).isNotEmpty();
+	}
+
+	@Test
+	void getItemsByCharacterIdFindEveryElement() {
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(1L).build());
+
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+		int size=items.size();
+
+		assertThat(size).isEqualTo(3);
+	}
+
+	@Test
+	void getItemsByCharacterIdSFindEveryRelevantElement() {
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(2L).build());
+		itemRepository.save(Item.builder().characterId(1L).build());
+		itemRepository.save(Item.builder().characterId(10L).build());
+
+
+		List<Item> items=itemRepository.findAllByCharacterId(1L);
+		int size=items.size();
+
+		assertThat(size).isEqualTo(2);
+	}
+
+
+
 
 }
