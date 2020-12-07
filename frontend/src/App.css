@@ -79,7 +79,7 @@
   align-content: center;
 }
 
-.align-text-center{
+.align-text-center {
   text-align: center;
 }
 
@@ -124,12 +124,6 @@
 
 .MuiIconButton-label {
   color: white;
-}
-
-footer {
-  bottom: 0;
-  text-align: center;
-  position: fixed;
 }
 
 .align-center {

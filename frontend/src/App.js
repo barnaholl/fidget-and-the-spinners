@@ -1,12 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CharacterCreation from "./pages/CharacterCreation";
-import "./App.css";
 import Landing from "./pages/Landing";
 import Character from "./pages/Character";
 import Kitchen from "./pages/Kitchen";
+import Copyright from "./components/Copyright";
+import styled from "styled-components";
+
+const Footer = styled.footer`
+  width: -webkit-fill-available;
+  bottom: 0;
+  text-align: center;
+  position: fixed;
+`;
 
 function App() {
   return (
@@ -23,7 +32,9 @@ function App() {
         />
         <Route path='/character' component={Character} />
         <Route path='/kitchen' component={Kitchen} />
-        {/* <Copyright /> */}
+        <Footer>
+          <Copyright />
+        </Footer>
       </div>
     </Router>
   );
