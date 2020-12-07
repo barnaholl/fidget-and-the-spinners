@@ -126,12 +126,6 @@
   color: white;
 }
 
-footer {
-  bottom: 0;
-  text-align: center;
-  position: fixed;
-}
-
 .align-center {
   align-content: center;
 }

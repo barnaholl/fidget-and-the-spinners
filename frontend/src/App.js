@@ -11,11 +11,12 @@ import Copyright from "./components/Copyright";
 import Container from "@material-ui/core/Container";
 import styled from "styled-components";
 
-const CopyrightContainer = styled(Container)({});
-
 const Footer = styled.footer`
   width: -webkit-fill-available;
   display: "flex";
+  bottom: 0;
+  text-align: center;
+  position: fixed;
 `;
 
 function App() {
@@ -34,9 +35,7 @@ function App() {
         <Route path='/character' component={Character} />
         <Route path='/kitchen' component={Kitchen} />
         <Footer>
-          <CopyrightContainer>
-            <Copyright />
-          </CopyrightContainer>
+          <Copyright />
         </Footer>
       </div>
     </Router>
