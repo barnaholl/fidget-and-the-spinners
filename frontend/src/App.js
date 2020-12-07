@@ -8,12 +8,10 @@ import Landing from "./pages/Landing";
 import Character from "./pages/Character";
 import Kitchen from "./pages/Kitchen";
 import Copyright from "./components/Copyright";
-import Container from "@material-ui/core/Container";
 import styled from "styled-components";
 
 const Footer = styled.footer`
   width: -webkit-fill-available;
-  display: "flex";
   bottom: 0;
   text-align: center;
   position: fixed;
