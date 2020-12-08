@@ -23,9 +23,6 @@ public class DataValidatorService {
         if (username.contains(" ")) {
             valid = false;
         }
-        if (!upperCaseLetters.matcher(username).find()) {
-            valid = false;
-        }
         return valid;
     }
 
@@ -34,18 +31,18 @@ public class DataValidatorService {
         if (password.length() < 8) {
             valid = false;
         }
-        if (!specialCharacters.matcher(password).find()) {
-            valid = false;
-        }
-        if (!upperCaseLetters.matcher(password).find()) {
-            valid = false;
-        }
-        if (!lowerCaseLetters.matcher(password).find()) {
-            valid = false;
-        }
-        if (!digitsPattern.matcher(password).find()) {
-            valid = false;
-        }
+//        if (!specialCharacters.matcher(password).find()) {
+//            valid = false;
+//        }
+//        if (!upperCaseLetters.matcher(password).find()) {
+//            valid = false;
+//        }
+//        if (!lowerCaseLetters.matcher(password).find()) {
+//            valid = false;
+//        }
+//        if (!digitsPattern.matcher(password).find()) {
+//            valid = false;
+//        }
         if (password.contains(" ")) {
             valid = false;
         }

@@ -26,6 +26,10 @@ public class PlayerService {
         return restTemplate.getForEntity(baseUrl + "player?username=" + username, Player.class).getBody();
     }
 
+    public Player findByEmail(String email) {
+        return restTemplate.getForEntity(baseUrl + "email?email=" + email, Player.class).getBody();
+    }
+
     public List<Player> findAllPlayers() {
         PlayerList response = restTemplate.getForObject(baseUrl + "all", PlayerList.class);
         assert response != null;

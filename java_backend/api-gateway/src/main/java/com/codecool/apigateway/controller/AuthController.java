@@ -31,19 +31,26 @@ public class AuthController {
     public static final String TOKEN = "token";
     private final DataValidatorService validator;
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserCredentials player, HttpServletResponse response, HttpServletRequest request) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                player.getUsername(),
-                player.getPassword()
-        ));
-        String jwtToken = jwtTokenUtil.generateToken(authentication);
-        addTokenToCookie(response, jwtToken);
-        return ResponseEntity.ok().body(player.getUsername());
-    }
-
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserCredentials player, HttpServletResponse response) {
+    public ResponseEntity<String> register(@RequestBody UserCredentials player) {
+        String username = player.getUsername();
+        String password = player.getPassword();
+        String email = player.getEmail();
+        if (playerService.findByUsername(username) != null) {
+            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Username already exists!");
+        }
+        if (playerService.findByEmail(email) != null) {
+            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Email already used!");
+        }
+        if (!validator.isValidUsername(username)) {
+            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Not a valid username!");
+        }
+        if (!validator.isValidPassword(password)) {
+            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Not a valid password!");
+        }
+        if (!validator.isValidEmail(email)) {
+            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Not a valid email!");
+        }
         playerService.registerNewPlayerData(player);
         return ResponseEntity.ok().body(player.getUsername());
     }
@@ -60,10 +67,21 @@ public class AuthController {
         response.addHeader("Set-Cookie", cookie.toString());
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserCredentials player, HttpServletResponse response) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                player.getUsername(),
+                player.getPassword()
+        ));
+        String jwtToken = jwtTokenUtil.generateToken(authentication);
+        addTokenToCookie(response, jwtToken);
+        return ResponseEntity.ok().body(player.getUsername());
+    }
+
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         createLogoutCookie(response);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("You are logged out.");
     }
 
     private void createLogoutCookie(HttpServletResponse response) {
