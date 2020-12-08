@@ -15,21 +15,26 @@ namespace csharp_backend_fidget_spinners.Services
         private Enemy Enemy;
         private List<FightLog> FightLog;
 
-        public async Task<List<FightLog>> Fight(Character player, IEnemyGenerator enemyGenerator)
+
+        public async Task InitializeService(Character player, IEnemyGenerator enemyGenerator)
         {
             CurrentCharacter = player;
             EnemyGeneratorService = enemyGenerator;
             FightLog = new List<FightLog>();
 
             Enemy = await EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
+        }
+
+        public async Task<List<FightLog>> Fight()
+        {
 
             while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
             {
                 int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.CompilerErrorChance, Enemy.Class);
-                dealtDamage -= (dealtDamage - (Enemy.Armor / 2) > 0) ? (Enemy.Armor / 2) : 0;
+                dealtDamage -= DamageMinusArmor(dealtDamage);
                 Enemy.HP -= dealtDamage;
 
-                LogRounds(CurrentCharacter.Name, dealtDamage);
+                await LogRounds(CurrentCharacter.Name, dealtDamage);
 
                 if (Enemy.HP > 0)
                 {
@@ -37,7 +42,7 @@ namespace csharp_backend_fidget_spinners.Services
 
                     CurrentCharacter.MotivationLevel -= dealtDamage;
 
-                    LogRounds(Enemy.Name, dealtDamage);
+                    await LogRounds(Enemy.Name, dealtDamage);
                 }
                 
             }
@@ -45,7 +50,7 @@ namespace csharp_backend_fidget_spinners.Services
             return FightLog;
         }
 
-        private void LogRounds(string attackersName, int damageDealt)
+        private async Task LogRounds(string attackersName, int damageDealt)
         {
             FightLog.Add(new FightLog
             {
@@ -54,6 +59,11 @@ namespace csharp_backend_fidget_spinners.Services
                 OurHealthPoint = CurrentCharacter.MotivationLevel,
                 EnemyHealthPoint = Enemy.HP
             });
+        }
+
+        public int DamageMinusArmor(int damage)
+        {
+            return (damage - (Enemy.Armor / 2) > 0) ? (Enemy.Armor / 2) : 0;
         }
 
         public int LastKnownCharacterHP()

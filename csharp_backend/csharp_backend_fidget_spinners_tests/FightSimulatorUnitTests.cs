@@ -39,7 +39,9 @@ namespace csharp_backend_fidget_spinners_tests
         [Test]
         public async Task FightTest_CharacterHP_Should_Decrease()
         {
-            await _fightSimulator.Fight(_character, _enemyGeneratorService);
+            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+
+            await _fightSimulator.Fight();
 
             Assert.True(_fightSimulator.LastKnownCharacterHP() < 300);
         }
@@ -47,7 +49,9 @@ namespace csharp_backend_fidget_spinners_tests
         [Test]
         public async Task FightTest_EnemyHP_Should_Decrease()
         {
-            await _fightSimulator.Fight(_character, _enemyGeneratorService);
+            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+
+            await _fightSimulator.Fight();
 
             Assert.True(_fightSimulator.LastKnownEnemyHP() < 240);
         }
@@ -55,10 +59,24 @@ namespace csharp_backend_fidget_spinners_tests
         [Test]
         public async Task FightTest_Someone_Should_Win()
         {
-            await _fightSimulator.Fight(_character, _enemyGeneratorService);
+            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+
+            await _fightSimulator.Fight();
 
 
             Assert.True(_fightSimulator.LastKnownCharacterHP() <= 0 || _fightSimulator.LastKnownEnemyHP() <= 0);
+        }
+
+        [Test]
+        public async Task DamageMinusArmor_ShouldNot_Go_Below_0()
+        {
+            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+
+
+            Assert.True(_fightSimulator.DamageMinusArmor(0) == 0);
+            Assert.True(_fightSimulator.DamageMinusArmor(6) == 0);
+            Assert.True(_fightSimulator.DamageMinusArmor(7) > 0);
+            Assert.True(_fightSimulator.DamageMinusArmor(50) > 0);
         }
     }
 }
