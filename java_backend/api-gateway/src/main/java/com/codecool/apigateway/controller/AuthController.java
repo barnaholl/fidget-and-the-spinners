@@ -32,20 +32,20 @@ public class AuthController {
     private final DataValidatorService validator;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserCredentials user, HttpServletResponse response, HttpServletRequest request) {
+    public ResponseEntity<String> login(@RequestBody UserCredentials player, HttpServletResponse response, HttpServletRequest request) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                user.getUsername(),
-                user.getPassword()
+                player.getUsername(),
+                player.getPassword()
         ));
         String jwtToken = jwtTokenUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
-        return ResponseEntity.ok().body(user.getUsername());
+        return ResponseEntity.ok().body(player.getUsername());
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserCredentials user, HttpServletResponse response) {
-        playerService.registerNewPlayerData(user);
-        return ResponseEntity.ok(HttpStatus.OK.toString());
+    public ResponseEntity<String> register(@RequestBody UserCredentials player, HttpServletResponse response) {
+        playerService.registerNewPlayerData(player);
+        return ResponseEntity.ok().body(player.getUsername());
     }
 
     private void addTokenToCookie(HttpServletResponse response, String token) {

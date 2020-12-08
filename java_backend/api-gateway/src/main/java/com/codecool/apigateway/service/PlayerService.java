@@ -19,15 +19,15 @@ public class PlayerService {
     private String baseUrl;
 
     public Player findUserById(Long id) {
-        return restTemplate.getForEntity(baseUrl + "player/" + id, Player.class).getBody();
+        return restTemplate.getForEntity(baseUrl + "id?id=" + id, Player.class).getBody();
     }
 
     public Player findByUsername(String username) {
-        return restTemplate.getForEntity(baseUrl + username, Player.class).getBody();
+        return restTemplate.getForEntity(baseUrl + "player?username=" + username, Player.class).getBody();
     }
 
     public List<Player> findAllPlayers() {
-        PlayerList response = restTemplate.getForObject(baseUrl + "player/all", PlayerList.class);
+        PlayerList response = restTemplate.getForObject(baseUrl + "all", PlayerList.class);
         assert response != null;
         return response.getPlayers();
     }
