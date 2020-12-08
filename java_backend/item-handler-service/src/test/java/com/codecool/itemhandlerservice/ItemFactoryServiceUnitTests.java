@@ -3,7 +3,12 @@ package com.codecool.itemhandlerservice;
 import com.codecool.itemhandlerservice.entity.Item;
 import com.codecool.itemhandlerservice.model.*;
 import com.codecool.itemhandlerservice.service.ItemFactoryService;
+import lombok.EqualsAndHashCode;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,6 +26,12 @@ public class ItemFactoryServiceUnitTests {
     @Autowired
     private ItemFactoryService itemFactoryService;
 
+    @ParameterizedTest
+    @ValueSource(longs = {0, -1,-15,Long.MIN_VALUE})
+    public void getRandomItemBadArgsThrowsIllegalArgumentException(Long param){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getRandomItem(param));
+    }
+
     @Test
     void getRandomItemIsReturnWithItem(){
         assertThat(itemFactoryService.getRandomItem(1L)).isInstanceOf(Item.class);
@@ -32,7 +43,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getName()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemNameIsInEnum(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -50,11 +61,16 @@ public class ItemFactoryServiceUnitTests {
         List<String> programmingLanguageNames = Stream.of(ProgrammingLanguageName.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());
+        List<String> accessoryNames = Stream.of(AccessoryName.values())
+                .map(Enum::name)
+                .collect(Collectors.toList());
 
         names.addAll(computerNames);
         names.addAll(frameworkNames);
         names.addAll(ideaNames);
         names.addAll(programmingLanguageNames);
+        names.addAll(accessoryNames);
+
 
         assertThat(item.getName()).isIn(names);
     }
@@ -64,7 +80,8 @@ public class ItemFactoryServiceUnitTests {
         Item item=itemFactoryService.getRandomItem(1L);
         assertThat(item.getEquipmentSlot()).isNotNull();
     }
-    @Test
+
+    @RepeatedTest(100)
     void getRandomItemEquipmentSlotIsInEnum(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -79,7 +96,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getItemLevel()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemItemLevelIsEqualsParam(){
         Long param=1L;
         Item item=itemFactoryService.getRandomItem(param);
@@ -107,7 +124,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getProblemSolving()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemProblemSolvingIsInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -134,7 +151,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getDesign()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemDesignInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -160,7 +177,8 @@ public class ItemFactoryServiceUnitTests {
         Item item=itemFactoryService.getRandomItem(1L);
         assertThat(item.getAlgorithmization()).isNotNull();
     }
-    @Test
+
+    @RepeatedTest(100)
     void getRandomItemAlgorithmizationInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -187,7 +205,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getCleanCode()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemCleanCodeInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -215,7 +233,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getTesting()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemTestingInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -236,7 +254,8 @@ public class ItemFactoryServiceUnitTests {
             assertThat(item.getTesting()).isBetween(0L,overallStats);
         }
     }
-    @Test
+
+    @RepeatedTest(100)
     void getRandomItemSumOfStatsIsIsEqualsOverallStats(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -270,14 +289,15 @@ public class ItemFactoryServiceUnitTests {
     }
 
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemMotivationInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        long param=1L;
+        Item item=itemFactoryService.getRandomItem(param);
         if(item.getRarity()==Rarity.RARE){
-            assertThat(item.getMotivation()).isEqualTo(item.getMotivation()*2);
+            assertThat(item.getMotivation()).isEqualTo(param*2);
         }
         else if(item.getRarity()==Rarity.EPIC){
-            assertThat(item.getMotivation()).isEqualTo(item.getMotivation()*4);
+            assertThat(item.getMotivation()).isEqualTo(param*4);
         }
         else {
             assertThat(item.getMotivation()).isEqualTo(0);
@@ -289,7 +309,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getDebugging()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemDebuggingIsInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
         if(item.getRarity()==Rarity.EPIC){
@@ -306,13 +326,15 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getCodingSpeed()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemCodingSpeedIsInRange(){
         Item item=itemFactoryService.getRandomItem(1L);
         if(item.getRarity()==Rarity.EPIC){
             assertThat(item.getCodingSpeed()).isBetween(0L,5L);
         }
-        assertThat(item.getCodingSpeed()).isEqualTo(0L);
+        else{
+            assertThat(item.getCodingSpeed()).isEqualTo(0L);
+        }
     }
 
     @Test
@@ -321,7 +343,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getSellPrice()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemSellPriceIsEqualsWithExpected(){
         Item item=itemFactoryService.getRandomItem(1L);
 
@@ -350,7 +372,7 @@ public class ItemFactoryServiceUnitTests {
         assertThat(item.getBuyPrice()).isNotNull();
     }
 
-    @Test
+    @RepeatedTest(100)
     void getRandomItemBuyPriceIsEqualsWithExpected(){
         Item item=itemFactoryService.getRandomItem(1L);
 
