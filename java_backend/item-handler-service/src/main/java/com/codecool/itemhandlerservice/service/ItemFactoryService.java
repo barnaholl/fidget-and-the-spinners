@@ -9,8 +9,6 @@ import java.util.*;
 @Service
 public class ItemFactoryService {
 
-    private static final int NUMBER_OF_BASE_STATS=5;
-
     public List<Item> getMultipleRandomItemsByPlayerLevel(Long playerLevel, int numberOfItems){
         if (playerLevel <= 0 || numberOfItems <= 0) {
             throw new IllegalArgumentException("Parameters should be positive");
@@ -31,13 +29,7 @@ public class ItemFactoryService {
         Rarity rarity=getRandomRarity();
         Long overallStats=setOverallStats(playerLevel,rarity);
 
-        Long[] stats=getRandomBaseStats(overallStats);
-
-        Long problemSolvingStat=stats[0];
-        Long algorithmizationStat=stats[1];
-        Long designStat=stats[2];
-        Long cleanCodeStat=stats[3];
-        Long testingStat=stats[4];
+        Map<BaseStats,Long> baseStats=getRandomBaseStats(overallStats);
 
         Long motivation=0L;
 
@@ -61,11 +53,11 @@ public class ItemFactoryService {
                 .name(getRandomName(equipmentSlot))
                 .itemLevel(playerLevel)
                 .rarity(rarity)
-                .problemSolving(problemSolvingStat)
-                .algorithmization(algorithmizationStat)
-                .design(designStat)
-                .cleanCode(cleanCodeStat)
-                .testing(testingStat)
+                .problemSolving(baseStats.get(BaseStats.PROBLEM_SOLVING))
+                .algorithmization(baseStats.get(BaseStats.ALGORITHMIZATION))
+                .design(baseStats.get(BaseStats.DESIGN))
+                .cleanCode(baseStats.get(BaseStats.CLEAN_CODE))
+                .testing(baseStats.get(BaseStats.TESTING))
                 .motivation(motivation)
                 .debugging(debugging)
                 .codingSpeed(codingSpeed)
@@ -95,20 +87,21 @@ public class ItemFactoryService {
         return rarity.getMap().get("statMultiplier")*itemLevel;
     }
 
-    private Long[] getRandomBaseStats(Long overallStats) {
+    private Map<BaseStats,Long> getRandomBaseStats(Long overallStats) {
         Random random=new Random();
-        Long[] stats= {0L, 0L, 0L, 0L, 0L};
-        int i=0;
-        while (overallStats>0){
-            if(i==NUMBER_OF_BASE_STATS)
-                i=0;
-            if(random.nextBoolean()){
-                int addedStat=random.nextInt(Math.toIntExact(overallStats)+1);
-                overallStats-=addedStat;
-                stats[i]+=addedStat;
-            }
-            i++;
 
+        Map<BaseStats,Long> stats=new HashMap<>();
+        List<BaseStats> keys = Arrays.asList(BaseStats.values());
+
+        for (BaseStats key: keys) {
+            stats.put(key,0L);
+        }
+
+        while (overallStats>0){
+            BaseStats statToImprove = keys.get(random.nextInt(keys.size()));
+            int addedStat=random.nextInt(Math.toIntExact(overallStats)+1);
+            overallStats-=addedStat;
+            stats.put(statToImprove,stats.getOrDefault(statToImprove,0L)+addedStat);
         }
         return stats;
     }
