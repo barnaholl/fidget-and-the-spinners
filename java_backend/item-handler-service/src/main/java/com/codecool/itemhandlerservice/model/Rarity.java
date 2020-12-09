@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Rarity {
-    COMMON("statMultiplier","1","sellPrice","1","buyPrice","2"),
-    UNCOMMON("statMultiplier","2","sellPrice","2","buyPrice","4"),
-    RARE("statMultiplier","3","sellPrice","3","buyPrice","9"),
-    EPIC("statMultiplier","4","sellPrice","4","buyPrice","16");
+    COMMON("statMultiplier","1","sellPrice","1","buyPrice","2","motivation","0"),
+    UNCOMMON("statMultiplier","2","sellPrice","2","buyPrice","4","motivation","0"),
+    RARE("statMultiplier","3","sellPrice","3","buyPrice","9","motivation","2"),
+    EPIC("statMultiplier","4","sellPrice","4","buyPrice","16","motivation","4");
 
 
     private final Map<String, Long> map;
