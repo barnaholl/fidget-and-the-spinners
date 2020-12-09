@@ -132,20 +132,9 @@ public class ItemFactoryService {
         return (EquipmentSlot) Arrays.stream(EquipmentSlot.values()).toArray()[i];
     }
 
+
     private String getRandomName(EquipmentSlot equipmentSlot) {
-        switch(equipmentSlot) {
-            case LANGUAGE:
-                return getRandomNameByType(ProgrammingLanguageName.class);
-            case IDEA:
-                return getRandomNameByType(IdeaName.class);
-            case FRAMEWORK:
-                return getRandomNameByType(FrameworkName.class);
-            case COMPUTER:
-                return getRandomNameByType(ComputerName.class);
-            case ACCESSORY:
-                return getRandomNameByType(AccessoryName.class);
-        }
-        return null;
+       return getRandomNameByType(equipmentSlot.getEnum());
     }
 
     private <T extends Enum<T>> String getRandomNameByType(Class<T> enumeration) {
