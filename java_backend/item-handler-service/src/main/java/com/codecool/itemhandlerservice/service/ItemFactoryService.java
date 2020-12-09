@@ -11,8 +11,6 @@ public class ItemFactoryService {
 
     private static final int NUMBER_OF_BASE_STATS=5;
 
-    private static final int MOTIVATION_BY_LEVEL = 2;
-
     public List<Item> getMultipleRandomItemsByPlayerLevel(Long playerLevel, int numberOfItems){
         if (playerLevel <= 0 || numberOfItems <= 0) {
             throw new IllegalArgumentException("Parameters should be positive");
@@ -78,16 +76,12 @@ public class ItemFactoryService {
 
     private Long getRandomSecondaryStat() {
         Random random=new Random();
-        return (long) random.nextInt(6);
+        return (long) random.nextInt(5+1);
     }
 
     private Long getMotivation(Long itemLevel,Rarity rarity) {
-        if(rarity==Rarity.EPIC){
-            return itemLevel*MOTIVATION_BY_LEVEL*2;
-        }
-        return itemLevel*MOTIVATION_BY_LEVEL;
+        return rarity.getMap().get("motivation")*itemLevel;
     }
-
 
     private Long getBuyPrice(Long itemLevel,Rarity rarity) {
         return rarity.getMap().get("buyPrice")*itemLevel;
@@ -100,7 +94,6 @@ public class ItemFactoryService {
     private Long setOverallStats(Long itemLevel, Rarity rarity) {
         return rarity.getMap().get("statMultiplier")*itemLevel;
     }
-
 
     private Long[] getRandomBaseStats(Long overallStats) {
         Random random=new Random();
@@ -119,8 +112,6 @@ public class ItemFactoryService {
         }
         return stats;
     }
-
-
 
     private Rarity getRandomRarity() {
         Random random=new Random();
