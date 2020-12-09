@@ -3,7 +3,6 @@ package com.codecool.itemhandlerservice;
 import com.codecool.itemhandlerservice.entity.Item;
 import com.codecool.itemhandlerservice.model.*;
 import com.codecool.itemhandlerservice.service.ItemFactoryService;
-import lombok.EqualsAndHashCode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -29,23 +28,23 @@ public class ItemFactoryServiceUnitTests {
     @ParameterizedTest
     @ValueSource(longs = {0, -1,-15,Long.MIN_VALUE})
     public void getRandomItemBadArgsThrowsIllegalArgumentException(Long param){
-        Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getRandomItem(param));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getRandomItemByPlayerLevel(param));
     }
 
     @Test
     void getRandomItemIsReturnWithItem(){
-        assertThat(itemFactoryService.getRandomItem(1L)).isInstanceOf(Item.class);
+        assertThat(itemFactoryService.getRandomItemByPlayerLevel(1L)).isInstanceOf(Item.class);
     }
 
     @Test
     void getRandomItemNameIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getName()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemNameIsInEnum(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         List<String> names=new ArrayList<>();
 
@@ -77,13 +76,13 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemEquipmentSlotIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getEquipmentSlot()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemEquipmentSlotIsInEnum(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         List<EquipmentSlot> equipmentSlots = Arrays.asList(EquipmentSlot.values());
 
@@ -92,26 +91,26 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemItemLevelIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getItemLevel()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemItemLevelIsEqualsParam(){
         Long param=1L;
-        Item item=itemFactoryService.getRandomItem(param);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(param);
         assertThat(item.getItemLevel()).isEqualTo(param);
     }
 
     @Test
     void getRandomItemRarityIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getRarity()).isNotNull();
     }
 
     @Test
     void getRandomItemRarityIsInEnum(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         List<Rarity> rarity = Arrays.asList(Rarity.values());
 
@@ -120,13 +119,13 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemProblemSolvingIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getProblemSolving()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemProblemSolvingIsInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long overallStats=item.getItemLevel();
@@ -147,13 +146,13 @@ public class ItemFactoryServiceUnitTests {
     }
     @Test
     void getRandomItemDesignIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getDesign()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemDesignInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long overallStats=item.getItemLevel();
@@ -174,13 +173,13 @@ public class ItemFactoryServiceUnitTests {
     }
     @Test
     void getRandomItemAlgorithmizationIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getAlgorithmization()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemAlgorithmizationInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long overallStats=item.getItemLevel();
@@ -201,13 +200,13 @@ public class ItemFactoryServiceUnitTests {
     }
     @Test
     void getRandomItemCleanCodeIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getCleanCode()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemCleanCodeInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long overallStats=item.getItemLevel();
@@ -229,13 +228,13 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemTestingIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getTesting()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemTestingInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long overallStats=item.getItemLevel();
@@ -257,7 +256,7 @@ public class ItemFactoryServiceUnitTests {
 
     @RepeatedTest(100)
     void getRandomItemSumOfStatsIsIsEqualsOverallStats(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long overallStats=item.getItemLevel();
@@ -284,7 +283,7 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemMotivationIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getMotivation()).isNotNull();
     }
 
@@ -292,7 +291,7 @@ public class ItemFactoryServiceUnitTests {
     @RepeatedTest(100)
     void getRandomItemMotivationInRange(){
         long param=1L;
-        Item item=itemFactoryService.getRandomItem(param);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(param);
         if(item.getRarity()==Rarity.RARE){
             assertThat(item.getMotivation()).isEqualTo(param*2);
         }
@@ -305,13 +304,13 @@ public class ItemFactoryServiceUnitTests {
     }
     @Test
     void getRandomItemDebuggingIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getDebugging()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemDebuggingIsInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         if(item.getRarity()==Rarity.EPIC){
             assertThat(item.getDebugging()).isBetween(0L,5L);
         }
@@ -322,13 +321,13 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemCodingSpeedIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getCodingSpeed()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemCodingSpeedIsInRange(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         if(item.getRarity()==Rarity.EPIC){
             assertThat(item.getCodingSpeed()).isBetween(0L,5L);
         }
@@ -339,13 +338,13 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemSellPriceIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getSellPrice()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemSellPriceIsEqualsWithExpected(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long sellPrice=item.getItemLevel();
@@ -368,13 +367,13 @@ public class ItemFactoryServiceUnitTests {
 
     @Test
     void getRandomItemBuyPriceIsNotNull(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
         assertThat(item.getBuyPrice()).isNotNull();
     }
 
     @RepeatedTest(100)
     void getRandomItemBuyPriceIsEqualsWithExpected(){
-        Item item=itemFactoryService.getRandomItem(1L);
+        Item item=itemFactoryService.getRandomItemByPlayerLevel(1L);
 
         if(item.getRarity()==Rarity.COMMON){
             Long sellPrice=item.getItemLevel()*2;
@@ -394,6 +393,35 @@ public class ItemFactoryServiceUnitTests {
         }
 
     }
+
+    @ParameterizedTest
+    @ValueSource(longs = {0, -1,-15,Long.MIN_VALUE})
+    public void getMultipleRandomItemsBadArgsThrowsIllegalArgumentException(Long param){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getMultipleRandomItemsByPlayerLevel(param,1));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1,-15,Integer.MIN_VALUE})
+    public void getMultipleRandomItemsBadArgsThrowsIllegalArgumentException2(int param){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getMultipleRandomItemsByPlayerLevel(1L,param));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1,-15,Integer.MIN_VALUE})
+    public void getMultipleRandomItemsBadArgsThrowsIllegalArgumentException3(int param){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getMultipleRandomItemsByPlayerLevel((long)param,param));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,10,100,1000})
+    public void getMultipleRandomItemsListSize(int param){
+        List<Item> items=itemFactoryService.getMultipleRandomItemsByPlayerLevel(1L,param);
+        assertThat(items.size()).isEqualTo(param);
+    }
+
+
+
+
 
 
 
