@@ -412,6 +412,15 @@ public class ItemFactoryServiceUnitTests {
         Assertions.assertThrows(IllegalArgumentException.class, () -> itemFactoryService.getMultipleRandomItemsByPlayerLevel((long)param,param));
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,10,100,1000})
+    public void getMultipleRandomItemsListSize(int param){
+        List<Item> items=itemFactoryService.getMultipleRandomItemsByPlayerLevel(1L,param);
+        assertThat(items.size()).isEqualTo(param);
+    }
+
+
+
 
 
 
