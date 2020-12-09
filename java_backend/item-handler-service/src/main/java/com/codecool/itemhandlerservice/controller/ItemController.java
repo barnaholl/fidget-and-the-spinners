@@ -16,7 +16,7 @@ public class ItemController {
 
     @GetMapping("/{playerLevel}")
     public Item getItemByLevel(@PathVariable("playerLevel") Long playerLevel){
-        return itemFactoryService.getRandomItem(playerLevel);
+        return itemFactoryService.getRandomItemByPlayerLevel(playerLevel);
     }
 
 }

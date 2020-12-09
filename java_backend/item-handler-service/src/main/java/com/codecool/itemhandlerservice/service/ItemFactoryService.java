@@ -28,7 +28,18 @@ public class ItemFactoryService {
     private static final int MOTIVATION_BY_LEVEL = 2;
 
 
-    public Item getRandomItem(Long playerLevel){
+    public List<Item> getMultipleRandomItemsByPlayerLevel(Long playerLevel,int numberOfItems){
+        if (playerLevel <= 0 || numberOfItems <= 0) {
+            throw new IllegalArgumentException("Parameters should be positive");
+        }
+        List<Item> items=new ArrayList<>();
+        for(int i=0; i<numberOfItems; i++){
+            items.add(getRandomItemByPlayerLevel(playerLevel));
+        }
+        return items;
+    }
+
+    public Item getRandomItemByPlayerLevel(Long playerLevel){
         if (playerLevel <= 0) {
             throw new IllegalArgumentException("Input should be positive");
         }
