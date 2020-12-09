@@ -9,6 +9,7 @@ import Character from "./pages/Character";
 import Kitchen from "./pages/Kitchen";
 import Copyright from "./components/Copyright";
 import styled from "styled-components";
+import { StatProvider } from "./contexts/StatProvider";
 
 const Footer = styled.footer`
   width: -webkit-fill-available;
@@ -20,18 +21,20 @@ const Footer = styled.footer`
 function App() {
   return (
     <Router>
-      <div className='background-image'></div>
-      <div className='App'>
-        <Route exact path='/' component={Landing} />
-        <Route exact path='/register' component={Register} />
-        <Route exact path='/login' component={Login} />
-        <Route
-          exact
-          path='/username/character-creation'
-          component={CharacterCreation}
-        />
-        <Route path='/character' component={Character} />
-        <Route path='/kitchen' component={Kitchen} />
+      <div className="background-image"></div>
+      <div className="App">
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
+        <StatProvider>
+          <Route
+            exact
+            path="/username/character-creation"
+            component={CharacterCreation}
+          />
+          <Route path="/character" component={Character} />
+          <Route path="/kitchen" component={Kitchen} />
+        </StatProvider>
         <Footer>
           <Copyright />
         </Footer>
