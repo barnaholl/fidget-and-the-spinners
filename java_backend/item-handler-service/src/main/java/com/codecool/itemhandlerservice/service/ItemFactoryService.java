@@ -29,6 +29,9 @@ public class ItemFactoryService {
 
 
     public Item getRandomItem(Long playerLevel){
+        if (playerLevel <= 0) {
+            throw new IllegalArgumentException("Input should be positive");
+        }
 
         EquipmentSlot equipmentSlot=getRandomEquipmentSlot();
         Rarity rarity=getRandomRarity();
@@ -52,7 +55,7 @@ public class ItemFactoryService {
             motivation=getMotivation(playerLevel,rarity);
         }
 
-        if(rarity==Rarity.EPIC){
+        else if(rarity==Rarity.EPIC){
             motivation=getMotivation(playerLevel,rarity);
             debugging=getRandomSecondaryStat();
             codingSpeed=getRandomSecondaryStat();
@@ -179,6 +182,8 @@ public class ItemFactoryService {
                 return getRandomNameByType(FrameworkName.class);
             case COMPUTER:
                 return getRandomNameByType(ComputerName.class);
+            case ACCESSORY:
+                return getRandomNameByType(AccessoryName.class);
         }
         return null;
     }
@@ -188,6 +193,5 @@ public class ItemFactoryService {
         int i=random.nextInt(enumeration.getEnumConstants().length);
         return String.valueOf(enumeration.getEnumConstants()[i]);
     }
-
 
 }

@@ -11,7 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import Copyright from "../components/Copyright";
 import "../App.css";
 
 const usernameRegex =
@@ -59,13 +58,13 @@ export default function Register() {
   });
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component='h1' variant='h5'>
+        <Typography component="h1" variant="h5">
           Create account
         </Typography>
         <ValidatorForm
@@ -77,14 +76,14 @@ export default function Register() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextValidator
-                name='username'
-                variant='outlined'
+                name="username"
+                variant="outlined"
                 required
                 fullWidth
-                id='username'
-                label='Username'
+                id="username"
+                label="Username"
                 autoFocus
-                autoComplete='off'
+                autoComplete="off"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 validators={[`matchRegexp:${usernameRegex}`]}
@@ -95,13 +94,13 @@ export default function Register() {
             </Grid>
             <Grid item xs={12}>
               <TextValidator
-                variant='outlined'
+                variant="outlined"
                 required
                 fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='off'
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="off"
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
                 validators={[`isEmail`]}
@@ -110,14 +109,14 @@ export default function Register() {
             </Grid>
             <Grid item xs={12}>
               <TextValidator
-                variant='outlined'
+                variant="outlined"
                 required
                 fullWidth
-                name='password'
-                label='Password'
-                type='password'
-                id='password'
-                autoComplete='current-password'
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 validators={[`matchRegexp:${passwordRegex}`]}
@@ -126,14 +125,14 @@ export default function Register() {
             </Grid>
             <Grid item xs={12}>
               <TextValidator
-                variant='outlined'
+                variant="outlined"
                 required
                 fullWidth
-                name='repeatPassword'
-                label='Repeat Password'
-                type='password'
-                id='password'
-                autoComplete='current-password'
+                name="repeatPassword"
+                label="Repeat Password"
+                type="password"
+                id="re-password"
+                autoComplete="current-password"
                 value={passwordRepeat}
                 onChange={(e) => setPasswordRepeat(e.target.value)}
                 validators={[`isPasswordMatch`]}
@@ -142,30 +141,29 @@ export default function Register() {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value='allowExtraEmails' color='primary' />}
-                label='I have read and accept the general terms and conditions and the game rules.'
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I have read and accept the general terms and conditions and the game rules."
               />
             </Grid>
           </Grid>
           <Link to={"/username/character-creation"}>
             <Button
-              type='submit'
+              type="submit"
               fullWidth
-              variant='contained'
-              color='primary'
+              variant="contained"
+              color="primary"
               className={classes.submit}
             >
               Play Now
             </Button>
           </Link>
-          <Grid container justify='flex-end'>
+          <Grid container justify="flex-end">
             <Grid item>
               <Link to={"/login"}>Already registered? Login</Link>
             </Grid>
           </Grid>
         </ValidatorForm>
       </div>
-      <Copyright />
     </Container>
   );
 }

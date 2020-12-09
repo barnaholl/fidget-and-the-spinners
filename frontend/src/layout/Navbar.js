@@ -18,6 +18,7 @@ var barIcons = [
   { Arena: "/arena" },
   { shop1: "/shop1" },
   { shop2: "/shop2" },
+  { Character: "/character" },
   { Dungeon: "/dungeon" },
   { Fortress: "/fortress" },
   { Guild: "/guild" },
@@ -32,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
+  // appBar: {
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   marginLeft: drawerWidth,
+  // },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
