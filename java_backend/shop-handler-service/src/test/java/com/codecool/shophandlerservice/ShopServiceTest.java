@@ -163,8 +163,37 @@ class ShopServiceTest {
 
 	@ParameterizedTest
 	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
-	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException(Long param) {
+	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getNewItemByCharacterIdAndCharacterLevel(1L,param));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getNewItemByCharacterIdAndCharacterLevel(param,1L));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getNewItemByCharacterIdAndCharacterLevel(param,param));
+	}
+
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void getMultipleNewItemsByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(param,1L,1L));
+	}
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void getMultipleNewItemsByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,param,1L));
+	}
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void getMultipleNewItemsByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,1L,param));
 	}
 
 
