@@ -2,10 +2,7 @@ package com.codecool.shophandlerservice.controller;
 
 import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.service.ShopService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +15,8 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @PostMapping("/{characterId}/{characterLevel}")
-    public void getNewItemByCharacterIdAndCharacterLevel(@PathVariable("characterId") Long characterId,@PathVariable("characterLevel") Long characterLevel){
+    @PostMapping("/newItemToShop")
+    public void getNewItemByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel){
         shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,characterLevel);
     }
 
@@ -27,4 +24,5 @@ public class ShopController {
     public List<Item> getItemsByCharacterId(@PathVariable("characterId") Long characterId){
         return shopService.getItemsByCharacterId(characterId);
     }
+
 }
