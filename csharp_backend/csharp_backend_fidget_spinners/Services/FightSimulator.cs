@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using csharp_backend_fidget_spinners.Models;
 using csharp_backend_fidget_spinners.Services.CustomLogObj;
@@ -11,18 +9,15 @@ namespace csharp_backend_fidget_spinners.Services
     public class FightSimulator : IFightSimulator
     {
         private Character CurrentCharacter;
-        private IEnemyGenerator EnemyGeneratorService;
         private Enemy Enemy;
         private List<FightLog> FightLog;
 
 
-        public async Task InitializeService(Character player, IEnemyGenerator enemyGenerator)
+        public void InitializeService(Character player, Enemy enemy)
         {
             CurrentCharacter = player;
-            EnemyGeneratorService = enemyGenerator;
+            Enemy = enemy;
             FightLog = new List<FightLog>();
-
-            Enemy = await EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
         }
 
         public async Task<List<FightLog>> Fight()

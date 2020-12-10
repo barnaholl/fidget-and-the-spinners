@@ -1,8 +1,5 @@
 ﻿using csharp_backend_fidget_spinners.Models;
 using csharp_backend_fidget_spinners.Services;
-using csharp_backend_fidget_spinners.Services.CustomLogObj;
-using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
-using NSubstitute;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
@@ -14,10 +11,11 @@ namespace csharp_backend_fidget_spinners_tests
         private FightSimulator _fightSimulator = new FightSimulator();
         private Character _character;
         private EnemyGeneratorService _enemyGeneratorService = new EnemyGeneratorService();
+        private Enemy _enemy;
 
 
         [SetUp]
-        public void Setup()
+        public async Task Setup()
         {
 
             _character = new Character
@@ -34,12 +32,13 @@ namespace csharp_backend_fidget_spinners_tests
                 Testing = 1
             };
 
+            _enemy = await _enemyGeneratorService.GenerateEnemy(_character);
         }
 
         [Test]
         public async Task FightTest_CharacterHP_Should_Decrease()
         {
-            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+            _fightSimulator.InitializeService(_character, _enemy);
 
             await _fightSimulator.Fight();
 
@@ -49,7 +48,7 @@ namespace csharp_backend_fidget_spinners_tests
         [Test]
         public async Task FightTest_EnemyHP_Should_Decrease()
         {
-            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+            _fightSimulator.InitializeService(_character, _enemy);
 
             await _fightSimulator.Fight();
 
@@ -59,7 +58,7 @@ namespace csharp_backend_fidget_spinners_tests
         [Test]
         public async Task FightTest_Someone_Should_Win()
         {
-            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+            _fightSimulator.InitializeService(_character, _enemy);
 
             await _fightSimulator.Fight();
 
@@ -68,9 +67,9 @@ namespace csharp_backend_fidget_spinners_tests
         }
 
         [Test]
-        public async Task DamageMinusArmor_ShouldNot_Go_Below_0()
+        public void DamageMinusArmor_ShouldNot_Go_Below_0()
         {
-            await _fightSimulator.InitializeService(_character, _enemyGeneratorService);
+            _fightSimulator.InitializeService(_character, _enemy);
 
 
             Assert.True(_fightSimulator.DamageMinusArmor(0) == 0);
