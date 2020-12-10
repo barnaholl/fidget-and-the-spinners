@@ -28,6 +28,8 @@ class ShopServiceTest {
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(1);
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
@@ -39,6 +41,8 @@ class ShopServiceTest {
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(3);
+		itemRepository.deleteAll();
+
 	}
 	@Test
 	void getNewItemByCharacterIdAndCharacterLevelItemIdIsNotNull() {
@@ -47,6 +51,8 @@ class ShopServiceTest {
 		Item item=itemRepository.findAll().get(0);
 
 		assertThat(item.getId()).isNotNull();
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
@@ -56,6 +62,8 @@ class ShopServiceTest {
 		Item item=itemRepository.findAll().get(0);
 
 		assertThat(item.getCharacterId()).isNotNull();
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
@@ -65,6 +73,8 @@ class ShopServiceTest {
 		Item item=itemRepository.findAll().get(0);
 
 		assertThat(item.getCharacterId()).isEqualTo(1);
+		itemRepository.deleteAll();
+
 	}
 
 	@ParameterizedTest
@@ -76,6 +86,8 @@ class ShopServiceTest {
 		Item item=itemRepository.findAll().get(iteration);
 
 		assertThat(item.getCharacterId()).isEqualTo(characterId);
+		itemRepository.deleteAll();
+
 	}
 
 
@@ -93,6 +105,8 @@ class ShopServiceTest {
 		List<Item> items=itemRepository.findAllByCharacterId(1L);
 
 		assertThat(items).isNotEmpty();
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
@@ -105,6 +119,8 @@ class ShopServiceTest {
 		int size=items.size();
 
 		assertThat(size).isEqualTo(3);
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
@@ -119,7 +135,32 @@ class ShopServiceTest {
 		int size=items.size();
 
 		assertThat(size).isEqualTo(2);
+		itemRepository.deleteAll();
 	}
+
+
+	@Test
+	void getMultipleNewItemsByCharacterIdAndCharacterLevelIsSaving() {
+		shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,1L,1L);
+		int size=itemRepository.findAll().size();
+
+		assertThat(size).isEqualTo(1);
+		itemRepository.deleteAll();
+
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 5, 10, 100})
+	void getMultipleNewItemsByCharacterIdAndCharacterLevelIsSaving(Long param) {
+		shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,1L,param);
+		int size=itemRepository.findAll().size();
+
+		assertThat(size).isEqualTo(Integer.valueOf(Math.toIntExact(param)));
+		itemRepository.deleteAll();
+
+	}
+
+
 
 
 
