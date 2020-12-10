@@ -141,8 +141,8 @@ class ShopServiceTest {
 
 
 	@Test
-	void getMultipleNewItemsByCharacterIdAndCharacterLevelIsSaving() {
-		shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,1L,1L);
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelIsSaving() {
+		shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,1L,1L);
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(1);
@@ -152,8 +152,8 @@ class ShopServiceTest {
 
 	@ParameterizedTest
 	@ValueSource(longs = {1, 2, 5, 10, 100})
-	void getMultipleNewItemsByCharacterIdAndCharacterLevelIsSaving(Long param) {
-		shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,1L,param);
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelIsSaving(Long param) {
+		shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,1L,param);
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(Integer.valueOf(Math.toIntExact(param)));
@@ -182,18 +182,18 @@ class ShopServiceTest {
 
 	@ParameterizedTest
 	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
-	void getMultipleNewItemsByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(param,1L,1L));
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(param,1L,1L));
 	}
 	@ParameterizedTest
 	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
-	void getMultipleNewItemsByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,param,1L));
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,param,1L));
 	}
 	@ParameterizedTest
 	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
-	void getMultipleNewItemsByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getMultipleNewItemsByCharacterIdAndCharacterLevel(1L,1L,param));
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,1L,param));
 	}
 
 

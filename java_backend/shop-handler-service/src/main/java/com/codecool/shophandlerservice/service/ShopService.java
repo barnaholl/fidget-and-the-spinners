@@ -32,7 +32,7 @@ public class ShopService {
         return itemRepository.findAllByCharacterId(characterId);
     }
 
-    public void getMultipleNewItemsByCharacterIdAndCharacterLevel(Long characterId, Long characterLevel,Long numberOfItems){
+    public void addMultipleItemsToShopByCharacterIdAndCharacterLevel(Long characterId, Long characterLevel,Long numberOfItems){
 
         if(characterId<=0||characterLevel<=0||numberOfItems<=0){
             throw new IllegalArgumentException("Params must be positive values");

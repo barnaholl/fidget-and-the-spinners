@@ -26,8 +26,8 @@ public class ShopController {
     }
 
     @PostMapping("/addMultipleItemsToShop")
-    public void addMultipleItemsToShopByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel){
-        //shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,characterLevel);
+    public void addMultipleItemsToShopByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel,@RequestParam("numberOfItems") Long numberOfItems){
+        shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(characterId,characterLevel,numberOfItems);
     }
 
 }
