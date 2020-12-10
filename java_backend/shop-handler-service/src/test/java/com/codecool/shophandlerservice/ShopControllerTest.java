@@ -31,7 +31,7 @@ public class ShopControllerTest {
 
     @Test
     void getNewItemByCharacterIdAndCharacterLevelIsSuccessful() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/1/1");
+        RequestBuilder request = MockMvcRequestBuilders.post("/newItemToShop?characterId=1&characterLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
@@ -39,14 +39,14 @@ public class ShopControllerTest {
     @ParameterizedTest
     @ValueSource(ints = {1,1,1,2,1,3})
     void getNewItemByCharacterIdAndCharacterLevelIsSuccessfulForMultipleRequests(int characterId) throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/"+characterId+"/1");
+        RequestBuilder request = MockMvcRequestBuilders.post("/newItemToShop?characterId="+characterId+"&characterLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
 
     @Test
     void getNewItemByCharacterIdAndCharacterLevelElementIsInDB() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/1/1");
+        RequestBuilder request = MockMvcRequestBuilders.post("/newItemToShop?characterId=1&characterLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
 
         mockMvc.perform(request);
