@@ -8,13 +8,13 @@ import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Stats from "./Stats";
+import CharacterEquipment from "./CharacterEquipment";
+import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
+  container: {
+    backdropFilter: "brightness(0.6)",
   },
   table: {
     maxWidth: 650,
@@ -25,7 +25,8 @@ export default function CharacterWindow() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root}>
+    <Container className={classes.container}>
+      <CharacterEquipment />
       <Stats />
     </Container>
   );

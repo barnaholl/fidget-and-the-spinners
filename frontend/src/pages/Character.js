@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function Character() {
   const classes = useStyles();
 
@@ -44,6 +43,6 @@ export default function Character() {
           <Inventory />
         </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 }
