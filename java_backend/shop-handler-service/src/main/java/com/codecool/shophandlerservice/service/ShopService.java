@@ -19,6 +19,9 @@ public class ShopService {
     }
 
     public void getNewItemByCharacterIdAndCharacterLevel(Long characterId, Long characterLevel){
+        if(characterId<=0||characterLevel<=0){
+            throw new IllegalArgumentException("Params must be positive values");
+        }
         Item item=itemServiceCaller.getItem(characterLevel);
         item.setCharacterId(characterId);
         itemRepository.save(item);
