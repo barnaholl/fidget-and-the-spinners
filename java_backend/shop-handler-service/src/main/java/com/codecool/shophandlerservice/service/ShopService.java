@@ -18,7 +18,7 @@ public class ShopService {
         this.itemServiceCaller = itemServiceCaller;
     }
 
-    public void getNewItemByCharacterIdAndCharacterLevel(Long characterId, Long characterLevel){
+    public void addItemToShopByCharacterIdAndCharacterLevel(Long characterId, Long characterLevel){
         if(characterId<=0||characterLevel<=0){
             throw new IllegalArgumentException("Params must be positive values");
         }

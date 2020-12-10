@@ -24,8 +24,8 @@ class ShopServiceTest {
 	private ItemRepository itemRepository;
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelIsSaving() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,10L);
+	void addItemToShopByCharacterIdAndCharacterLevelIsSaving() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,10L);
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(1);
@@ -34,10 +34,10 @@ class ShopServiceTest {
 	}
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelIsSavingMultipleTimes() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,5L);
-		shopService.getNewItemByCharacterIdAndCharacterLevel(3L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelIsSavingMultipleTimes() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,5L);
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(3L,1L);
 
 		int size=itemRepository.findAll().size();
 
@@ -46,8 +46,8 @@ class ShopServiceTest {
 
 	}
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelItemIdIsNotNull() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelItemIdIsNotNull() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
@@ -57,8 +57,8 @@ class ShopServiceTest {
 	}
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsNotNull() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelCharacterIdIsNotNull() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
@@ -68,8 +68,8 @@ class ShopServiceTest {
 	}
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsEqualsToParameter() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelCharacterIdIsEqualsToParameter() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
@@ -80,8 +80,8 @@ class ShopServiceTest {
 
 	@ParameterizedTest
 	@ValueSource(longs = {1, 1, 5, 3, 7})
-	void getNewItemByCharacterIdAndCharacterLevelCharacterIdsAreEqualsToParameters(Long characterId) {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelCharacterIdsAreEqualsToParameters(Long characterId) {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(characterId,1L);
 
 		int iteration=itemRepository.findAll().size()-1;
 		Item item=itemRepository.findAll().get(iteration);
@@ -163,20 +163,20 @@ class ShopServiceTest {
 
 	@ParameterizedTest
 	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
-	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getNewItemByCharacterIdAndCharacterLevel(1L,param));
+	void addItemToShopByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,param));
 	}
 
 	@ParameterizedTest
 	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
-	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getNewItemByCharacterIdAndCharacterLevel(param,1L));
+	void addItemToShopByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addItemToShopByCharacterIdAndCharacterLevel(param,1L));
 	}
 
 	@ParameterizedTest
 	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
-	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getNewItemByCharacterIdAndCharacterLevel(param,param));
+	void addItemToShopByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addItemToShopByCharacterIdAndCharacterLevel(param,param));
 	}
 
 

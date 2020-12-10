@@ -16,13 +16,18 @@ public class ShopController {
     }
 
     @PostMapping("/addItemToShop")
-    public void getNewItemByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel){
-        shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,characterLevel);
+    public void addItemToShopByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel){
+        shopService.addItemToShopByCharacterIdAndCharacterLevel(characterId,characterLevel);
     }
 
     @GetMapping("/getItemByCharacterId")
     public List<Item> getItemsByCharacterId(@RequestParam("characterId") Long characterId){
         return shopService.getItemsByCharacterId(characterId);
+    }
+
+    @PostMapping("/addMultipleItemsToShop")
+    public void addMultipleItemsToShopByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel){
+        //shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,characterLevel);
     }
 
 }
