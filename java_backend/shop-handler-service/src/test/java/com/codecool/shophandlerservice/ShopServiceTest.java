@@ -3,6 +3,7 @@ package com.codecool.shophandlerservice;
 import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
 import com.codecool.shophandlerservice.service.ShopService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -158,6 +159,12 @@ class ShopServiceTest {
 		assertThat(size).isEqualTo(Integer.valueOf(Math.toIntExact(param)));
 		itemRepository.deleteAll();
 
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void getNewItemByCharacterIdAndCharacterLevelBadParamsThrowsException(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.getNewItemByCharacterIdAndCharacterLevel(1L,param));
 	}
 
 
