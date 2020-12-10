@@ -25,14 +25,14 @@ export default function Stats() {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} aria-label='simple table'>
         <TableBody>
           {Object.entries(stats).map((stat) => (
             <TableRow key={stat[0]}>
-              <TableCell component="th" scope="row" width="70%" align="left">
+              <TableCell component='th' scope='row' width='70%' align='left'>
                 {stat[0]}
               </TableCell>
-              <TableCell align="left">{stat[1]}</TableCell>
+              <TableCell align='left'>{stat[1]}</TableCell>
             </TableRow>
           ))}
         </TableBody>
