@@ -1,10 +1,11 @@
 import React from "react";
-import Navbar from "../layout/Navbar";
-import Stats from "../components/Stats";
-import CharacterWindow from "../components/CharacterWindow";
-import Inventory from "../components/Inventory";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Navbar from "../layout/Navbar";
+import Stats from "../components/Stats";
+import CharacterEquipment from "../components/CharacterEquipment";
+import Inventory from "../components/Inventory";
+import CharacterWindow from "../components/CharacterWindow";
 
 const drawerWidth = 240;
 
@@ -13,10 +14,15 @@ const useStyles = makeStyles((theme) => ({
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
   },
+  grid: {
+    marginTop: 50,
+  },
 }));
+
 
 export default function Character() {
   const classes = useStyles();
+
   return (
     <>
       <Navbar />
@@ -38,6 +44,6 @@ export default function Character() {
           <Inventory />
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 }

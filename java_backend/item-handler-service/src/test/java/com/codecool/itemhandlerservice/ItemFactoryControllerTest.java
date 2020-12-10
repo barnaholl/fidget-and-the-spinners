@@ -25,13 +25,13 @@ public class ItemFactoryControllerTest {
 
     @Test
     void getItemByLevelSuccessfulStatus() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/1");
+        RequestBuilder request = MockMvcRequestBuilders.get("/item?playerLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(itemController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
     @Test
     public void getItemByLevelItemLevelIs1() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/1");
+        RequestBuilder request = MockMvcRequestBuilders.get("/item?playerLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(itemController).build();
         MvcResult result=mockMvc.perform(request).andReturn();
         assertThat(result.getResponse().getContentAsString().contains("\"itemLevel\":1")).isTrue();
@@ -39,10 +39,17 @@ public class ItemFactoryControllerTest {
 
     @Test
     public void getItemByLevelItemLevelIs100() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/100");
+        RequestBuilder request = MockMvcRequestBuilders.get("/item?playerLevel=100");
         mockMvc = MockMvcBuilders.standaloneSetup(itemController).build();
         MvcResult result=mockMvc.perform(request).andReturn();
         assertThat(result.getResponse().getContentAsString().contains("\"itemLevel\":100")).isTrue();
+    }
+
+    @Test
+    void getMultipleItemsByLevelSuccessfulStatus() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/items?playerLevel=1&numberOfItems=1");
+        mockMvc = MockMvcBuilders.standaloneSetup(itemController).build();
+        mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
 
 
