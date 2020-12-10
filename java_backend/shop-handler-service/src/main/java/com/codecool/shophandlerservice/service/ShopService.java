@@ -33,6 +33,11 @@ public class ShopService {
     }
 
     public void getMultipleNewItemsByCharacterIdAndCharacterLevel(Long characterId, Long characterLevel,Long numberOfItems){
+
+        if(characterId<=0||characterLevel<=0||numberOfItems<=0){
+            throw new IllegalArgumentException("Params must be positive values");
+        }
+
         List<Item> items=new ArrayList<>();
         for (int i = 0; i < numberOfItems; i++) {
             Item item=itemServiceCaller.getItem(characterLevel);
