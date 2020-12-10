@@ -64,7 +64,11 @@ public class ShopControllerTest {
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
 
-
-
+    @Test
+    void addMultipleItemsToShopByCharacterIdAndCharacterLevelIsSuccessful() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/addMultipleItemsToShop?characterId=1&characterLevel=1&numberOfItems=1");
+        mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
+        mockMvc.perform(request).andExpect(status().is2xxSuccessful());
+    }
 
 }
