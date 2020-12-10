@@ -15,13 +15,13 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @PostMapping("/newItemToShop")
+    @PostMapping("/addItemToShop")
     public void getNewItemByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel){
         shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,characterLevel);
     }
 
-    @GetMapping("/{characterId}")
-    public List<Item> getItemsByCharacterId(@PathVariable("characterId") Long characterId){
+    @GetMapping("/getItemByCharacterId")
+    public List<Item> getItemsByCharacterId(@RequestParam("characterId") Long characterId){
         return shopService.getItemsByCharacterId(characterId);
     }
 

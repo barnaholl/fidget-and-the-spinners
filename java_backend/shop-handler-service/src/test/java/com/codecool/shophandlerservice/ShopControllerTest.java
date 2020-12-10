@@ -31,22 +31,24 @@ public class ShopControllerTest {
 
     @Test
     void getNewItemByCharacterIdAndCharacterLevelIsSuccessful() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/newItemToShop?characterId=1&characterLevel=1");
+        RequestBuilder request = MockMvcRequestBuilders.post("/addItemToShop?characterId=1&characterLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
 
+
     @ParameterizedTest
     @ValueSource(ints = {1,1,1,2,1,3})
     void getNewItemByCharacterIdAndCharacterLevelIsSuccessfulForMultipleRequests(int characterId) throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/newItemToShop?characterId="+characterId+"&characterLevel=1");
+        RequestBuilder request = MockMvcRequestBuilders.post("/addItemToShop?characterId="+characterId+"&characterLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
 
     @Test
     void getNewItemByCharacterIdAndCharacterLevelElementIsInDB() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/newItemToShop?characterId=1&characterLevel=1");
+        itemRepository.deleteAll();
+        RequestBuilder request = MockMvcRequestBuilders.post("/addItemToShop?characterId=1&characterLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
 
         mockMvc.perform(request);
@@ -57,7 +59,7 @@ public class ShopControllerTest {
 
     @Test
     void getItemsByCharacterIdIsSuccessful() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/1");
+        RequestBuilder request = MockMvcRequestBuilders.get("/getItemByCharacterId?characterId=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
