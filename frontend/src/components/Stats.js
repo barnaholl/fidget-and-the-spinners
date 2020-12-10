@@ -24,19 +24,19 @@ const char1 = [
 ];
 
 export default function Stats() {
-  const [character] = useState(char1[0]);
+  const [characterStats] = useState(char1[0]);
   const classes = useStyles();
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} aria-label='simple table'>
         <TableBody>
-          {Object.entries(character).map((stat) => (
+          {Object.entries(characterStats).map((stat) => (
             <TableRow key={stat[0]}>
-              <TableCell component="th" scope="row" width="70%" align="left">
+              <TableCell component='th' scope='row' width='70%' align='left'>
                 {stat[0]}
               </TableCell>
-              <TableCell align="left">{stat[1]}</TableCell>
+              <TableCell align='left'>{stat[1]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

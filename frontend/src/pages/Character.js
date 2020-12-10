@@ -1,9 +1,19 @@
 import React from "react";
 import Navbar from "../layout/Navbar";
 import Stats from "../components/Stats";
+import CharacterWindow from "../components/CharacterWindow";
 import Inventory from "../components/Inventory";
 import Grid from "@material-ui/core/Grid";
-import { useStyles } from "../StyleComponents";
+import { makeStyles } from "@material-ui/core/styles";
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+  },
+}));
 
 export default function Character() {
   const classes = useStyles();
@@ -18,8 +28,11 @@ export default function Character() {
         spacing={8}
         className={classes.appBar}
       >
+        {/*<Grid item xs={5}>
+          <CharacterWindow />
+  </Grid>*/}
         <Grid item xs={5}>
-          <Stats />
+          <CharacterWindow />
         </Grid>
         <Grid item xs={5}>
           <Inventory />
