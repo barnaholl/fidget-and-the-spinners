@@ -1,7 +1,12 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import "../App.css";
-import Avatar from "../images/avataricon.png";
+import Avatar from "../images/avatarjedi.png";
+import styled from "styled-components";
+
+const Avatarr = styled.img`
+  border: none;
+`;
 
 export default function CharacterEquipment() {
   return (
@@ -9,7 +14,7 @@ export default function CharacterEquipment() {
       container
       direction='row'
       justify='space-evenly'
-      spacing={0}
+      spacing={9}
       alignItems='center'
     >
       <Grid item>
@@ -18,9 +23,9 @@ export default function CharacterEquipment() {
       <Grid item>
         <div className='default-equipment'></div>
       </Grid>
-      <div className='character-box'>
+      <Grid item className='character-box'>
         <img src={Avatar} alt='avataricon' />
-      </div>
+      </Grid>
       <Grid item>
         <div className='default-equipment'></div>
       </Grid>

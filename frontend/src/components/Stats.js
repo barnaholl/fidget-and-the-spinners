@@ -5,7 +5,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { PlusOne } from "@material-ui/icons/";
 import { makeStyles } from "@material-ui/core/styles";
 import { StatContext } from "../contexts/StatProvider";
 
@@ -16,20 +15,20 @@ const useStyles = makeStyles({
 });
 
 export default function Stats() {
-  //const { /*stats,*/ fetchStats } = useContext({});
-  const stats = {
+  //const { stats, fetchStats } = useContext({StatContext});
+  const [stats, setStats] = useState({
     ProblemSolving: 0,
     Design: 0,
     Algorithm: 0,
     Testing: 0,
     CleanCode: 0,
-  };
+  });
   const classes = useStyles();
 
-  /*useEffect(() => {
-    fetchStats();
+  useEffect(() => {
+    //fetchStats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);*/
+  }, []);
 
   return (
     <TableContainer component={Paper}>
