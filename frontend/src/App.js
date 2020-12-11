@@ -1,13 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./App.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CharacterCreation from "./pages/CharacterCreation";
-import "./App.css";
 import Landing from "./pages/Landing";
-import Grid from "@material-ui/core/Grid";
 import Character from "./pages/Character";
 import Kitchen from "./pages/Kitchen";
+import Copyright from "./components/Copyright";
+import styled from "styled-components";
+import { StatProvider } from "./contexts/StatProvider";
+
+const Footer = styled.footer`
+  width: -webkit-fill-available;
+  bottom: 0;
+  text-align: center;
+  position: fixed;
+`;
 
 function App() {
   return (
@@ -16,14 +25,19 @@ function App() {
       <div className="App">
         <Route exact path="/" component={Landing} />
         <Route exact path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route
-          exact
-          path="/username/character-creation"
-          component={CharacterCreation}
-        />
-        <Route path="/character" component={Character}/>
-        <Route path="/kitchen" component={Kitchen}/>
+        <Route exact path="/login" component={Login} />
+        <StatProvider>
+          <Route
+            exact
+            path="/username/character-creation"
+            component={CharacterCreation}
+          />
+          <Route path="/character" component={Character} />
+          <Route path="/kitchen" component={Kitchen} />
+        </StatProvider>
+        <Footer>
+          <Copyright />
+        </Footer>
       </div>
     </Router>
   );

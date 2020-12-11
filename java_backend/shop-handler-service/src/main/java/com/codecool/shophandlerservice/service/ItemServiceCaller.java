@@ -1,6 +1,7 @@
 package com.codecool.shophandlerservice.service;
 
 import com.codecool.shophandlerservice.entity.Item;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,13 +12,14 @@ public class ItemServiceCaller {
 
     public ItemServiceCaller(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        System.out.println(getItem(5));
     }
 
-    private final String itemHandlerUrl="http://item-handler-service/1";
+    @Value("${item.handler.service.url}")
+    private String itemHandlerUrl;
 
-    public Item getItem(Integer playerLevel){
-        return restTemplate.getForEntity("http://localhost:8071/"+playerLevel, Item.class).getBody();
+
+    public Item getItem(Long playerLevel){
+        return restTemplate.getForEntity(itemHandlerUrl+"/item?playerLevel="+playerLevel, Item.class).getBody();
     }
 
 

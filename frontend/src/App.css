@@ -79,7 +79,7 @@
   align-content: center;
 }
 
-.align-text-center{
+.align-text-center {
   text-align: center;
 }
 
@@ -87,6 +87,13 @@
   width: 70% !important;
   margin: auto;
   margin-top: 5%;
+}
+
+.default-equipment {
+  background-image: url("./images/Icons/DefaultComputerIcon.png");
+  background-size: 100%;
+  height: 100px;
+  width: 100px;
 }
 
 #username {
@@ -124,12 +131,6 @@
 
 .MuiIconButton-label {
   color: white;
-}
-
-footer {
-  bottom: 0;
-  text-align: center;
-  position: fixed;
 }
 
 .align-center {
