@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         headers.add("username", username);
         HttpEntity<String> entity = new HttpEntity<>(username, headers);
-        Player player = template.exchange(baseUrl+username, HttpMethod.GET, entity, Player.class).getBody();
+        Player player = template.exchange(baseUrl + "/player?username=" + username, HttpMethod.GET, entity, Player.class).getBody();
 
         assert player != null;
         return new User(
