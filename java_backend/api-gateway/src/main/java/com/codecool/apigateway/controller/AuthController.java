@@ -23,6 +23,7 @@ import java.util.*;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
+@RequestMapping
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -59,7 +60,6 @@ public class AuthController {
         ResponseCookie cookie = ResponseCookie.from("token", token)
                 .domain("localhost") // should be parameterized
                 .sameSite("Strict")  // CSRF
-//                .secure(true)
                 .maxAge(Duration.ofHours(24))
                 .httpOnly(true)      // XSS
                 .path("/")
@@ -81,14 +81,13 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         createLogoutCookie(response);
-        return ResponseEntity.ok().body("You are logged out.");
+        return ResponseEntity.ok().build();
     }
 
     private void createLogoutCookie(HttpServletResponse response) {
         ResponseCookie cookie = ResponseCookie.from("token", "")
                 .domain("localhost") // should be parameterized
                 .sameSite("Strict")  // CSRF
-//                .secure(true)
                 .maxAge(0)
                 .httpOnly(true)      // XSS
                 .path("/")
