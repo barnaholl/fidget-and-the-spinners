@@ -36,7 +36,7 @@ export default function CharacterEquipment() {
       <Grid item>
         <img src={Avatar} alt='avataricon' width='150' height='150' />
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={8}>
         <div className={classes.item}></div>
       </Grid>
       <Grid item xs={3}>
