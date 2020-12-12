@@ -2,8 +2,6 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../layout/Navbar";
-import Stats from "../components/Stats";
-import CharacterEquipment from "../components/CharacterEquipment";
 import Inventory from "../components/Inventory";
 import CharacterWindow from "../components/CharacterWindow";
 
@@ -33,9 +31,6 @@ export default function Character() {
         spacing={8}
         className={classes.appBar}
       >
-        {/*<Grid item xs={5}>
-          <CharacterWindow />
-  </Grid>*/}
         <Grid item xs={5}>
           <CharacterWindow />
         </Grid>

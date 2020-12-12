@@ -18,7 +18,7 @@ export default function CharacterWindow() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container}>
+    <Container maxWidth='sm' className={classes.container}>
       <CharacterEquipment />
       <Stats />
     </Container>
