@@ -8,7 +8,7 @@ export function QuestProvider(props) {
   const [actualQuest, setActualQuest] = useState([]);
 
   function fetchQuests() {
-    fetchQuestsApi().then((data) => console.log(data));
+    fetchQuestsApi().then((data) => setQuests(data.data));
   }
 
   return (

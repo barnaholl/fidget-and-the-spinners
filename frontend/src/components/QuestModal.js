@@ -60,6 +60,7 @@ export default function QuestModal() {
 
   useEffect(() => {
     fetchQuests();
+    setActualQuest(quests[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,6 +71,8 @@ export default function QuestModal() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  console.log(actualQuest);
 
   return (
     <div>
@@ -89,25 +92,34 @@ export default function QuestModal() {
         }}
       >
         <Fade in={open}>
-          {/* <div className={classes.paper}>
+          <div className={classes.paper}>
             <h2 id="spring-modal-title">Take Quest</h2>
             <p id="spring-modal-description">Choose your quest here</p>
             <button onClick={() => setActualQuest(quests[0])}>Quest 1</button>
             <button onClick={() => setActualQuest(quests[1])}>Quest 2</button>
             <button onClick={() => setActualQuest(quests[2])}>Quest 3</button>
-            <div>
+            {/* <div>
               <h4>{actualQuest.name}</h4>
               <h5>{actualQuest.description}</h5>
-            </div>
+            </div> */}
             <h4>Reward:</h4>
+            {/* <div className={classes.rewards}>
+              <div>Gold</div>
+              <div>{actualQuest.gold}</div>
+              <div>XP</div>
+              <div>{actualQuest.exp}</div>
+              <div>Time</div>
+              <div>{actualQuest.time}</div>
+            </div> */}
+            {/* 
             <div className={classes.rewards}>
-              {Object.entries(actualQuest.rewards).map((reward, id) => (
+              {Object.entries(actualQuest).map((reward, id) => (
                 <div key={id} id={reward[0]} className="item">
                   {reward[1]}
                 </div>
               ))}
-            </div>
-          </div> */}
+            </div> */}
+          </div>
         </Fade>
       </Modal>
     </div>
