@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect, useContext } from "react";
+import React, { useState, forwardRef, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -55,14 +55,8 @@ const Fade = forwardRef(function Fade(props, ref) {
 export default function QuestModal() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const { quests, fetchQuests } = useContext(QuestContext);
+  const { quests } = useContext(QuestContext);
   const { actualQuest, setActualQuest } = useContext(QuestContext);
-
-  useEffect(() => {
-    fetchQuests();
-    setActualQuest(quests[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -98,27 +92,19 @@ export default function QuestModal() {
             <button onClick={() => setActualQuest(quests[0])}>Quest 1</button>
             <button onClick={() => setActualQuest(quests[1])}>Quest 2</button>
             <button onClick={() => setActualQuest(quests[2])}>Quest 3</button>
-            {/* <div>
+            <div>
               <h4>{actualQuest.name}</h4>
               <h5>{actualQuest.description}</h5>
-            </div> */}
+            </div>
             <h4>Reward:</h4>
-            {/* <div className={classes.rewards}>
-              <div>Gold</div>
-              <div>{actualQuest.gold}</div>
-              <div>XP</div>
-              <div>{actualQuest.exp}</div>
-              <div>Time</div>
-              <div>{actualQuest.time}</div>
-            </div> */}
-            {/* 
             <div className={classes.rewards}>
-              {Object.entries(actualQuest).map((reward, id) => (
-                <div key={id} id={reward[0]} className="item">
-                  {reward[1]}
-                </div>
-              ))}
-            </div> */}
+              <div>Gold</div>
+              <div>{actualQuest.rewardCoin}</div>
+              <div>XP</div>
+              <div>{actualQuest.rewardXP}</div>
+              <div>Time</div>
+              <div>{actualQuest.questTime}</div>
+            </div>
           </div>
         </Fade>
       </Modal>
