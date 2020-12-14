@@ -14,16 +14,15 @@ namespace csharp_backend_fidget_spinners.Controller
     {
         private readonly IFightSimulator _fightSimulator;
 
-        public FightController(IFightSimulator fightSimualtor, IEnemyGenerator enemyGenerator)
+        public FightController(IFightSimulator fightSimualtor)
         {
             _fightSimulator = fightSimualtor;
-            _enemyGenerator = enemyGenerator;
         }
 
         [HttpPost]
-        public async Task<List<FightLog>> SimulateFight([FromBody] CharacterEnemyWrapper wrapper)
+        public async Task<List<FightLog>> SimulateFight([FromBody] CharacterEnemyWrapper fighters)
         {
-            _fightSimulator.InitializeService(wrapper.Player, wrapper.Enemy);
+            _fightSimulator.InitializeService(fighters.Player, fighters.Enemy);
             return await _fightSimulator.Fight();
         }
     }
