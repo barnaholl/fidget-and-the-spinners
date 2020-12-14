@@ -15,11 +15,18 @@ const useStyles = makeStyles({
 });
 
 export default function Stats() {
-  const { stats, fetchStats } = useContext(StatContext);
+  //const { stats, fetchStats } = useContext({StatContext});
+  const [stats, setStats] = useState({
+    ProblemSolving: 0,
+    Design: 0,
+    Algorithm: 0,
+    Testing: 0,
+    CleanCode: 0,
+  });
   const classes = useStyles();
 
   useEffect(() => {
-    fetchStats();
+    //fetchStats();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
