@@ -39,28 +39,28 @@
   ],
   "quests": [
     {
-      "id": "1",
-      "name": "Easy quest",
-      "description": "This is an easy quest",
-      "gold": 200,
-      "exp": 1000,
-      "time": "4:00"
+      "name": "Codewars Kata",
+      "description": "6kyu",
+      "questTime": 2,
+      "energyCost": 2,
+      "rewardCoin": 13,
+      "rewardXP": 16
     },
     {
-      "id": "2",
-      "name": "Medium quest",
-      "description": "This is a medium quest",
-      "gold": 400,
-      "exp": 2000,
-      "time": "8:00"
+      "name": "Get a GO on PA",
+      "description": "Get them all",
+      "questTime": 5,
+      "energyCost": 5,
+      "rewardCoin": 36,
+      "rewardXP": 27
     },
     {
-      "id": "3",
-      "name": "Hard quest",
-      "description": "This is a hard quest",
-      "gold": 800,
-      "exp": 4000,
-      "time": "16:00"
+      "name": "Codewars Kata",
+      "description": "6kyu",
+      "questTime": 9,
+      "energyCost": 9,
+      "rewardCoin": 44,
+      "rewardXP": 36
     }
   ]
 }
