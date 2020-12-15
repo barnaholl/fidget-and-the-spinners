@@ -48,4 +48,22 @@ public class ShopService {
         itemRepository.saveAll(items);
 
     }
+
+    public void refreshItemsByCharacterId(Long characterId,Long characterLevel) throws Exception {
+        if(characterId<=0||characterLevel<=0){
+            throw new IllegalArgumentException("Params must be positive values");
+        }
+
+        List items=itemRepository.findAllByCharacterId(characterId);
+        long numberOfItems=items.size();
+
+        if(numberOfItems==0){
+            throw new Exception("There is no item with that characterId");
+        }
+
+        itemRepository.deleteAll(items);
+
+        addMultipleItemsToShopByCharacterIdAndCharacterLevel(characterId,characterLevel,numberOfItems);
+    }
+
 }
