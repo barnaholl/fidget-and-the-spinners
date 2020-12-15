@@ -9,7 +9,7 @@ const styles = (theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
@@ -20,6 +20,9 @@ function FormRow(props) {
 
   return (
     <React.Fragment>
+      <Grid item xs={4}>
+        <Paper className={classes.paper}>item</Paper>
+      </Grid>
       <Grid item xs={4}>
         <Paper className={classes.paper}>item</Paper>
       </Grid>

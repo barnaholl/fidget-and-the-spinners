@@ -3,6 +3,7 @@ package com.codecool.shophandlerservice;
 import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
 import com.codecool.shophandlerservice.service.ShopService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -23,59 +24,71 @@ class ShopServiceTest {
 	private ItemRepository itemRepository;
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelIsSaving() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,10L);
+	void addItemToShopByCharacterIdAndCharacterLevelIsSaving() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,10L);
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(1);
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelIsSavingMultipleTimes() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,5L);
-		shopService.getNewItemByCharacterIdAndCharacterLevel(3L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelIsSavingMultipleTimes() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,5L);
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(3L,1L);
 
 		int size=itemRepository.findAll().size();
 
 		assertThat(size).isEqualTo(3);
+		itemRepository.deleteAll();
+
 	}
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelItemIdIsNotNull() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelItemIdIsNotNull() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
 		assertThat(item.getId()).isNotNull();
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsNotNull() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelCharacterIdIsNotNull() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
 		assertThat(item.getCharacterId()).isNotNull();
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
-	void getNewItemByCharacterIdAndCharacterLevelCharacterIdIsEqualsToParameter() {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(1L,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelCharacterIdIsEqualsToParameter() {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,1L);
 
 		Item item=itemRepository.findAll().get(0);
 
 		assertThat(item.getCharacterId()).isEqualTo(1);
+		itemRepository.deleteAll();
+
 	}
 
 	@ParameterizedTest
 	@ValueSource(longs = {1, 1, 5, 3, 7})
-	void getNewItemByCharacterIdAndCharacterLevelCharacterIdsAreEqualsToParameters(Long characterId) {
-		shopService.getNewItemByCharacterIdAndCharacterLevel(characterId,1L);
+	void addItemToShopByCharacterIdAndCharacterLevelCharacterIdsAreEqualsToParameters(Long characterId) {
+		shopService.addItemToShopByCharacterIdAndCharacterLevel(characterId,1L);
 
 		int iteration=itemRepository.findAll().size()-1;
 		Item item=itemRepository.findAll().get(iteration);
 
 		assertThat(item.getCharacterId()).isEqualTo(characterId);
+		itemRepository.deleteAll();
+
 	}
 
 
@@ -93,6 +106,8 @@ class ShopServiceTest {
 		List<Item> items=itemRepository.findAllByCharacterId(1L);
 
 		assertThat(items).isNotEmpty();
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
@@ -105,6 +120,8 @@ class ShopServiceTest {
 		int size=items.size();
 
 		assertThat(size).isEqualTo(3);
+		itemRepository.deleteAll();
+
 	}
 
 	@Test
@@ -119,7 +136,67 @@ class ShopServiceTest {
 		int size=items.size();
 
 		assertThat(size).isEqualTo(2);
+		itemRepository.deleteAll();
 	}
+
+
+	@Test
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelIsSaving() {
+		shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,1L,1L);
+		int size=itemRepository.findAll().size();
+
+		assertThat(size).isEqualTo(1);
+		itemRepository.deleteAll();
+
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 5, 10, 100})
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelIsSaving(Long param) {
+		shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,1L,param);
+		int size=itemRepository.findAll().size();
+
+		assertThat(size).isEqualTo(Integer.valueOf(Math.toIntExact(param)));
+		itemRepository.deleteAll();
+
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void addItemToShopByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addItemToShopByCharacterIdAndCharacterLevel(1L,param));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void addItemToShopByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addItemToShopByCharacterIdAndCharacterLevel(param,1L));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void addItemToShopByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addItemToShopByCharacterIdAndCharacterLevel(param,param));
+	}
+
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelBadParamsThrowsException1(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(param,1L,1L));
+	}
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelBadParamsThrowsException2(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,param,1L));
+	}
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void addMultipleItemsToShopByCharacterIdAndCharacterLevelBadParamsThrowsException3(Long param) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,1L,param));
+	}
+
+
 
 
 

@@ -19,7 +19,7 @@ public class ItemServiceCaller {
 
 
     public Item getItem(Long playerLevel){
-        return restTemplate.getForEntity(itemHandlerUrl+playerLevel, Item.class).getBody();
+        return restTemplate.getForEntity(itemHandlerUrl+"/item?playerLevel="+playerLevel, Item.class).getBody();
     }
 
 
