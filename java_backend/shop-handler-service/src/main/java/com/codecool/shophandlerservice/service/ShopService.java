@@ -2,10 +2,12 @@ package com.codecool.shophandlerservice.service;
 
 import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
+import org.apache.commons.lang.NullArgumentException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopService {
@@ -64,6 +66,18 @@ public class ShopService {
         itemRepository.deleteAll(items);
 
         addMultipleItemsToShopByCharacterIdAndCharacterLevel(characterId,characterLevel,numberOfItems);
+    }
+
+    public Item pollItemById(Long id){
+        if(id<=0){
+            throw new IllegalArgumentException("Id must be positive value");
+        }
+        Item item=itemRepository.getById(id);
+        if (item==null){
+            throw new NullPointerException("There is no item with id:"+id);
+        }
+        itemRepository.delete(item);
+        return item;
     }
 
 }

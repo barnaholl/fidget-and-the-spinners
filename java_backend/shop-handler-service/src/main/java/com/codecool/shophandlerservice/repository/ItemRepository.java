@@ -9,4 +9,5 @@ public interface ItemRepository extends JpaRepository<Item,Long> {
 
     List<Item> findAllByCharacterId(Long characterId);
 
+    Item getById(Long id);
 }

@@ -247,6 +247,39 @@ class ShopServiceTest {
 		assertThat(firstItemsSize).isEqualTo(secondItemsSize);
 	}
 
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -100,Long.MIN_VALUE})
+	void pollItemByIdBadParamsThrowsException(Long param){
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.pollItemById(param));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 100,Long.MAX_VALUE})
+	void pollItemByIdIfIdDoesNotExistThrowsNullPointerException(Long param){
+		Assertions.assertThrows(NullPointerException.class, () -> shopService.pollItemById(param));
+	}
+
+	@Test
+	void pollItemByIdReturnsTheCorrectItem(){
+		Item item1= Item.builder().build();
+		itemRepository.save(item1);
+
+		Item item2=shopService.pollItemById(1L);
+
+		assertThat(item1).isEqualTo(item2);
+	}
+
+	@Test
+	void pollItemByIdRepositoryIsEmpty(){
+		Item item1= Item.builder().build();
+		itemRepository.save(item1);
+
+		shopService.pollItemById(1L);
+		List<Item> items=itemRepository.findAll();
+
+		assertThat(items.size()).isEqualTo(0);
+	}
+
 
 
 
