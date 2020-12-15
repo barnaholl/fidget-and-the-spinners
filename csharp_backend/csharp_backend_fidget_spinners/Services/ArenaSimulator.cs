@@ -22,19 +22,19 @@ namespace csharp_backend_fidget_spinners.Services
             Player2 = player2;
             ArenaFightLog = new List<ArenaFightLog>();
 
-            while (Player1.MotivationLevel > 0 && Player2.MotivationLevel > 0)
+            while (Player1.Motivation > 0 && Player2.Motivation > 0)
             {
                 int player1Damage = Player1.CalculateDamage(Player2.DebugChance);
 
-                Player2.MotivationLevel -= player1Damage;
+                Player2.Motivation -= player1Damage;
 
                 LogRounds(Player1.Name, player1Damage);
 
-                if(Player2.MotivationLevel > 0)
+                if(Player2.Motivation > 0)
                 {
                     int player2Damage = Player2.CalculateDamage(Player1.DebugChance);
 
-                    player1.MotivationLevel -= player2Damage;
+                    player1.Motivation -= player2Damage;
 
                     LogRounds(Player2.Name, player2Damage);
                 }
@@ -51,8 +51,8 @@ namespace csharp_backend_fidget_spinners.Services
             {
                 DamageDealer = attackersName,
                 DealtDMG = damageDealt,
-                Player1HealthPoint = Player1.MotivationLevel,
-                Player2HealthPoint = Player2.MotivationLevel
+                Player1HealthPoint = Player1.Motivation,
+                Player2HealthPoint = Player2.Motivation
             });
         }
     }

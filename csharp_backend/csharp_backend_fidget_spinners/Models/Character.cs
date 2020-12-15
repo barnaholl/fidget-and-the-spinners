@@ -20,7 +20,7 @@ namespace csharp_backend_fidget_spinners.Models
         public string Name { get; set; }
         public int CharacterLevel { get; set; }
         //HP
-        public int MotivationLevel { get; set; }
+        public int Motivation { get; set; }
         public int Energy { get; set; }
         public int ProblemSolving { get; set; }
         public int Design { get; set; }

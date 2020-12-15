@@ -27,12 +27,21 @@ namespace csharp_backend_fidget_spinners_tests
                 Design = 1,
                 Energy = 3,
                 FastCoding = 2,
-                MotivationLevel = 300,
+                Motivation = 300,
                 ProblemSolving = 2,
                 Testing = 1
             };
 
             _enemy = await _enemyGeneratorService.GenerateEnemy(_character);
+        }
+
+        [Test]
+        public void ShouldInitialize_FightService()
+        {
+            _fightSimulator.InitializeService(_character, _enemy);
+
+            Assert.IsNotNull(_fightSimulator.GetPlayerCharacter());
+            Assert.IsNotNull(_fightSimulator.GetEnemy());
         }
 
         [Test]
