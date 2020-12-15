@@ -202,6 +202,18 @@ class ShopServiceTest {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.refreshItemsByCharacterId(param,1L));
 	}
 
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void refreshItemsByCharacterIdBadParamsThrowsException2(Long param){
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.refreshItemsByCharacterId(1L,param));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void refreshItemsByCharacterIdBadParamsThrowsException3(Long param){
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.refreshItemsByCharacterId(param,param));
+	}
+
 
 
 
