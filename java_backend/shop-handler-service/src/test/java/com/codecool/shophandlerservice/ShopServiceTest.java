@@ -220,6 +220,18 @@ class ShopServiceTest {
 		Assertions.assertThrows(Exception.class, () -> shopService.refreshItemsByCharacterId(param,1L));
 	}
 
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 10, 100, Long.MAX_VALUE})
+	void refreshItemsByCharacterIdItemCompareItemIds(Long param) throws Exception {
+		itemRepository.save(Item.builder().characterId(param).build());
+		Long firstItemId=itemRepository.findAllByCharacterId(param).get(0).getId();
+
+		shopService.refreshItemsByCharacterId(param,1L);
+		Long secondItemId=itemRepository.findAllByCharacterId(param).get(0).getId();
+
+		assertThat(firstItemId).isNotEqualTo(secondItemId);
+	}
+
 
 
 
