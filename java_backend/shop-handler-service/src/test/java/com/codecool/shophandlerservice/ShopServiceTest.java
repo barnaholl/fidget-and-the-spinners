@@ -214,6 +214,12 @@ class ShopServiceTest {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.refreshItemsByCharacterId(param,param));
 	}
 
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 10, 100, Long.MAX_VALUE})
+	void refreshItemsByCharacterIdItemWithThisCharacterIdDoesNotExist(Long param){
+		Assertions.assertThrows(Exception.class, () -> shopService.refreshItemsByCharacterId(param,1L));
+	}
+
 
 
 
