@@ -80,5 +80,12 @@ public class ShopControllerTest {
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
 
+    @Test
+    void buyItemIsSuccessful() throws Exception {
+        itemRepository.save(Item.builder().build());
+        RequestBuilder request = MockMvcRequestBuilders.get("/buyItem?id=1");
+        mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
+        mockMvc.perform(request).andExpect(status().is2xxSuccessful());
+    }
 
 }
