@@ -30,6 +30,10 @@ public class ShopController {
         shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(characterId,characterLevel,numberOfItems);
     }
 
+    @PutMapping("/refreshShop")
+    public void refreshItemsByCharacterId(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel) throws Exception {
+        shopService.refreshItemsByCharacterId(characterId, characterLevel);
+    }
 
 
 }
