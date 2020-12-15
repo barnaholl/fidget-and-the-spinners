@@ -35,5 +35,10 @@ public class ShopController {
         shopService.refreshItemsByCharacterId(characterId, characterLevel);
     }
 
+    @GetMapping("/buyItem")
+    public Item buyItem(@RequestParam("id") Long id){
+        return shopService.pollItemById(id);
+    }
+
 
 }
