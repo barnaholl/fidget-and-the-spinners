@@ -33,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  // appBar: {
-  //   width: `calc(100% - ${drawerWidth}px)`,
-  //   marginLeft: drawerWidth,
-  // },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
