@@ -232,6 +232,20 @@ class ShopServiceTest {
 		assertThat(firstItemId).isNotEqualTo(secondItemId);
 	}
 
+	@ParameterizedTest
+	@ValueSource(ints = {1, 2, 10, 100})
+	void refreshItemsByCharacterIdItemCompareItemNumbers(int param) throws Exception {
+		for (int i = 0; i < param; i++){
+			itemRepository.save(Item.builder().characterId(1L).build());
+		}
+
+		int firstItemsSize=itemRepository.findAllByCharacterId(1L).size();
+
+		shopService.refreshItemsByCharacterId(1L,1L);
+		int secondItemsSize=itemRepository.findAllByCharacterId(1L).size();
+
+		assertThat(firstItemsSize).isEqualTo(secondItemsSize);
+	}
 
 
 
