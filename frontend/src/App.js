@@ -10,6 +10,7 @@ import Kitchen from "./pages/Kitchen";
 import Copyright from "./components/Copyright";
 import styled from "styled-components";
 import { StatProvider } from "./contexts/StatProvider";
+import Shop from "./pages/Shop";
 
 const Footer = styled.footer`
   width: -webkit-fill-available;
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path="/character" component={Character} />
           <Route path="/kitchen" component={Kitchen} />
+          <Route path="/shop" component={Shop} />
         </StatProvider>
         <Footer>
           <Copyright />
