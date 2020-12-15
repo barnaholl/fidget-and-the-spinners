@@ -15,13 +15,26 @@ public class CharacterController {
 
     private final CharacterService characterService;
 
+    // FIX THE ANNOTATIONS BECAUSE IT CAUSE INFINITE OBJECT LOOPS!!!!!!!!!!!!!!!!!!!!!!
+/*
+Fix after decided how userId will get.
     @GetMapping("")
-    public ResponseEntity<GameCharacter> getCharacter(@RequestBody Long userId) {
+    public ResponseEntity<GameCharacter> getCharacter() {
+        return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
+    }*/
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<GameCharacter> getCharacter(@PathVariable(value = "userId") Long userId) {
         return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
     }
 
-    @PostMapping("")
+/*    @PostMapping("/{characterName}")
     public ResponseEntity<GameCharacter> saveNewCharacter(@RequestBody Long userId, String characterName) {
+        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
+    }*/
+    @PostMapping("/save/{userId}/{characterName}")
+    public ResponseEntity<GameCharacter> saveNewCharacter(@PathVariable(value = "userId") Long userId,
+                                                          @PathVariable(value = "characterName") String characterName) {
         return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
     }
 
