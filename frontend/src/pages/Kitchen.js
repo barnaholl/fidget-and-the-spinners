@@ -5,17 +5,15 @@ import QuestModal from "../components/QuestModal";
 import { QuestContext } from "../contexts/QuestProvider";
 
 export default function Kitchen() {
-  const { quests, fetchQuests } = useContext(QuestContext);
-  const { setActualQuest } = useContext(QuestContext);
+  const { fetchQuests } = useContext(QuestContext);
 
   useEffect(() => {
     fetchQuests();
-    setActualQuest(quests[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <Navbar />
       <QuestModal />
     </Container>

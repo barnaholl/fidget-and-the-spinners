@@ -55,27 +55,25 @@ const Fade = forwardRef(function Fade(props, ref) {
 export default function QuestModal() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const { quests } = useContext(QuestContext);
-  const { actualQuest, setActualQuest } = useContext(QuestContext);
+  const { quests, actualQuest, setActualQuest } = useContext(QuestContext);
 
   const handleOpen = () => {
     setOpen(true);
+    setActualQuest(quests[0]);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  console.log(actualQuest);
-
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
+    <>
+      <button type='button' onClick={handleOpen}>
         Take Quest
       </button>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -87,15 +85,20 @@ export default function QuestModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Take Quest</h2>
-            <p id="spring-modal-description">Choose your quest here</p>
-            <button onClick={() => setActualQuest(quests[0])}>Quest 1</button>
+            <h2 id='spring-modal-title'>Take Quest</h2>
+            <p id='spring-modal-description'>Choose your quest here</p>
+            <button
+              onClick={() => {
+                return setActualQuest(quests[0]);
+              }}
+            >
+              Quest 1
+            </button>
             <button onClick={() => setActualQuest(quests[1])}>Quest 2</button>
             <button onClick={() => setActualQuest(quests[2])}>Quest 3</button>
-            <div>
-              <h4>{actualQuest.name}</h4>
-              <h5>{actualQuest.description}</h5>
-            </div>
+
+            <h4>{actualQuest.name}</h4>
+            <h5>{actualQuest.description}</h5>
             <h4>Reward:</h4>
             <div className={classes.rewards}>
               <div>Gold</div>
@@ -108,6 +111,6 @@ export default function QuestModal() {
           </div>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 }
