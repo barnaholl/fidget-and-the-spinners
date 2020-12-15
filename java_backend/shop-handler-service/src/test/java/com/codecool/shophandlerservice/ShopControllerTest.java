@@ -1,6 +1,7 @@
 package com.codecool.shophandlerservice;
 
 import com.codecool.shophandlerservice.controller.ShopController;
+import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -70,5 +71,14 @@ public class ShopControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
+
+    @Test
+    void refreshItemsByCharacterIdIsSuccessful() throws Exception {
+        itemRepository.save(Item.builder().characterId(1L).build());
+        RequestBuilder request = MockMvcRequestBuilders.put("/refreshShop?characterId=1&characterLevel=1");
+        mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
+        mockMvc.perform(request).andExpect(status().is2xxSuccessful());
+    }
+
 
 }
