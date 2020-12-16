@@ -11,6 +11,7 @@ import Copyright from "./components/Copyright";
 import styled from "styled-components";
 import { StatProvider } from "./contexts/StatProvider";
 import { QuestProvider } from "./contexts/QuestProvider";
+import Shop from "./pages/Shop";
 
 const Footer = styled.footer`
   width: -webkit-fill-available;
@@ -37,6 +38,7 @@ function App() {
           <QuestProvider>
             <Route path="/kitchen" component={Kitchen} />
           </QuestProvider>
+          <Route path="/shop" component={Shop} />
         </StatProvider>
         <Footer>
           <Copyright />

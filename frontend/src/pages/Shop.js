@@ -1,22 +1,26 @@
+import { Grid } from "@material-ui/core";
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Navbar from "../layout/Navbar";
-import ShopWindow from "../components/ShopWindow";
 import CharacterWindow from "../components/CharacterWindow";
+import Inventory from "../components/Inventory";
+import ShopInventory from "../components/ShopInventory";
+import Navbar from "../layout/Navbar";
 import { useStyles } from "../StyleComponents";
 
-export default function Character() {
+export default function Shop() {
   const classes = useStyles();
 
   return (
     <>
       <Navbar />
-      <Grid container direction='row' spacing={0} className={classes.appBar}>
-        <Grid item xs={8}>
+      <Grid container direction="row" spacing={0} className={classes.appBar}>
+        <Grid item xs={6}>
           <CharacterWindow />
         </Grid>
-        <Grid item xs={4}>
-          <ShopWindow />
+        <Grid item xs={3}>
+          <Inventory />
+        </Grid>
+        <Grid item xs={3}>
+          <ShopInventory />
         </Grid>
       </Grid>
     </>
