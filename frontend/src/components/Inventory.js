@@ -17,29 +17,6 @@ const styles = (theme) => ({
 
 function FormRow(props) {
   const { classes } = props;
-
-  return (
-    <React.Fragment>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>item</Paper>
-      </Grid>
-    </React.Fragment>
-  );
 }
 
 FormRow.propTypes = {
@@ -51,9 +28,24 @@ function NestedGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={8}>
-        <Grid container item xs={12} spacing={1}>
-          <FormRow classes={classes} />
+      <Grid container item xs={12} spacing={1}>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>item</Paper>
         </Grid>
       </Grid>
     </div>

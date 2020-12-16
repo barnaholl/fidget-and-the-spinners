@@ -11,8 +11,8 @@ export default function Character() {
   return (
     <>
       <Navbar />
-      <Grid container direction="row" spacing={0} className={classes.appBar}>
-        <Grid item xs={8}>
+      <Grid container direction='row' spacing={1} className={classes.appBar}>
+        <Grid item xs={7}>
           <CharacterWindow />
         </Grid>
         <Grid item xs={4}>
