@@ -20,4 +20,11 @@ public class CharacterServiceTests {
         Map map=characterService.getAllCharacterIdAndLevel();
         assertThat(map).isEmpty();
     }
+
+    @Test
+    void getAllCharacterIdAndLevelMapIsNotEmpty(){
+        characterService.saveNewCharacter(1L,"Barna");
+        Map map=characterService.getAllCharacterIdAndLevel();
+        assertThat(map).isNotEmpty();
+    }
 }
