@@ -46,6 +46,11 @@ namespace csharp_backend_fidget_spinners.Services
 
             bool hasItemReward = HasItemReward();
 
+            if (player.Energy == 0)
+            {
+                return null;
+            }
+
             Quest quest = new Quest
             {
                 Name = questNames[questTextIndex],
@@ -104,15 +109,15 @@ namespace csharp_backend_fidget_spinners.Services
             switch(difficulty)
             {
                 case "short":
-                    int shortReward = random.Next(ShortMinReward + (charlevel * CharLevelMultiplier), (ShortMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    int shortReward = GenerateRandomReward(ShortMinReward, ShortMaxReward, charlevel, CharLevelMultiplier);
                     return hasItemReward ? shortReward - (charlevel + 5) : shortReward;
 
                 case "medium":
-                    int MediumReward = random.Next(MediumMinReward + (charlevel * CharLevelMultiplier), (MediumMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    int MediumReward = GenerateRandomReward(MediumMinReward, MediumMaxReward, charlevel, CharLevelMultiplier);
                     return hasItemReward ? MediumReward - (charlevel + 5) : MediumReward;
 
                 case "long":
-                    int LongReward = random.Next(LongMinReward + (charlevel * CharLevelMultiplier), (LongMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    int LongReward = GenerateRandomReward(LongMinReward, LongMaxReward, charlevel, CharLevelMultiplier);
                     return hasItemReward ? LongReward - (charlevel + 5) : LongReward;
 
                 default:
@@ -132,15 +137,15 @@ namespace csharp_backend_fidget_spinners.Services
             switch(difficulty)
             {
                 case "short":
-                    int shortReward = random.Next(ShortMinReward + (charlevel * CharLevelMultiplier), (ShortMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    int shortReward = GenerateRandomReward(ShortMinReward, ShortMaxReward, charlevel, CharLevelMultiplier);
                     return hasItemReward ? shortReward - (charlevel + 5) : shortReward;
 
                 case "medium":
-                    int MediumReward = random.Next(MediumMinReward + (charlevel * CharLevelMultiplier), (MediumMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    int MediumReward = GenerateRandomReward(MediumMinReward, MediumMaxReward, charlevel, CharLevelMultiplier);
                     return hasItemReward ? MediumReward - (charlevel + 5) : MediumReward;
 
                 case "long":
-                    int LongReward = random.Next(LongMinReward + (charlevel * CharLevelMultiplier), (LongMaxReward + (charlevel * CharLevelMultiplier)) + 1);
+                    int LongReward = GenerateRandomReward(LongMinReward, LongMaxReward, charlevel, CharLevelMultiplier);
                     return hasItemReward ? LongReward - (charlevel + 5) : LongReward;
 
                 default:
@@ -173,5 +178,10 @@ namespace csharp_backend_fidget_spinners.Services
         }
 
         public bool HasItemReward() => (random.Next(1, 101) < 25);
+
+        public int GenerateRandomReward(int minReward, int maxReward, int charLevel, int charLevelMultiplier)
+        {
+            return random.Next(minReward + (charLevel * charLevelMultiplier), (maxReward + (charLevel * charLevelMultiplier)) + 1);
+        }
     }
 }
