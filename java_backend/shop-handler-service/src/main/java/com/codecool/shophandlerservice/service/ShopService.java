@@ -2,7 +2,6 @@ package com.codecool.shophandlerservice.service;
 
 import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
-import org.apache.commons.lang.NullArgumentException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
