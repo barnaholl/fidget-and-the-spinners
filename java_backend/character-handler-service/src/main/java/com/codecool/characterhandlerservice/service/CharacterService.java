@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -69,5 +72,14 @@ public class CharacterService {
     public boolean deleteCharacter(GameCharacter gameCharacter) {
         characterRepository.delete(gameCharacter);
         return characterRepository.getCharacterByUserId(gameCharacter.getUserId()).isEmpty();
+    }
+
+    public Map<Long,Long> getAllCharacterIdAndLevel() {
+        Map<Long,Long> result=new HashMap<>();
+        List<GameCharacter> gameCharacters=characterRepository.findAll();
+        for (GameCharacter gameCharacter:gameCharacters) {
+            result.put(gameCharacter.getId(), (long) gameCharacter.getCharacterLevel());
+        }
+        return result;
     }
 }
