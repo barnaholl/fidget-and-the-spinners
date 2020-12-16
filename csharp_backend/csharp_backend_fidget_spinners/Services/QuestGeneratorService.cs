@@ -14,8 +14,8 @@ namespace csharp_backend_fidget_spinners.Services
         /// </summary>
 
         private Random random = new Random();
-        private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA" };
-        private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all" };
+        private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA", "Trial Interview" };
+        private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all", "Fascinate everyone with your skills" };
 
         private int CharLevelMultiplier = 2;
 
@@ -35,7 +35,7 @@ namespace csharp_backend_fidget_spinners.Services
         public Quest GenerateQuest(Character player, string questDifficulty)
         {
             int questTextIndex = random.Next(0, questNames.Length);
-            int timeAndEnergyCost = 0;
+            int timeAndEnergyCost;
             if ((questDifficulty == "medium" && player.Energy > 3 && player.Energy < 7) || player.Energy < 4)
             {
                 timeAndEnergyCost = player.Energy;
