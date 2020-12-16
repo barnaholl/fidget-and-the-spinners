@@ -4,6 +4,10 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is required for IE 11 support
 import { QuestContext } from "../contexts/QuestProvider";
+import Grid from "@material-ui/core/Grid";
+import AccessAlarmRoundedIcon from "@material-ui/icons/AccessAlarmRounded";
+import MonetizationOnRoundedIcon from "@material-ui/icons/MonetizationOnRounded";
+import CloudUploadRoundedIcon from "@material-ui/icons/CloudUploadRounded";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -16,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    borderRadius: "7%",
   },
   rewards: {
     display: "flex",
@@ -25,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   item: {
     order: 3,
   },
+  gridItem: { fontStyle: "oblique", fontSize: "x-large", fontWeight: 600 },
 }));
 
 const Fade = forwardRef(function Fade(props, ref) {
@@ -83,7 +89,7 @@ export default function QuestModal() {
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={open} className={classes.paper}>
           <div className={classes.paper}>
             <h2 id="spring-modal-title">Take Quest</h2>
             <p id="spring-modal-description">Choose your quest here</p>
@@ -100,14 +106,17 @@ export default function QuestModal() {
             <h4>{actualQuest.name}</h4>
             <h5>{actualQuest.description}</h5>
             <h4>Reward:</h4>
-            <div className={classes.rewards}>
-              <div>Gold</div>
-              <div>{actualQuest.rewardCoin}</div>
-              <div>XP</div>
-              <div>{actualQuest.rewardXP}</div>
-              <div>Time</div>
-              <div>{actualQuest.questTime}</div>
-            </div>
+            <Grid container className={classes.rewards}>
+              <Grid item className={classes.gridItem}>
+                <MonetizationOnRoundedIcon /> {actualQuest.rewardCoin}
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <CloudUploadRoundedIcon /> {actualQuest.rewardXP}
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <AccessAlarmRoundedIcon /> {actualQuest.questTime}
+              </Grid>
+            </Grid>
           </div>
         </Fade>
       </Modal>
