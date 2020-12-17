@@ -7,17 +7,15 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import Stickman from "../images/stickman.png";
 import { makeStyles } from "@material-ui/core/styles";
 import "../App.css";
+import CharacterCustomizer from "../components/CharacterCustomizer";
 
 const useStyles = makeStyles({
   table: {
@@ -57,33 +55,7 @@ function CharacterCreation() {
         />
         <FormControlLabel control={<Checkbox name='tester' />} label='Tester' />
       </FormGroup>
-      <div className='character-creation-div'>
-        <div className='left-arrows'>
-          <Button>
-            <KeyboardArrowLeftIcon />
-          </Button>
-          <Button>
-            <KeyboardArrowLeftIcon />
-          </Button>
-          <Button>
-            <KeyboardArrowLeftIcon />
-          </Button>
-        </div>
-        <div className='character-box'>
-          <img src={Stickman} alt='stickman' />
-        </div>
-        <div className='right-arrows'>
-          <Button>
-            <KeyboardArrowRightIcon />
-          </Button>
-          <Button>
-            <KeyboardArrowRightIcon />
-          </Button>
-          <Button>
-            <KeyboardArrowRightIcon />
-          </Button>
-        </div>
-      </div>
+      <CharacterCustomizer />
       <TableContainer component={Paper} className='stat-box'>
         <Table className={classes.table} aria-label='simple table'>
           <TableBody>

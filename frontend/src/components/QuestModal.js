@@ -74,12 +74,12 @@ export default function QuestModal() {
 
   return (
     <>
-      <button type="button" onClick={handleOpen}>
+      <button type='button' onClick={handleOpen}>
         Take Quest
       </button>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -91,8 +91,8 @@ export default function QuestModal() {
       >
         <Fade in={open} className={classes.paper}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Take Quest</h2>
-            <p id="spring-modal-description">Choose your quest here</p>
+            <h2 id='spring-modal-title'>Take Quest</h2>
+            <p id='spring-modal-description'>Choose your quest here</p>
             <button
               onClick={() => {
                 return setActualQuest(quests[0]);
@@ -100,9 +100,20 @@ export default function QuestModal() {
             >
               Quest 1
             </button>
-            <button onClick={() => setActualQuest(quests[1])}>Quest 2</button>
-            <button onClick={() => setActualQuest(quests[2])}>Quest 3</button>
-
+            <button
+              onClick={() => {
+                setActualQuest(quests[1]);
+              }}
+            >
+              Quest 2
+            </button>
+            <button
+              onClick={() => {
+                setActualQuest(quests[2]);
+              }}
+            >
+              Quest 3
+            </button>
             <h4>{actualQuest.name}</h4>
             <h5>{actualQuest.description}</h5>
             <h4>Reward:</h4>
