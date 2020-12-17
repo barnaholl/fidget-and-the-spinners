@@ -13,6 +13,6 @@ namespace csharp_backend_fidget_spinners.Services.ServiceInterfaces
         public int GenerateCoinReward(int charlevel, string difficulty, bool hasItemReward);
         public int GenerateXPReward(int charlevel, string difficulty, bool hasItemReward);
         public int GenerateTimeAndEnergyCost(string difficulty);
-
+        public void InitializeItemGenerator(ItemGeneratorInterface itemGenerator);
     }
 }

@@ -12,15 +12,18 @@ namespace csharp_backend_fidget_spinners.Controller
     public class QuestController : ControllerBase
     {
         private IQuestGenerator _questGenerator;
+        private ItemGeneratorInterface _itemGenerator;
 
-        public QuestController(IQuestGenerator questGenerator)
+        public QuestController(IQuestGenerator questGenerator, ItemGeneratorInterface itemGenerator)
         {
             _questGenerator = questGenerator;
+            _itemGenerator = itemGenerator;
         }
 
         [HttpPost]
         public List<Quest> QuestGenerator(Character player)
         {
+            _questGenerator.InitializeItemGenerator(_itemGenerator);
             return _questGenerator.GenerateQuestList(player);
         }
     }

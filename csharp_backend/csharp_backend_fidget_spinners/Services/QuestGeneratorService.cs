@@ -13,6 +13,7 @@ namespace csharp_backend_fidget_spinners.Services
         /// Properties
         /// </summary>
 
+        private ItemGeneratorInterface _itemGeneratorService;
         private Random random = new Random();
         private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA", "Trial Interview" };
         private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all", "Fascinate everyone with your skills" };
@@ -59,7 +60,7 @@ namespace csharp_backend_fidget_spinners.Services
                 EnergyCost = timeAndEnergyCost,
                 RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, hasItemReward),
                 RewardXP = GenerateXPReward(player.CharacterLevel, questDifficulty, hasItemReward),
-                //RewardItem = null
+                RewardItem = _itemGeneratorService.GenerateItem(player.CharacterLevel)
             };
 
             return quest;
@@ -182,6 +183,11 @@ namespace csharp_backend_fidget_spinners.Services
         public int GenerateRandomReward(int minReward, int maxReward, int charLevel, int charLevelMultiplier)
         {
             return random.Next(minReward + (charLevel * charLevelMultiplier), (maxReward + (charLevel * charLevelMultiplier)) + 1);
+        }
+
+        public void InitializeItemGenerator(ItemGeneratorInterface itemGenerator)
+        {
+            _itemGeneratorService = itemGenerator;
         }
     }
 }
