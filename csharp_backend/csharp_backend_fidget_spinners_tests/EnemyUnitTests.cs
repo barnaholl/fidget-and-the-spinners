@@ -24,7 +24,7 @@ namespace csharp_backend_fidget_spinners_tests
                 ID = 1,
                 Name = "Test Player",
                 CharacterLevel = 1,
-                MotivationLevel = 100,
+                Motivation = 100,
                 Energy = 100,
                 ProblemSolving = 1,
                 Design = 1,

@@ -23,7 +23,7 @@ namespace csharp_backend_fidget_spinners.Services
         public async Task<List<FightLog>> Fight()
         {
 
-            while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
+            while(CurrentCharacter.Motivation > 0 && Enemy.HP > 0)
             {
                 int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.CompilerErrorChance, Enemy.Class);
                 dealtDamage -= DamageMinusArmor(dealtDamage);
@@ -35,7 +35,7 @@ namespace csharp_backend_fidget_spinners.Services
                 {
                     dealtDamage = Enemy.CalculateEnemyDMG(CurrentCharacter.DebugChance);
 
-                    CurrentCharacter.MotivationLevel -= dealtDamage;
+                    CurrentCharacter.Motivation -= dealtDamage;
 
                     await LogRounds(Enemy.Name, dealtDamage);
                 }
@@ -51,7 +51,7 @@ namespace csharp_backend_fidget_spinners.Services
             {
                 DamageDealer = attackersName,
                 DealtDMG = damageDealt,
-                OurHealthPoint = CurrentCharacter.MotivationLevel,
+                OurHealthPoint = CurrentCharacter.Motivation,
                 EnemyHealthPoint = Enemy.HP
             });
         }
@@ -63,12 +63,22 @@ namespace csharp_backend_fidget_spinners.Services
 
         public int LastKnownCharacterHP()
         {
-            return CurrentCharacter.MotivationLevel;
+            return CurrentCharacter.Motivation;
         }
 
         public int LastKnownEnemyHP()
         {
             return Enemy.HP;
+        }
+
+        public Character GetPlayerCharacter()
+        {
+            return CurrentCharacter;
+        }
+
+        public Enemy GetEnemy()
+        {
+            return Enemy;
         }
     }
 }
