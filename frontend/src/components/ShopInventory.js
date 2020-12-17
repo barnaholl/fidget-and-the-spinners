@@ -29,22 +29,70 @@ function NestedGrid(props) {
     <div className={classes.root}>
       <Grid container item xs={12} spacing={1}>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper className={classes.paper}>
+            <button
+              onClick={() => {
+                console.log("Item 1 clicked");
+              }}
+            >
+              item
+            </button>
+          </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper className={classes.paper}>
+            <button
+              onClick={() => {
+                console.log("Item 2 clicked");
+              }}
+            >
+              item
+            </button>
+          </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper className={classes.paper}>
+            <button
+              onClick={() => {
+                console.log("Item 3 clicked");
+              }}
+            >
+              item
+            </button>
+          </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper className={classes.paper}>
+            <button
+              onClick={() => {
+                console.log("Item 4 clicked");
+              }}
+            >
+              item
+            </button>
+          </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper className={classes.paper}>
+            <button
+              onClick={() => {
+                console.log("Item 5 clicked");
+              }}
+            >
+              item
+            </button>
+          </Paper>
         </Grid>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper className={classes.paper}>
+            <button
+              onClick={() => {
+                console.log("Item 6 clicked");
+              }}
+            >
+              item
+            </button>
+          </Paper>
         </Grid>
       </Grid>
     </div>
