@@ -1,10 +1,10 @@
 package com.codecool.shophandlerservice.service;
 
-import com.codecool.shophandlerservice.entity.Item;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -19,7 +19,7 @@ public class CharacterServiceCaller {
     private String characterServiceUrl;
 
 
-    public Map getCharacterLevels() {
-        return restTemplate.getForObject(characterServiceUrl+"characterLevels", Map.class);
+    public Map<Long,Long> getCharacterLevels() {
+        return restTemplate.getForObject("http://localhost:8081/character/characterLevels", HashMap.class);
     }
 }
