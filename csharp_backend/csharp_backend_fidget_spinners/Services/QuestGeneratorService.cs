@@ -59,7 +59,7 @@ namespace csharp_backend_fidget_spinners.Services
                 EnergyCost = timeAndEnergyCost,
                 RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, hasItemReward),
                 RewardXP = GenerateXPReward(player.CharacterLevel, questDifficulty, hasItemReward),
-                RewardItem = null
+                //RewardItem = null
             };
 
             return quest;
