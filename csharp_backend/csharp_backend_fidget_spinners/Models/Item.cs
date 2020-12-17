@@ -11,7 +11,7 @@ namespace csharp_backend_fidget_spinners.Models
 
         private string[] _nameOptionsIDEs = new string[] { "Text Editor", "Netbeans", "PyCharm", "Visual Studio Code", "IntelliJ" };
         private string[] _nameOptionsProgrammingLanguages = new string[] { "Python", "C++", "Java", "CSharp", "JavaScript" };
-        private string[] _nameOptionsFrameworks = new string[] { ".NET", "Angular", "React", ".Net Core" };
+        private string[] _nameOptionsFrameworks = new string[] { "Ruby", "Angular", "React", "ASP.NET", "Django" };
         private string[] _nameOptionsComputers = new string[] { "Granny's Laptop", "Old PC", "Normal Laptop", "High-End PC" };
         private string[] _rarityOptions = new string[] { "Common", "Uncommon", "Rare", "Epic" };
         private string[] _itemSlotOptions = new string[] { "IDE", "Programming Language", "Framework", "Computer" };
@@ -39,11 +39,27 @@ namespace csharp_backend_fidget_spinners.Models
             GenerateItemSlot();
             GenerateRandomRarity();
             SetupNameBasedOnSlot();
+            FillUpBaseStats();
+            FillUpSecondaryStats();
+        }
+
+        private void FillUpSecondaryStats()
+        {
+            if(Rarity == "Epic")
+            {
+                Debugging = random.Next(1, 5);
+                CodingSpeed = random.Next(1, 5);
+            } 
+            else
+            {
+                Debugging = 0;
+                CodingSpeed = 0;
+            }
         }
 
         private void SetupItemLevel(int charLevel)
         {
-            int itemLevel = random.Next(0, charLevel);
+            int itemLevel = random.Next(1, charLevel);
             ItemLevel = itemLevel;
         }
 
@@ -79,6 +95,42 @@ namespace csharp_backend_fidget_spinners.Models
 
         private void FillUpBaseStats()
         {
+            Dictionary<string, int> baseStatRarityMultiplier = new Dictionary<string, int>
+            {
+                {"Common", 1},
+                {"Uncommon", 2},
+                {"Rare", 3},
+                {"Epic", 4}
+            };
+
+            int totalPoints = ItemLevel * baseStatRarityMultiplier[Rarity];
+
+            int randomNumberToSubstract = random.Next(4);
+            ProblemSolving = (totalPoints - randomNumberToSubstract) > 0 ? totalPoints - randomNumberToSubstract : 0;
+
+            randomNumberToSubstract = random.Next(4);
+            CleanCode = (totalPoints - randomNumberToSubstract) > 0 ? totalPoints - randomNumberToSubstract : 0;
+
+            randomNumberToSubstract = random.Next(4);
+            Design = (totalPoints - randomNumberToSubstract) > 0 ? totalPoints - randomNumberToSubstract : 0;
+
+            randomNumberToSubstract = random.Next(4);
+            Algorithm = (totalPoints - randomNumberToSubstract) > 0 ? totalPoints - randomNumberToSubstract : 0;
+
+            randomNumberToSubstract = random.Next(4);
+            Testing = (totalPoints - randomNumberToSubstract) > 0 ? totalPoints - randomNumberToSubstract : 0;
+
+            SellPrice = totalPoints;
+            BuyPrice = totalPoints * 2;
+
+            if(Rarity == "Rare" || Rarity == "Epic")
+            {
+                Motivation = 10 * (ItemLevel * baseStatRarityMultiplier[Rarity]);
+            } 
+            else
+            {
+                Motivation = 0;
+            }
 
         }
     }

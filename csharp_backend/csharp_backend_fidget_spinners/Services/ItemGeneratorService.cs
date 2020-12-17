@@ -9,7 +9,7 @@ namespace csharp_backend_fidget_spinners.Services
 {
     public class ItemGeneratorService : ItemGeneratorInterface
     {
-        public async Task<Item> GenerateItem(int charLevel)
+        public Item GenerateItem(int charLevel)
         {
             Item item = new Item();
 

@@ -17,6 +17,7 @@ namespace csharp_backend_fidget_spinners
             services.AddScoped<IQuestGenerator, QuestGeneratorService>();
             services.AddScoped<IArenaFightSimulator, ArenaSimulator>();
             services.AddScoped<IFightSimulator, FightSimulator>();
+            services.AddScoped<ItemGeneratorInterface, ItemGeneratorService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

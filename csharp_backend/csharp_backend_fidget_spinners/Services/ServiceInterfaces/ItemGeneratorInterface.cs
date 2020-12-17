@@ -5,6 +5,6 @@ namespace csharp_backend_fidget_spinners.Services.ServiceInterfaces
 {
     public interface ItemGeneratorInterface
     {
-        public Task<Item> GenerateItem(int charLevel);
+        public Item GenerateItem(int charLevel);
     }
 }
