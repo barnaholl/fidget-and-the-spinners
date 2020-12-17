@@ -13,6 +13,6 @@ namespace csharp_backend_fidget_spinners.Models
         public float EnergyCost { get; set; }
         public int RewardCoin { get; set; }
         public int RewardXP { get; set; }
-        //public Item RewardItem { get; set;}
+         public Item RewardItem { get; set;}
     }
 }
