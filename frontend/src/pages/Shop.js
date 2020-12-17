@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import CharacterWindow from "../components/CharacterWindow";
 import Inventory from "../components/Inventory";
-import ShopInventory from "../components/ShopInventory";
+import ShopInventory from "../components/ShopWindow";
 import Navbar from "../layout/Navbar";
 import { useStyles } from "../StyleComponents";
 import Merchant from "../images/Merchant.png";
