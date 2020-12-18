@@ -9,14 +9,66 @@ namespace csharp_backend_fidget_spinners.Services
 {
     public class ItemGeneratorService : ItemGeneratorInterface
     {
+        Random random = new Random();
+
+        private string[] _itemSlotOptions = new string[] { "IDE", "Programming Language", "Framework", "Computer" };
+        private string[] _nameOptionsIDEs = new string[] { "Text Editor", "Netbeans", "PyCharm", "Visual Studio Code", "IntelliJ" };
+        private string[] _nameOptionsProgrammingLanguages = new string[] { "Python", "C++", "Java", "CSharp", "JavaScript" };
+        private string[] _nameOptionsFrameworks = new string[] { "Ruby", "Angular", "React", "ASP.NET", "Django" };
+        private string[] _nameOptionsComputers = new string[] { "Granny's Laptop", "Old PC", "Normal Laptop", "High-End PC" };
+        private string[] _rarityOptions = new string[] { "Common", "Uncommon", "Rare", "Epic" };
+
+
         public Item GenerateItem(int charLevel)
         {
             Item item = new Item();
 
-            item.SetupClass(charLevel);
+            item.ItemLevel = SetupItemLevel(charLevel);
+            item.EquipmentSlot = GenerateItemSlot();
+            item.Name = SetupNameBasedOnSlot(item.EquipmentSlot);
+            item.Rarity = GenerateRandomRarity();
+            item.SetupClass();
 
             return item;
         }
 
+        private string GenerateItemSlot()
+        {
+            return _itemSlotOptions[random.Next(3)];
+        }
+
+        private int SetupItemLevel(int charLevel)
+        {
+            return random.Next(1, charLevel);
+        }
+
+        private string GenerateRandomRarity()
+        {
+            return _rarityOptions[random.Next(3)];
+        }
+
+        private string SetupNameBasedOnSlot(string equipmentSlot)
+        {
+            if (equipmentSlot == _itemSlotOptions[0])
+            {
+                return _nameOptionsIDEs[random.Next(4)];
+            }
+            else if (equipmentSlot == _itemSlotOptions[1])
+            {
+                return _nameOptionsProgrammingLanguages[random.Next(4)];
+            }
+            else if (equipmentSlot == _itemSlotOptions[2])
+            {
+                return _nameOptionsFrameworks[random.Next(3)];
+            }
+            else if (equipmentSlot == _itemSlotOptions[3])
+            {
+                return _nameOptionsComputers[random.Next(3)];
+            } 
+            else
+            {
+                throw new Exception("Something went wrong when tried to add a name for the Item");
+            }
+        }
     }
 }
