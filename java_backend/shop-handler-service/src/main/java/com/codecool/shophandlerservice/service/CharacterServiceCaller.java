@@ -19,7 +19,7 @@ public class CharacterServiceCaller {
     private String characterServiceUrl;
 
 
-    public Map<Long,Long> getCharacterLevels() {
+    public HashMap<String,Integer> getCharacterLevels() {
         return restTemplate.getForObject("http://localhost:8081/character/characterLevels", HashMap.class);
     }
 }
