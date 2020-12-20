@@ -3,9 +3,7 @@ package com.codecool.shophandlerservice.service;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 
 @Service

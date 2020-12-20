@@ -3,12 +3,14 @@ package com.codecool.characterhandlerservice;
 import com.codecool.characterhandlerservice.model.GameCharacter;
 import com.codecool.characterhandlerservice.repository.CharacterRepository;
 import com.codecool.characterhandlerservice.service.CharacterService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.NoResultException;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,8 +26,7 @@ public class CharacterServiceTests {
 
     @Test
     void getAllCharacterIdAndLevelMapIsEmpty(){
-        Map map=characterService.getAllCharacterIdAndLevel();
-        assertThat(map).isEmpty();
+        Assertions.assertThrows(NoResultException.class, () -> characterService.getAllCharacterIdAndLevel());
     }
 
     @Test
@@ -73,9 +74,5 @@ public class CharacterServiceTests {
         assertThat(map.size()).isEqualTo(param);
         characterRepository.deleteAll();
     }
-
-
-
-
 
 }
