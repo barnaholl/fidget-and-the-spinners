@@ -1,16 +1,15 @@
 package com.codecool.shophandlerservice;
 
-import com.codecool.shophandlerservice.service.CharacterServiceCaller;
+import com.codecool.shophandlerservice.service.ScheduledOperations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 @SpringBootTest
-public class CharacterServiceCallerTest {
+public class ScheduledOperationsTest {
 
     @Autowired
-    private CharacterServiceCaller characterServiceCaller;
+    private ScheduledOperations scheduledOperations;
 
     @Test
     public void todo(){
