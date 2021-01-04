@@ -67,7 +67,7 @@ public class ShopControllerTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0,-1,-2,-10,-100,Integer.MIN_VALUE})
-    void getNewItemByCharacterIdAndCharacterLevelResponseIsInCorrect1(int characterId) throws Exception {
+    void getNewItemByCharacterIdAndCharacterLevelResponseIsIncorrect1(int characterId) throws Exception {
         RequestBuilder request = MockMvcRequestBuilders.post("/addItemToShop?characterId="+characterId+"&characterLevel=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
 
@@ -109,7 +109,7 @@ public class ShopControllerTest {
 
     @Test
     void getItemsByCharacterIdIsSuccessful() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/getItemByCharacterId?characterId=1");
+        RequestBuilder request = MockMvcRequestBuilders.get("/getItemsByCharacterId?characterId=1");
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
@@ -121,6 +121,28 @@ public class ShopControllerTest {
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,10})
+    void addMultipleItemsToShopByCharacterIdAndCharacterLevelResponseIsCorrect(int param) throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/addMultipleItemsToShop?characterId="+param+"&characterLevel="+param+"&numberOfItems="+param);
+        mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
+
+        String response = mockMvc.perform(request).andReturn().getResponse().getContentAsString();
+
+        assertThat(response).isEqualTo(param+" level "+param+" items are successfully added to the shop of character with id: "+param);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,-1,-2})
+    void addMultipleItemsToShopByCharacterIdAndCharacterLevelResponseIsIncorrect(int param) throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/addMultipleItemsToShop?characterId="+param+"&characterLevel="+param+"&numberOfItems="+param);
+        mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
+
+        String response = mockMvc.perform(request).andReturn().getResponse().getContentAsString();
+
+        assertThat(response).isEqualTo("Params must be positive values");
+    }
+
     @Test
     void refreshItemsByCharacterIdIsSuccessful() throws Exception {
         itemRepository.save(Item.builder().characterId(1L).build());
@@ -128,6 +150,7 @@ public class ShopControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(shopController).build();
         mockMvc.perform(request).andExpect(status().is2xxSuccessful());
     }
+
 
     @Test
     void buyItemIsSuccessful() throws Exception {
