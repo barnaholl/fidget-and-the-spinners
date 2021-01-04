@@ -2,6 +2,8 @@ package com.codecool.shophandlerservice.controller;
 
 import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.service.ShopService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,12 @@ public class ShopController {
     }
 
     @PostMapping("/addItemToShop")
-    public void addItemToShopByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId,@RequestParam("characterLevel") Long characterLevel){
+    public ResponseEntity<String> addItemToShopByCharacterIdAndCharacterLevel(@RequestParam("characterId") Long characterId, @RequestParam("characterLevel") Long characterLevel){
+        if(characterId<=0||characterLevel<=0){
+            return new ResponseEntity("Params must be positive values",HttpStatus.BAD_REQUEST);
+        }
         shopService.addItemToShopByCharacterIdAndCharacterLevel(characterId,characterLevel);
+        return new ResponseEntity("A level "+characterLevel+ " item is successfully added to the shop of character with id: "+characterId, HttpStatus.OK);
     }
 
     @GetMapping("/getItemsByCharacterId")
