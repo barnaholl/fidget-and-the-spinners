@@ -4,6 +4,7 @@ import com.codecool.shophandlerservice.entity.Item;
 import com.codecool.shophandlerservice.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,10 +71,9 @@ public class ShopService {
         if(id<=0){
             throw new IllegalArgumentException("Id must be positive value");
         }
-        Item item=itemRepository.getById(id);
-        if (item==null){
-            throw new NullPointerException("There is no item with id:"+id);
-        }
+
+        Item item=itemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+
         itemRepository.delete(item);
         return item;
     }
