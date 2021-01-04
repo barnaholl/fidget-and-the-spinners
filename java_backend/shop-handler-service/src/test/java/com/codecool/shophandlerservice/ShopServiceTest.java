@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -278,6 +279,11 @@ class ShopServiceTest {
 		List<Item> items=itemRepository.findAll();
 
 		assertThat(items.size()).isEqualTo(0);
+	}
+
+	@Test
+	void pollItemByIdThrowsEntityNotFoundException(){
+		Assertions.assertThrows(EntityNotFoundException.class, () -> shopService.pollItemById(1L));
 	}
 
 
