@@ -23,7 +23,7 @@ public class ItemServiceCaller {
     }
 
     public Item[] getItems(Long playerLevel,Long numberOfItems){
-        return restTemplate.getForEntity("http://localhost:8071/items?playerLevel="+playerLevel+"&numberOfItems="+numberOfItems, Item[].class).getBody();
+        return restTemplate.getForEntity(itemHandlerUrl+"items?playerLevel="+playerLevel+"&numberOfItems="+numberOfItems, Item[].class).getBody();
     }
 
 }
