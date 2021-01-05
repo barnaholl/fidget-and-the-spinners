@@ -9,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +27,6 @@ public class CharacterService {
     private static final Long AMOUNT_OF_STARTER_EXPERIENCE = (long) 0;
     private static final int CHARACTER_STARTER_ENERGY_LEVEL = 1;
     private static final int CHARACTER_STARTER_LEVEL = 1;
-
 
     public GameCharacter getCharacterByUserId(Long userId) {
         return characterRepository
@@ -69,5 +72,17 @@ public class CharacterService {
     public boolean deleteCharacter(GameCharacter gameCharacter) {
         characterRepository.delete(gameCharacter);
         return characterRepository.getCharacterByUserId(gameCharacter.getUserId()).isEmpty();
+    }
+
+    public Map<Long,Long> getAllCharacterIdAndLevel() {
+        Map<Long,Long> result=new HashMap<>();
+        List<GameCharacter> gameCharacters=characterRepository.findAll();
+        if(gameCharacters.size()==0){
+            throw new NoResultException("Character repository is empty");
+        }
+        for (GameCharacter gameCharacter:gameCharacters) {
+            result.put(gameCharacter.getId(), (long) gameCharacter.getCharacterLevel());
+        }
+        return result;
     }
 }

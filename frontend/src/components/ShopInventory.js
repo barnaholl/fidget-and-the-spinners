@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
+    justify: "flex-end",
   },
   paper: {
     padding: theme.spacing(2),
@@ -15,9 +16,7 @@ const styles = (theme) => ({
   },
 });
 
-function FormRow(props) {
-  const { classes } = props;
-}
+function FormRow(props) {}
 
 FormRow.propTypes = {
   classes: PropTypes.object.isRequired,

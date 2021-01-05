@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -196,7 +197,94 @@ class ShopServiceTest {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.addMultipleItemsToShopByCharacterIdAndCharacterLevel(1L,1L,param));
 	}
 
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void refreshItemsByCharacterIdBadParamsThrowsException1(Long param){
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.refreshItemsByCharacterId(param,1L));
+	}
 
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void refreshItemsByCharacterIdBadParamsThrowsException2(Long param){
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.refreshItemsByCharacterId(1L,param));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -10, Long.MIN_VALUE})
+	void refreshItemsByCharacterIdBadParamsThrowsException3(Long param){
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.refreshItemsByCharacterId(param,param));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 10, 100, Long.MAX_VALUE})
+	void refreshItemsByCharacterIdItemWithThisCharacterIdDoesNotExist(Long param){
+		Assertions.assertThrows(Exception.class, () -> shopService.refreshItemsByCharacterId(param,1L));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 10, 100, Long.MAX_VALUE})
+	void refreshItemsByCharacterIdItemCompareItemIds(Long param) throws Exception {
+		itemRepository.save(Item.builder().characterId(param).build());
+		Long firstItemId=itemRepository.findAllByCharacterId(param).get(0).getId();
+
+		shopService.refreshItemsByCharacterId(param,1L);
+		Long secondItemId=itemRepository.findAllByCharacterId(param).get(0).getId();
+
+		assertThat(firstItemId).isNotEqualTo(secondItemId);
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {1, 2, 10, 100})
+	void refreshItemsByCharacterIdItemCompareItemNumbers(int param) throws Exception {
+		for (int i = 0; i < param; i++){
+			itemRepository.save(Item.builder().characterId(1L).build());
+		}
+
+		int firstItemsSize=itemRepository.findAllByCharacterId(1L).size();
+
+		shopService.refreshItemsByCharacterId(1L,1L);
+		int secondItemsSize=itemRepository.findAllByCharacterId(1L).size();
+
+		assertThat(firstItemsSize).isEqualTo(secondItemsSize);
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {0, -1, -2, -100,Long.MIN_VALUE})
+	void pollItemByIdBadParamsThrowsException(Long param){
+		Assertions.assertThrows(IllegalArgumentException.class, () -> shopService.pollItemById(param));
+	}
+
+	@ParameterizedTest
+	@ValueSource(longs = {1, 2, 100,Long.MAX_VALUE})
+	void pollItemByIdIfIdDoesNotExistThrowsNullPointerException(Long param){
+		Assertions.assertThrows(NullPointerException.class, () -> shopService.pollItemById(param));
+	}
+
+	@Test
+	void pollItemByIdReturnsTheCorrectItem(){
+		Item item1= Item.builder().build();
+		itemRepository.save(item1);
+
+		Item item2=shopService.pollItemById(1L);
+
+		assertThat(item1).isEqualTo(item2);
+	}
+
+	@Test
+	void pollItemByIdRepositoryIsEmpty(){
+		Item item1= Item.builder().build();
+		itemRepository.save(item1);
+
+		shopService.pollItemById(1L);
+		List<Item> items=itemRepository.findAll();
+
+		assertThat(items.size()).isEqualTo(0);
+	}
+
+	@Test
+	void pollItemByIdThrowsEntityNotFoundException(){
+		Assertions.assertThrows(EntityNotFoundException.class, () -> shopService.pollItemById(1L));
+	}
 
 
 
