@@ -3,26 +3,22 @@ services:
   server-registry:
     build: server-registry/
     container_name: server-registry
-    expose:
-      - "8761"
+    ports:
+    - "8762:8761"
 
   api-gateway:
     build: api-gateway/
     container_name: api-gateway
-    expose:
-      - "8762"
+#    expose:
+#      - "8762"
     environment:
       - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
     depends_on:
-      - server-registry
-    links:
       - server-registry
 
   character-handler-service:
     build: character-handler-service/
     container_name: character-handler-service
-    expose:
-      - "8081"
     environment:
       - spring.datasource.url=jdbc:postgresql://postgres:5432/fats_character
       - spring.datasource.username=fats
@@ -31,74 +27,61 @@ services:
     depends_on:
       - server-registry
       - postgres
-    links:
+    ports:
+      - "8081:8081"
+
+  user-handler-service:
+    build: user-handler-service/
+    container_name: user-handler-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/fats_users
+      - SPRING_DATASOURCE_USERNAME=fats
+      - SPRING_DATASOURCE_PASSWORD=fatsfats
+      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
+    depends_on:
       - server-registry
+      - postgres
 
-#  user-handler-service:
-#    build: user-handler-service/
-#    container_name: user-handler-service
-#    ports:
-#      - "8061:8061"
-#    environment:
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-users/fats_users
-#      - SPRING_DATASOURCE_USERNAME=fats
-#      - SPRING_DATASOURCE_PASSWORD=fatsfats
-#      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
-#    depends_on:
-#      - server-registry
-#      - postgres-user
-#    links:
-#      - server-registry
-
-#  shop-handler-service:
-#    build: shop-handler-service/
-#    container_name: shop-handler-service
-#    ports:
-#      - "8051:8051"
-#    environment:
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-users/fats_users
-#      - SPRING_DATASOURCE_USERNAME=fats
-#      - SPRING_DATASOURCE_PASSWORD=fatsfats
-#      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
-#    depends_on:
-#      - server-registry
-#    links:
-#      - server-registry
+  shop-handler-service:
+    build: shop-handler-service/
+    container_name: shop-handler-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/fats_shop
+      - SPRING_DATASOURCE_USERNAME=fats
+      - SPRING_DATASOURCE_PASSWORD=fatsfats
+      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
+      - item.handler.service.url=http://shop-handler-service:8051
+    depends_on:
+      - server-registry
+      - postgres
+    ports:
+      - "8051:8051"
 
   item-handler-service:
     build: item-handler-service/
     container_name: item-handler-service
-    expose:
-      - "8071"
     environment:
       - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
     depends_on:
       - server-registry
-    links:
-      - server-registry
+    ports:
+      - "8071:8071"
 
   postgres:
     image: postgres
     volumes:
       - ../docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=fats_character, fats_users
+      - POSTGRES_MULTIPLE_DATABASES=fats_character, fats_users, fats_shop
       - POSTGRES_USER=fats
       - POSTGRES_PASSWORD=fatsfats
 
-#  postgres:
-#    image: "postgres"
-#    ports:
-#      - "5433"
-#    environment:
-#      POSTGRES_USER: fats
-#      POSTGRES_PASSWORD: fatsfats
+  fats-frontend:
+    build: ../frontend/
+    container_name: fats_frontend
+    ports:
+    - "3000:3000"
+    depends_on:
+      - api-gateway
+    stdin_open: true
 
-#  postgres-shop:
-#    image: "postgres"
-#    ports:
-#      - "5435"
-#    environment:
-#      POSTGRES_DB: fats_shop
-#      POSTGRES_USER: fats
-#      POSTGRES_PASSWORD: fatsfats
