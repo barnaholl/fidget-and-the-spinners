@@ -32,22 +32,22 @@ namespace csharp_backend_fidget_spinners.Services
             return item;
         }
 
-        private string GenerateItemSlot()
+        public string GenerateItemSlot()
         {
             return _itemSlotOptions[random.Next(3)];
         }
 
-        private int SetupItemLevel(int charLevel)
+        public int SetupItemLevel(int charLevel)
         {
             return random.Next(1, charLevel);
         }
 
-        private string GenerateRandomRarity()
+        public string GenerateRandomRarity()
         {
             return _rarityOptions[random.Next(3)];
         }
 
-        private string SetupNameBasedOnSlot(string equipmentSlot)
+        public string SetupNameBasedOnSlot(string equipmentSlot)
         {
             if (equipmentSlot == _itemSlotOptions[0])
             {
@@ -67,7 +67,7 @@ namespace csharp_backend_fidget_spinners.Services
             } 
             else
             {
-                throw new Exception("Something went wrong when tried to add a name for the Item");
+                throw new ArgumentException("Bad Parameter!");
             }
         }
     }

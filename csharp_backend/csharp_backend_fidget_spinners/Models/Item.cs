@@ -31,7 +31,7 @@ namespace csharp_backend_fidget_spinners.Models
             FillUpSecondaryStats();
         }
 
-        private void FillUpSecondaryStats()
+        public void FillUpSecondaryStats()
         {
             if(Rarity == "Epic")
             {
@@ -45,7 +45,7 @@ namespace csharp_backend_fidget_spinners.Models
             }
         }
 
-        private void FillUpBaseStats()
+        public void FillUpBaseStats()
         {
             Dictionary<string, int> baseStatRarityMultiplier = new Dictionary<string, int>
             {

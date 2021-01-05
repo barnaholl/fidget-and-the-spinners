@@ -49,7 +49,7 @@ namespace csharp_backend_fidget_spinners_tests
         }
 
         [Test]
-        public void GenerateArmorTest_ShoulReturn_11()
+        public void GenerateArmorTest_ShoulReturn_11_OnLevel1()
         {
             int expectedArmor = 11;
 
@@ -59,7 +59,7 @@ namespace csharp_backend_fidget_spinners_tests
         }
 
         [Test]
-        public void GenerateBaseDamage_ShouldReturn_35()
+        public void GenerateBaseDamage_ShouldReturn_35_OnLevel1()
         {
             int expectedDamage = 30;
 

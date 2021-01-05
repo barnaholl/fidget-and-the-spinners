@@ -81,6 +81,9 @@ namespace csharp_backend_fidget_spinners_tests
             _fightSimulator.InitializeService(_character, _enemy);
 
 
+            Assert.False(_fightSimulator.DamageMinusArmor(0) < 0);
+            Assert.False(_fightSimulator.DamageMinusArmor(6) < 0);
+
             Assert.True(_fightSimulator.DamageMinusArmor(0) == 0);
             Assert.True(_fightSimulator.DamageMinusArmor(6) == 0);
             Assert.True(_fightSimulator.DamageMinusArmor(7) > 0);
