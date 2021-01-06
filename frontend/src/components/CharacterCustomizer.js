@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import Button from "@material-ui/core/Button";
-import Stickman from "../images/stickman.png";
-import Alien from "../images/avataralien.png";
-import Hacker from "../images/avatarhacker.jpg";
-import Jedi from "../images/avatarjedi.png";
-import Frenchman from "../images/avatarmustache.png";
-import Ninja from "../images/avatarninja.jpg";
+import Alien from "../images/Alien.png";
+import Hacker from "../images/Hacker.png";
+import Jedi from "../images/Jedi.png";
+import Frenchman from "../images/Frenchman.png";
+import Ninja from "../images/Ninja.png";
+import Nature from "../images/backgrounds/ForestHills.jpg";
+import Mountains from "../images/backgrounds/Mountains.jpg";
+import Polar from "../images/backgrounds/NorthernLights.jpg";
+import Snow from "../images/backgrounds/Snow.jpg";
 
 function AvatarSelector(avatar, setAvatar, avatarList, direction) {
   let index = avatarList.indexOf(avatar);
@@ -25,20 +28,19 @@ function AvatarSelector(avatar, setAvatar, avatarList, direction) {
 }
 
 function CharacterCustomizer() {
-  const [avatarList] = useState([
-    Stickman,
-    Alien,
-    Hacker,
-    Jedi,
-    Frenchman,
-    Ninja,
-  ]);
+  const [avatarList] = useState([Alien, Hacker, Jedi, Frenchman, Ninja]);
   const [avatar, setAvatar] = useState(avatarList[0]);
+  const backgroundList = [Nature, Mountains, Polar, Snow];
+  const [background, setBackground] = useState([backgroundList[0]]);
 
   return (
     <div className='character-creation-div'>
       <div className='left-arrows'>
-        <Button>
+        <Button
+          onClick={() =>
+            AvatarSelector(background, setBackground, backgroundList, -1)
+          }
+        >
           <KeyboardArrowLeftIcon />
         </Button>
         <Button
@@ -51,11 +53,31 @@ function CharacterCustomizer() {
         </Button>
       </div>
 
-      <div className='character-box'>
-        <img src={avatar} alt='stickman' height='250px' width='250px' />
+      <div>
+        <img
+          src={avatar}
+          alt='avatar'
+          height='250px'
+          width='250px'
+          className='character-box'
+        />
+      </div>
+
+      <div>
+        <img
+          src={background}
+          alt='background'
+          height='250px'
+          width='250px'
+          id='backgroundImg'
+        />
       </div>
       <div className='right-arrows'>
-        <Button>
+        <Button
+          onClick={() =>
+            AvatarSelector(background, setBackground, backgroundList, 1)
+          }
+        >
           <KeyboardArrowRightIcon />
         </Button>
         <Button

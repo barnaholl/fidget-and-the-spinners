@@ -39,6 +39,7 @@
   display: flex !important;
   flex-flow: row nowrap !important;
   justify-content: space-between;
+  align-content: center;
 }
 
 .left-arrows {
@@ -55,10 +56,6 @@
   margin-left: auto;
   flex-flow: column nowrap;
   justify-content: space-between;
-}
-
-.character-box {
-  flex-grow: 1;
 }
 
 .align-content-center {
@@ -130,4 +127,14 @@
 
 #register-button {
   margin: 1rem;
+}
+
+.character-box {
+  position: absolute;
+  z-index: 2;
+}
+
+#backgroundImg {
+  position: relative;
+  z-index: 1;
 }
