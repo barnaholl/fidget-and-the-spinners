@@ -39,42 +39,42 @@ function CharacterCreation() {
   const classes = useStyles();
 
   return (
-    <Container component='main' maxWidth='xs'>
-      <Typography variant='h3' component='h2'>
+    <Container component="main" maxWidth="xs">
+      <Typography variant="h4" component="h4">
         Username
       </Typography>
-      <FormGroup className='align-center' style={{ textAlign: "center" }}>
-        <FormLabel component='legend'>Choose your class:</FormLabel>
+      <FormGroup className="align-center" style={{ textAlign: "center" }}>
+        <FormLabel component="legend">Choose your class:</FormLabel>
         <FormControlLabel
-          control={<Checkbox name='frontend' />}
-          label='Frontend'
+          control={<Checkbox name="frontend" />}
+          label="Frontend"
         />
         <FormControlLabel
-          control={<Checkbox name='backend' />}
-          label='Backend'
+          control={<Checkbox name="backend" />}
+          label="Backend"
         />
-        <FormControlLabel control={<Checkbox name='tester' />} label='Tester' />
+        <FormControlLabel control={<Checkbox name="tester" />} label="Tester" />
       </FormGroup>
       <CharacterCustomizer />
-      <TableContainer component={Paper} className='stat-box'>
-        <Table className={classes.table} aria-label='simple table'>
+      <TableContainer component={Paper} className="stat-box">
+        <Table className={classes.table} aria-label="simple table">
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.name}>
-                <TableCell component='th' scope='row' width='70%' align='left'>
+                <TableCell component="th" scope="row" width="70%" align="left">
                   {row.name}
                 </TableCell>
-                <TableCell align='left'>{row.value}</TableCell>
+                <TableCell align="left">{row.value}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
         <Link to={"/character"}>
           <Button
-            type='submit'
+            type="submit"
             fullWidth
-            color='primary'
-            id='create-character-btn'
+            color="primary"
+            id="create-character-btn"
           >
             Create
           </Button>
