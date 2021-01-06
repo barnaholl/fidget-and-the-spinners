@@ -40,9 +40,9 @@ function App() {
           </QuestProvider>
           <Route path="/shop" component={Shop} />
         </StatProvider>
-        <Footer>
+        {/* <Footer>
           <Copyright />
-        </Footer>
+        </Footer> */}
       </div>
     </Router>
   );
