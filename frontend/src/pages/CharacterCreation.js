@@ -39,7 +39,11 @@ function CharacterCreation() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container
+      className="character-creation-page"
+      component="main"
+      maxWidth="xs"
+    >
       <Typography variant="h4" component="h4">
         Username
       </Typography>
