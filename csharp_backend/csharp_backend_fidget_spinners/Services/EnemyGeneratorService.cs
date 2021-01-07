@@ -12,20 +12,20 @@ namespace csharp_backend_fidget_spinners.Services
     {
 
         private readonly string[] _nameOptions = { "Bug", "StackOverFlow Question", "Codewars Kata", "PA", "Hardware Problem", "Virus" };
+        Random randomGenerator = new Random();
 
-        public Enemy GenerateEnemy(Character myChar)
+        public async Task<Enemy> GenerateEnemy(Character myChar)
         {
-            Random randomGenerator = new Random();
 
             Enemy enemy = new Enemy
             {
-                Name = _nameOptions[randomGenerator.Next(0, 6)],
+                Name = GetRandomName(),
                 Class = GetRandomClass(),
                 HP = GenerateHealth(myChar.CharacterLevel),
                 Armor = GenerateArmor(myChar.CharacterLevel),
-                Damage = 50,
-                BlockChance = 5,
-                CriticalDamageChance = 5
+                Damage = GenerateBaseDamage(myChar.CharacterLevel),
+                CompilerErrorChance = 5,
+                RuntimeErrorChance = 5
             };
 
             return enemy;
@@ -33,7 +33,12 @@ namespace csharp_backend_fidget_spinners.Services
 
         public int GenerateHealth (int myCharacterLevel)
         {
-            return 100 * (10 + myCharacterLevel);
+            return 20 * (12 + myCharacterLevel);
+        }
+
+        public int GenerateBaseDamage(int myCharacterLevel)
+        {
+            return 5 * (5 + myCharacterLevel);
         }
 
         public int GenerateArmor(int myCharacterLevel)
@@ -41,12 +46,17 @@ namespace csharp_backend_fidget_spinners.Services
             return 1 * (10 + myCharacterLevel);
         }
 
-        private EnemyClassENUM GetRandomClass()
+        public virtual EnemyClassENUM GetRandomClass()
         {
             Array values = Enum.GetValues(typeof(EnemyClassENUM));
             Random random = new Random();
             EnemyClassENUM randomClass = (EnemyClassENUM)values.GetValue(random.Next(values.Length));
             return randomClass;
+        }
+
+        public virtual string GetRandomName()
+        {
+            return _nameOptions[randomGenerator.Next(0, 6)];
         }
     }
 }
