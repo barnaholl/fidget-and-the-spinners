@@ -36,12 +36,25 @@ function NestedGrid(props) {
 
   const { classes } = props;
 
+  const kiskutya = [];
+
+  for (let i = 0; i < 6; i++) {
+    kiskutya.push(
+      <Grid item xs={4}>
+        <Paper className={classes.paper}>item</Paper>
+      </Grid>
+    );
+  }
+
+  console.log(kiskutya);
+
   return (
     <div className={classes.root}>
       <Grid container item xs={12} spacing={1}>
-        {inventoryItems.map((item, index) => (
+        {kiskutya}
+        {/* {inventoryItems.map((item, index) => (
           <Item paper={classes.paper} item={item} />
-        ))}
+        ))} */}
       </Grid>
     </div>
   );
