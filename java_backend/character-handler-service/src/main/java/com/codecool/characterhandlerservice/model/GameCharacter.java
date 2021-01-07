@@ -1,11 +1,9 @@
 package com.codecool.characterhandlerservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.inject.internal.cglib.core.$ClassNameReader;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,18 +24,25 @@ public class GameCharacter {
     private Long characterExperience;
     private Long characterCurrency;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private Equipment characterEquipment;
-
+    @JsonManagedReference
     @OneToOne(cascade = {CascadeType.ALL})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Inventory characterInventory;
 
+
+    @JsonManagedReference
+    @OneToOne(cascade = {CascadeType.ALL})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Equipment characterEquipment;
+
+
+    @JsonManagedReference
     @OneToOne(cascade = {CascadeType.ALL})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Statistics characterStatistics;
+
+
 }

@@ -1,10 +1,9 @@
 package com.codecool.characterhandlerservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,13 +16,17 @@ public class Equipment {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @ToString.Exclude
     @Singular
     @OneToMany(mappedBy = "equipment", cascade = {CascadeType.PERSIST})
     @EqualsAndHashCode.Exclude
     private List<Item> equipmentItems;
+    */
 
+    //LANGUAGE,IDEA,FRAMEWORK,COMPUTER,ACCESSORY
+
+    @JsonBackReference
     @OneToOne(mappedBy = "characterEquipment")
     private GameCharacter gameCharacter;
 

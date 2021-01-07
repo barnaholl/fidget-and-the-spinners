@@ -18,12 +18,12 @@ public class CharacterController {
     private final CharacterService characterService;
 
     @GetMapping("")
-    public ResponseEntity<GameCharacter> getCharacter(@RequestBody Long userId) {
+    public ResponseEntity<GameCharacter> getCharacter(@RequestParam("userId") Long userId) {
         return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
     }
 
     @PostMapping("")
-    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestBody Long userId, String characterName) {
+    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestParam("userId") Long userId, @RequestParam("characterName") String characterName) {
         return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
     }
 
