@@ -58,18 +58,34 @@ namespace csharp_backend_fidget_spinners_tests
             Assert.True(_questGenerator.GenerateQuest(_character, level) == null);
         }
 
-        /*[Test]
-        public void GenerateQuestList_Should_Return_3_Short_Quests()
+        [Test]
+        public void GenerateQuest_Should_Return_3_Short_Quests()
         {
-            int ShortMinReward = 10;
-            int ShortMaxReward = 20;
-
-            int startRange = _character.CharacterLevel * 2 + ShortMinReward;
-            int endRange = _character.CharacterLevel * 2 + ShortMaxReward;
-
+            _character.Energy = 3;
             List<Quest> quests = _questGenerator.GenerateQuestList(_character);
+            Assert.True(quests[0].QuestTime == _character.Energy);
+            Assert.True(quests[1].QuestTime == _character.Energy);
+            Assert.True(quests[2].QuestTime == _character.Energy);
+        }
 
-            Assert.True((quests[0].));
-        }*/
+        [Test]
+        public void GenerateQuest_Should_Return_2_Short_Quests_And_1_Medium()
+        {
+            _character.Energy = 8;
+            List<Quest> quests = _questGenerator.GenerateQuestList(_character);
+            Assert.True(quests[0].QuestTime > 0 && quests[0].QuestTime < 4);
+            Assert.True(quests[1].QuestTime > 0 && quests[1].QuestTime < 4);
+            Assert.True(quests[2].QuestTime > 3 && quests[2].QuestTime < 7);
+        }
+
+        [Test]
+        public void GenerateQuest_Should_Return_1_Level_Of_Each_Difficulty()
+        {
+            _character.Energy = 10;
+            List<Quest> quests = _questGenerator.GenerateQuestList(_character);
+            Assert.True(quests[0].QuestTime > 0 && quests[0].QuestTime < 4);
+            Assert.True(quests[1].QuestTime > 3 && quests[1].QuestTime < 7);
+            Assert.True(quests[2].QuestTime > 6 && quests[2].QuestTime < 10);
+        }
     }
 }
