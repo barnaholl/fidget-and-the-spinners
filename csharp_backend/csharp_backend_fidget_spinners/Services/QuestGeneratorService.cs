@@ -35,10 +35,6 @@ namespace csharp_backend_fidget_spinners.Services
 
         public Quest GenerateQuest(Character player, string questDifficulty)
         {
-            if (player.Energy == 0)
-            {
-                return null;
-            }
 
             int questTextIndex = random.Next(0, questNames.Length);
             int timeAndEnergyCost;
@@ -72,7 +68,13 @@ namespace csharp_backend_fidget_spinners.Services
 
         public List<Quest> GenerateQuestList(Character player)
         {
+
             List<Quest> quests = new List<Quest>();
+
+            if(player.Energy < 1)
+            {
+                return quests;
+            }
 
             if(player.Energy > 3 && player.Energy < 10)
             {

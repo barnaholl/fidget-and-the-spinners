@@ -51,14 +51,6 @@ namespace csharp_backend_fidget_spinners_tests
         }
 
         [Test]
-        public void GenerateQuest_Should_Return_Null()
-        {
-            _character.Energy = 0;
-            string level = "medium";
-            Assert.True(_questGenerator.GenerateQuest(_character, level) == null);
-        }
-
-        [Test]
         public void GenerateQuest_Should_Return_3_Short_Quests()
         {
             _character.Energy = 3;
@@ -86,6 +78,25 @@ namespace csharp_backend_fidget_spinners_tests
             Assert.True(quests[0].QuestTime > 0 && quests[0].QuestTime < 4);
             Assert.True(quests[1].QuestTime > 3 && quests[1].QuestTime < 7);
             Assert.True(quests[2].QuestTime > 6 && quests[2].QuestTime < 10);
+        }
+
+        [Test]
+        public void GenerateQuest_Wrong_Level_Input_Should_Give_Zero_Reward()
+        {
+            string level = "invalid";
+            Quest quest = _questGenerator.GenerateQuest(_character, level);
+            Assert.True(quest.QuestTime == 0);
+            Assert.True(quest.RewardCoin == 0);
+            Assert.True(quest.RewardXP == 0);
+        }
+
+        [Test]
+        public void GenerateQuest_Should_Give_Null_If_Character_Has_Zero_Energy()
+        {
+            _character.Energy = 0;
+            List<Quest> quests = _questGenerator.GenerateQuestList(_character);
+
+            Assert.True(quests.Count == 0);
         }
     }
 }
