@@ -7,3 +7,7 @@ export const fetchStatsApi = async () => {
 export const fetchQuestsApi = async () => {
   return await axios.get("http://localhost:5000/quests");
 };
+
+export const fetchInventoryItemsApi = async() => {
+  return await axios.get("http://localhost:5000/inventory");
+}
