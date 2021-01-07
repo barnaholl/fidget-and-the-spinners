@@ -13,11 +13,11 @@ namespace csharp_backend_fidget_spinners.Models
 
         public Enemy()
         {
-            ID = Guid.NewGuid();
+            ID = 12345;
             RNG = new Random();
         }
 
-        private Guid ID { get; set; }
+        private int ID { get; set; }
         public string Name { get; set; }
         public string ImgURL { get; set; }
         public EnemyClassENUM Class { get; set; }
