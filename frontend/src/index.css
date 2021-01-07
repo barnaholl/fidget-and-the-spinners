@@ -6,12 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("./images/wallpaper.jpg");
-  height: 100%;
-
-  /* Center and scale the image nicely */
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
 }
 html {
   height: 100%;
