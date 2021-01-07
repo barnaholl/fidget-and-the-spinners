@@ -19,11 +19,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableZuulProxy
 public class ApiGatewayApplication {
 
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);
