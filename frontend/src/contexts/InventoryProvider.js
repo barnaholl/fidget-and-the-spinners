@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { fetchQuestsApi } from "../api/apiCalls";
+import { fetchInventoryItemsApi } from "../api/apiCalls";
 
 export const InventoryContext = createContext();
 
@@ -11,9 +11,7 @@ export function InventoryProvider(props) {
   }
 
   return (
-    <InventoryContext.Provider
-      value={{ inventoryItems, fetchInventoryItems}}
-    >
+    <InventoryContext.Provider value={{ inventoryItems, fetchInventoryItems }}>
       {props.children}
     </InventoryContext.Provider>
   );
