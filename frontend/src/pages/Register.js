@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import "../App.css";
+import { gatewayApi } from "../api/apiCalls";
 
 const usernameRegex =
   "^(?=.{3,16}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
@@ -46,7 +47,7 @@ export default function Register() {
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
-  const [email, setemail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
 
@@ -70,7 +71,9 @@ export default function Register() {
         <ValidatorForm
           className={classes.form}
           onSubmit={(e) => {
+            console.log("i am alive");
             e.preventDefault();
+            console.log("i am dead");
           }}
         >
           <Grid container spacing={2}>
@@ -88,7 +91,7 @@ export default function Register() {
                 onChange={(e) => setUsername(e.target.value)}
                 validators={[`matchRegexp:${usernameRegex}`]}
                 errorMessages={[
-                  "Please enter 3-16 characters, use letters A-Z, numbers 0-9 and , or _",
+                  "Please enter a 3-16 character long username, use letters A-Z, numbers 0-9 and , or _",
                 ]}
               />
             </Grid>
@@ -102,7 +105,7 @@ export default function Register() {
                 name='email'
                 autoComplete='off'
                 value={email}
-                onChange={(e) => setemail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 validators={[`isEmail`]}
                 errorMessages={["Please enter a valid email address"]}
               />
@@ -153,6 +156,9 @@ export default function Register() {
               variant='contained'
               color='primary'
               className={classes.submit}
+              onClick={() => {
+                gatewayApi(username, password, email);
+              }}
             >
               Play Now
             </Button>

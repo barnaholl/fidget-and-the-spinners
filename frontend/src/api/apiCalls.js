@@ -11,3 +11,17 @@ export const fetchQuestsApi = async () => {
 export const fetchInventoryItemsApi = async() => {
   return await axios.get("http://localhost:5000/inventory");
 }
+
+export const gatewayApi = async (username, password, email) => {
+  return await axios.post(
+    "http://localhost:8762/user-handler/register",
+    {
+      username: username,
+      password: password,
+      email: email,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+};

@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/character")
@@ -33,5 +35,10 @@ public class CharacterController {
     @DeleteMapping("")
     public ResponseEntity<Boolean> deleteCharacter(@RequestBody GameCharacter gameCharacter) {
         return ResponseEntity.ok(characterService.deleteCharacter(gameCharacter));
+    }
+
+    @GetMapping("/characterLevels")
+    public ResponseEntity<Map<Long,Long>> getAllCharacterIdAndLevel() {
+        return ResponseEntity.ok(characterService.getAllCharacterIdAndLevel());
     }
 }
