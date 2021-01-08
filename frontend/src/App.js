@@ -23,7 +23,6 @@ const Footer = styled.footer`
 function App() {
   return (
     <Router>
-      <div className="background-image"></div>
       <div className="App">
         <Route exact path="/" component={Landing} />
         <Route exact path="/register" component={Register} />
@@ -40,9 +39,9 @@ function App() {
           </QuestProvider>
           <Route path="/shop" component={Shop} />
         </StatProvider>
-        <Footer>
+        {/* <Footer>
           <Copyright />
-        </Footer>
+        </Footer> */}
       </div>
     </Router>
   );

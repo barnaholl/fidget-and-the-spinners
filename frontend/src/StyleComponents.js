@@ -12,4 +12,8 @@ export const useStyles = makeStyles(() => ({
     padding: "1rem",
     borderRadius: "1%",
   },
+  merchant: {
+    height: "55%",
+    width: "44%",
+  },
 }));

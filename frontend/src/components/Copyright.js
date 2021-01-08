@@ -3,7 +3,7 @@ import "../App.css";
 
 function Copyright() {
   return (
-    <Typography variant='overline'>
+    <Typography variant="overline">
       {"Copyright © Fidget and the Spinners"} {new Date().getFullYear()}
       {"."}
     </Typography>
