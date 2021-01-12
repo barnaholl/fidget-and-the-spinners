@@ -1,18 +1,13 @@
 package com.codecool.characterhandlerservice.service;
 
-import com.codecool.characterhandlerservice.model.Equipment;
-import com.codecool.characterhandlerservice.model.GameCharacter;
-import com.codecool.characterhandlerservice.model.Inventory;
-import com.codecool.characterhandlerservice.model.Statistics;
+import com.codecool.characterhandlerservice.model.*;
 import com.codecool.characterhandlerservice.repository.CharacterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -34,8 +29,8 @@ public class CharacterService {
                 .orElseThrow(() -> new EntityNotFoundException("Character not found by user id"));
     }
 
-    public GameCharacter saveNewCharacter(Long userId, String characterName) {
-        GameCharacter newGameCharacter = initializeNewCharacter(userId, characterName);
+    public GameCharacter saveNewCharacter(Long userId, String characterName, String characterClass) {
+        GameCharacter newGameCharacter = initializeNewCharacter(userId, characterName, characterClass);
         return characterRepository.save(newGameCharacter);
     }
 
@@ -51,8 +46,9 @@ public class CharacterService {
         return statisticsService.getStarterStatistics();
     }
 
-    private GameCharacter initializeNewCharacter(Long userId, String characterName) {
+    private GameCharacter initializeNewCharacter(Long userId, String characterName, String characterClass) {
         return GameCharacter.builder()
+                .characterClass(initializeCharacterClass(characterClass))
                 .characterStatistics(initializeStarterStatistics())
                 .characterEquipment(initializeNewEquipment())
                 .characterInventory(initializeNewInventory())
@@ -63,6 +59,16 @@ public class CharacterService {
                 .characterName(characterName)
                 .userId(userId)
                 .build();
+    }
+
+    private CharacterClass initializeCharacterClass(String characterClass) {
+        for(CharacterClass enumClass : CharacterClass.values()){
+            if(enumClass.name().equals(characterClass)){
+                return enumClass;
+            }
+        }
+
+        throw new NoResultException("CharacterClass: "+characterClass+" is not exist, try one of these: "+ Arrays.toString(CharacterClass.values()));
     }
 
     public GameCharacter updateCharacter(GameCharacter gameCharacter) {
