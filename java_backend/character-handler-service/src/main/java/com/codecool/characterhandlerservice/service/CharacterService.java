@@ -30,7 +30,8 @@ public class CharacterService {
     }
 
     public GameCharacter saveNewCharacter(Long userId, String characterName, String characterClass) {
-        GameCharacter newGameCharacter = initializeNewCharacter(userId, characterName, characterClass);
+
+        GameCharacter newGameCharacter = initializeNewCharacter(userId, characterName, convertStringToCharacterClass(characterClass) );
         return characterRepository.save(newGameCharacter);
     }
 
@@ -42,14 +43,14 @@ public class CharacterService {
         return equipmentService.getNewEquipment();
     }
 
-    private Statistics initializeStarterStatistics() {
-        return statisticsService.getStarterStatistics();
+    private Statistics initializeStarterStatistics(CharacterClass characterClass) {
+        return statisticsService.getStarterStatistics(characterClass);
     }
 
-    private GameCharacter initializeNewCharacter(Long userId, String characterName, String characterClass) {
+    private GameCharacter initializeNewCharacter(Long userId, String characterName, CharacterClass characterClass) {
         return GameCharacter.builder()
-                .characterClass(initializeCharacterClass(characterClass))
-                .characterStatistics(initializeStarterStatistics())
+                .characterClass(characterClass)
+                .characterStatistics(initializeStarterStatistics(characterClass))
                 .characterEquipment(initializeNewEquipment())
                 .characterInventory(initializeNewInventory())
                 .characterCurrency(AMOUNT_OF_STARTER_CURRENCY)
@@ -61,7 +62,7 @@ public class CharacterService {
                 .build();
     }
 
-    private CharacterClass initializeCharacterClass(String characterClass) {
+    private CharacterClass convertStringToCharacterClass(String characterClass) {
         for(CharacterClass enumClass : CharacterClass.values()){
             if(enumClass.name().equals(characterClass)){
                 return enumClass;
