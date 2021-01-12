@@ -13,7 +13,7 @@ namespace csharp_backend_fidget_spinners.Services
         /// Properties
         /// </summary>
 
-        private ItemGeneratorInterface _itemGeneratorService;
+        private ItemGeneratorInterface _itemGeneratorService = new ItemGeneratorService();
         private Random random = new Random();
         private string[] questNames = { "Eliminate Bug", "Codewars Kata", "Get a GO on PA", "Trial Interview" };
         private string[] questDescriptions = { "Bugs everywhere", "6kyu", "Get them all", "Fascinate everyone with your skills" };
@@ -35,6 +35,7 @@ namespace csharp_backend_fidget_spinners.Services
 
         public Quest GenerateQuest(Character player, string questDifficulty)
         {
+
             int questTextIndex = random.Next(0, questNames.Length);
             int timeAndEnergyCost;
             if ((questDifficulty == "medium" && player.Energy > 3 && player.Energy < 7) || player.Energy < 4)
@@ -45,21 +46,14 @@ namespace csharp_backend_fidget_spinners.Services
                 timeAndEnergyCost = GenerateTimeAndEnergyCost(questDifficulty);
             }
 
-            bool hasItemReward = HasItemReward();
-
-            if (player.Energy == 0)
-            {
-                return null;
-            }
-
             Quest quest = new Quest
             {
                 Name = questNames[questTextIndex],
                 Description = questDescriptions[questTextIndex],
                 QuestTime = timeAndEnergyCost,
                 EnergyCost = timeAndEnergyCost,
-                RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, hasItemReward),
-                RewardXP = GenerateXPReward(player.CharacterLevel, questDifficulty, hasItemReward),
+                RewardCoin = GenerateCoinReward(player.CharacterLevel, questDifficulty, HasItemReward()),
+                RewardXP = GenerateXPReward(player.CharacterLevel, questDifficulty, HasItemReward()),
                 RewardItem = _itemGeneratorService.GenerateItem(player.CharacterLevel)
             };
 
@@ -74,7 +68,13 @@ namespace csharp_backend_fidget_spinners.Services
 
         public List<Quest> GenerateQuestList(Character player)
         {
+
             List<Quest> quests = new List<Quest>();
+
+            if(player.Energy < 1)
+            {
+                return quests;
+            }
 
             if(player.Energy > 3 && player.Energy < 10)
             {
@@ -183,11 +183,6 @@ namespace csharp_backend_fidget_spinners.Services
         public int GenerateRandomReward(int minReward, int maxReward, int charLevel, int charLevelMultiplier)
         {
             return random.Next(minReward + (charLevel * charLevelMultiplier), (maxReward + (charLevel * charLevelMultiplier)) + 1);
-        }
-
-        public void InitializeItemGenerator(ItemGeneratorInterface itemGenerator)
-        {
-            _itemGeneratorService = itemGenerator;
         }
     }
 }
