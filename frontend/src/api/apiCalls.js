@@ -8,9 +8,17 @@ export const fetchQuestsApi = async () => {
   return await axios.get("http://localhost:5000/quests");
 };
 
-export const fetchInventoryItemsApi = async() => {
+export const fetchInventoryItemsApi = async () => {
   return await axios.get("http://localhost:5000/inventory");
-}
+};
+
+export const fetchEquipmentItemsApi = async () => {
+  return await axios.get("http://localhost:5000/equipment");
+};
+
+export const fetchShopItemsApi = async () => {
+  return await axios.get("http://localhost:5000/shop");
+};
 
 export const gatewayApi = async (username, password, email) => {
   return await axios.post(
