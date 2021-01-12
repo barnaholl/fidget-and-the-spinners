@@ -33,7 +33,7 @@ namespace csharp_backend_fidget_spinners.Services
 
         public int GenerateHealth (int myCharacterLevel)
         {
-            return 20 * (12 + myCharacterLevel);
+            return 15 * (12 + myCharacterLevel);
         }
 
         public int GenerateBaseDamage(int myCharacterLevel)

@@ -12,6 +12,8 @@ namespace csharp_backend_fidget_spinners
 {
     public class Startup
     {
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+      
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -19,9 +21,17 @@ namespace csharp_backend_fidget_spinners
             Configuration = configuration;
         }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                                  });
+            });
+
             services.AddControllers();
             services.AddDiscoveryClient(Configuration);
             services.AddScoped<IEnemyGenerator, EnemyGeneratorService>();
@@ -29,6 +39,8 @@ namespace csharp_backend_fidget_spinners
             services.AddScoped<IArenaFightSimulator, ArenaSimulator>();
             services.AddScoped<IFightSimulator, FightSimulator>();
             services.AddScoped<ItemGeneratorInterface, ItemGeneratorService>();
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,9 +52,12 @@ namespace csharp_backend_fidget_spinners
 
             app.UseRouting();
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers()
+                .RequireCors(MyAllowSpecificOrigins);
             });
             app.UseDiscoveryClient();
         }
