@@ -24,6 +24,8 @@ public class GameCharacter {
     private Long characterExperience;
     private Long characterCurrency;
 
+    private CharacterClass characterClass;
+
     @JsonManagedReference
     @OneToOne(cascade = {CascadeType.ALL})
     @EqualsAndHashCode.Exclude
