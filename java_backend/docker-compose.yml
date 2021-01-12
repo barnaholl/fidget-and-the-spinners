@@ -80,12 +80,18 @@ services:
 
   csharp-be:
     build:
-      context: ../csharp_backend/csharp_backend_fidget_spinners
+      context: ../csharp_backend
       dockerfile: Dockerfile.dev
+    container_name: csharp
+    environment:
+      - EUREKA_CLIENT_SERVICEURL=http://server-registry:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-registry:8761/eureka/
     tty: true
+    depends_on:
+      - server-registry
     ports:
-      - 5000:5000
-      - 5001:5001
+      - "5000:5000"
+      - "5001:5001"
     volumes:
       - ./csharp_backend/csharp_backend_fidget_spinners/Controller:/app/Controller
       - ./csharp_backend/csharp_backend_fidget_spinners/Models:/app/Models
