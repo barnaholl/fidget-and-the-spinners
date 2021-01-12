@@ -16,4 +16,9 @@ export const useStyles = makeStyles(() => ({
     height: "55%",
     width: "44%",
   },
+  itemHover: {
+    backdropFilter: "brightness(0.3)",
+    padding: "1rem",
+    borderRadius: "3%",
+  },
 }));
