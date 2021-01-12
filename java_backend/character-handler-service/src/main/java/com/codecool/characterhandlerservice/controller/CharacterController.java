@@ -23,8 +23,8 @@ public class CharacterController {
     }
 
     @PostMapping("")
-    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestParam("userId") Long userId, @RequestParam("characterName") String characterName) {
-        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
+    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestParam("userId") Long userId, @RequestParam("characterName") String characterName,@RequestParam("characterClass") String characterClass) {
+        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName, characterClass));
     }
 
     @PutMapping("")
