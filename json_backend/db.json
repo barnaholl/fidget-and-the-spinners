@@ -65,21 +65,23 @@
   ],
   "inventory": [
     {
-    "id": 1,
-    "name": "OLD_PC",
-    "equipmentSlot": "COMPUTER",
-    "itemLevel": 1,
-    "rarity": "COMMON",
-    "problemSolving": 0,
-    "design": 0,
-    "algorithmization": 0,
-    "cleanCode": 1,
-    "testing": 0,
-    "motivation": 0,
-    "debugging": 0,
-    "codingSpeed": 0,
-    "sellPrice": 1,
-    "buyPrice": 2
+      "id": 1,
+      "name": "OLD_PC",
+      "equipmentSlot": "COMPUTER",
+      "itemLevel": 1,
+      "rarity": "COMMON",
+      "problemSolving": 0,
+      "design": 0,
+      "algorithmization": 0,
+      "cleanCode": 1,
+      "testing": 0,
+      "motivation": 0,
+      "debugging": 0,
+      "codingSpeed": 0,
+      "sellPrice": 1,
+      "buyPrice": 2
     }
-  ]
+  ],
+  "equipment": [],
+  "shop": []
 }
