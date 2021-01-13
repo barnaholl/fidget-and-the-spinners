@@ -13,6 +13,7 @@
       "statId": 2
     }
   ],
+
   "stats": [
     {
       "id": 1,
@@ -83,5 +84,114 @@
     }
   ],
   "equipment": [],
-  "shop": []
+  "shop": [
+    {
+      "id": 1,
+      "name": "JAVA",
+      "equipmentSlot": "LANGUAGE",
+      "itemLevel": 1,
+      "rarity": "UNCOMMON",
+      "problemSolving": 0,
+      "design": 0,
+      "algorithmization": 1,
+      "cleanCode": 1,
+      "testing": 0,
+      "motivation": 0,
+      "debugging": 0,
+      "codingSpeed": 0,
+      "sellPrice": 2,
+      "buyPrice": 4,
+      "characterId": 1
+    },
+    {
+      "id": 2,
+      "name": "JAVASCRIPT",
+      "equipmentSlot": "LANGUAGE",
+      "itemLevel": 1,
+      "rarity": "UNCOMMON",
+      "problemSolving": 0,
+      "design": 1,
+      "algorithmization": 0,
+      "cleanCode": 1,
+      "testing": 0,
+      "motivation": 0,
+      "debugging": 0,
+      "codingSpeed": 0,
+      "sellPrice": 2,
+      "buyPrice": 4,
+      "characterId": 1
+    },
+    {
+      "id": 3,
+      "name": "NOTEPAD",
+      "equipmentSlot": "IDEA",
+      "itemLevel": 1,
+      "rarity": "UNCOMMON",
+      "problemSolving": 0,
+      "design": 1,
+      "algorithmization": 0,
+      "cleanCode": 0,
+      "testing": 1,
+      "motivation": 0,
+      "debugging": 0,
+      "codingSpeed": 0,
+      "sellPrice": 2,
+      "buyPrice": 4,
+      "characterId": 1
+    },
+    {
+      "id": 4,
+      "name": "PLAID_SHIRT",
+      "equipmentSlot": "ACCESSORY",
+      "itemLevel": 1,
+      "rarity": "RARE",
+      "problemSolving": 0,
+      "design": 0,
+      "algorithmization": 0,
+      "cleanCode": 0,
+      "testing": 3,
+      "motivation": 2,
+      "debugging": 0,
+      "codingSpeed": 0,
+      "sellPrice": 3,
+      "buyPrice": 9,
+      "characterId": 1
+    },
+    {
+      "id": 5,
+      "name": "PYTHON",
+      "equipmentSlot": "LANGUAGE",
+      "itemLevel": 1,
+      "rarity": "EPIC",
+      "problemSolving": 2,
+      "design": 0,
+      "algorithmization": 2,
+      "cleanCode": 0,
+      "testing": 0,
+      "motivation": 4,
+      "debugging": 4,
+      "codingSpeed": 0,
+      "sellPrice": 4,
+      "buyPrice": 16,
+      "characterId": 1
+    },
+    {
+      "id": 6,
+      "name": "MUG_OF_COFFEE",
+      "equipmentSlot": "ACCESSORY",
+      "itemLevel": 9,
+      "rarity": "COMMON",
+      "problemSolving": 9,
+      "design": 0,
+      "algorithmization": 0,
+      "cleanCode": 0,
+      "testing": 0,
+      "motivation": 0,
+      "debugging": 0,
+      "codingSpeed": 0,
+      "sellPrice": 9,
+      "buyPrice": 18,
+      "characterId": 1
+    }
+  ]
 }
