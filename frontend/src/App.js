@@ -12,6 +12,8 @@ import Kitchen from "./pages/Kitchen";
 import { StatProvider } from "./contexts/StatProvider";
 import { QuestProvider } from "./contexts/QuestProvider";
 import { InventoryProvider } from "./contexts/InventoryProvider";
+import { UserIdProvider } from "./contexts/UserIdProvider";
+
 import Shop from "./pages/Shop";
 
 // const Footer = styled.footer`
@@ -28,20 +30,23 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <StatProvider>
-          <Route
-            exact
-            path="/username/character-creation"
-            component={CharacterCreation}
-          />
-          <InventoryProvider>
-            <Route path="/character" component={Character} />
-            <Route path="/shop" component={Shop} />
-          </InventoryProvider>
-          <QuestProvider>
-            <Route path="/kitchen" component={Kitchen} />
-          </QuestProvider>
-        </StatProvider>
+        <UserIdProvider>
+          <StatProvider>
+            <Route
+              exact
+              path="/username/character-creation"
+              component={CharacterCreation}
+            />
+            <InventoryProvider>
+              <Route path="/character" component={Character} />
+              <Route path="/shop" component={Shop} />
+            </InventoryProvider>
+            <QuestProvider>
+              <Route path="/kitchen" component={Kitchen} />
+            </QuestProvider>
+          </StatProvider>
+        </UserIdProvider>
+
         {/* <Footer>
           <Copyright />
         </Footer> */}

@@ -46,8 +46,6 @@ function NestedGrid(props) {
     );
   }
 
-  console.log(kiskutya);
-
   return (
     <div className={classes.root}>
       <Grid container item xs={12} spacing={1}>
