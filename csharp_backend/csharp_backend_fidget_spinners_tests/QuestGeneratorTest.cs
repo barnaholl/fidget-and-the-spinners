@@ -51,25 +51,52 @@ namespace csharp_backend_fidget_spinners_tests
         }
 
         [Test]
-        public void GenerateQuest_Should_Return_Null()
+        public void GenerateQuest_Should_Return_3_Short_Quests()
         {
-            _character.Energy = 0;
-            string level = "medium";
-            Assert.True(_questGenerator.GenerateQuest(_character, level) == null);
+            _character.Energy = 3;
+            List<Quest> quests = _questGenerator.GenerateQuestList(_character);
+            Assert.True(quests[0].QuestTime == _character.Energy);
+            Assert.True(quests[1].QuestTime == _character.Energy);
+            Assert.True(quests[2].QuestTime == _character.Energy);
         }
 
-        /*[Test]
-        public void GenerateQuestList_Should_Return_3_Short_Quests()
+        [Test]
+        public void GenerateQuest_Should_Return_2_Short_Quests_And_1_Medium()
         {
-            int ShortMinReward = 10;
-            int ShortMaxReward = 20;
+            _character.Energy = 8;
+            List<Quest> quests = _questGenerator.GenerateQuestList(_character);
+            Assert.True(quests[0].QuestTime > 0 && quests[0].QuestTime < 4);
+            Assert.True(quests[1].QuestTime > 0 && quests[1].QuestTime < 4);
+            Assert.True(quests[2].QuestTime > 3 && quests[2].QuestTime < 7);
+        }
 
-            int startRange = _character.CharacterLevel * 2 + ShortMinReward;
-            int endRange = _character.CharacterLevel * 2 + ShortMaxReward;
+        [Test]
+        public void GenerateQuest_Should_Return_1_Level_Of_Each_Difficulty()
+        {
+            _character.Energy = 10;
+            List<Quest> quests = _questGenerator.GenerateQuestList(_character);
+            Assert.True(quests[0].QuestTime > 0 && quests[0].QuestTime < 4);
+            Assert.True(quests[1].QuestTime > 3 && quests[1].QuestTime < 7);
+            Assert.True(quests[2].QuestTime > 6 && quests[2].QuestTime < 10);
+        }
 
+        [Test]
+        public void GenerateQuest_Wrong_Level_Input_Should_Give_Zero_Reward()
+        {
+            string level = "invalid";
+            Quest quest = _questGenerator.GenerateQuest(_character, level);
+            Assert.True(quest.QuestTime == 0);
+            Assert.True(quest.RewardCoin == 0);
+            Assert.True(quest.RewardXP == 0);
+        }
+
+        [Test]
+        public void GenerateQuest_Should_Give_Null_If_Character_Has_Zero_Energy()
+        {
+            _character.Energy = 0;
             List<Quest> quests = _questGenerator.GenerateQuestList(_character);
 
-            Assert.True((quests[0].));
-        }*/
+            Assert.True(quests.Count == 0);
+        }
     }
 }
