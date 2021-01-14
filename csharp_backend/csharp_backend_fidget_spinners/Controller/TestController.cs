@@ -13,11 +13,10 @@ namespace csharp_backend_fidget_spinners.Controller
     [ApiController]
     public class TestController : ControllerBase
     {
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult TestEndpoint(string id)
+        [HttpGet]
+        public string TestEndpoint()
         {
-            return Ok();
+            return "it just works";
         }
     }
 
