@@ -18,9 +18,9 @@ public class CharacterService {
     private final InventoryService inventoryService;
     private final EquipmentService equipmentService;
 
-    private static final Long AMOUNT_OF_STARTER_CURRENCY = (long) 1000;
+    private static final Long AMOUNT_OF_STARTER_CURRENCY = (long)  0;
     private static final Long AMOUNT_OF_STARTER_EXPERIENCE = (long) 0;
-    private static final int CHARACTER_STARTER_ENERGY_LEVEL = 1;
+    private static final int CHARACTER_STARTER_ENERGY_LEVEL = 100;
     private static final int CHARACTER_STARTER_LEVEL = 1;
 
     public GameCharacter getCharacterByUserId(Long userId) {
