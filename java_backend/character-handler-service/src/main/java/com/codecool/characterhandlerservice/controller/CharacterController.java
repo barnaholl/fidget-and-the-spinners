@@ -41,4 +41,5 @@ public class CharacterController {
     public ResponseEntity<Map<Long,Long>> getAllCharacterIdAndLevel() {
         return ResponseEntity.ok(characterService.getAllCharacterIdAndLevel());
     }
+
 }
