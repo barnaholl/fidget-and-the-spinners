@@ -18,7 +18,7 @@ public class CsharpCallerService {
     private String csharpServerUrl;
 
 
-    public ResponseEntity connectionTest(){
-        return restTemplate.getForEntity(csharpServerUrl+"/", ResponseEntity.class).getBody();
+    public String connectionTest(){
+        return restTemplate.getForObject(csharpServerUrl+"/api/test", String.class);
     }
 }

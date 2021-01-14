@@ -15,6 +15,6 @@ public class CsharpController {
 
     @GetMapping("")
     public ResponseEntity testConnection() {
-        return csharpCallerService.connectionTest();
+        return ResponseEntity.ok(csharpCallerService.connectionTest());
     }
 }
