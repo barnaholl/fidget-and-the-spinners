@@ -44,18 +44,18 @@ function ItemSlot(props) {
           open={open}
           anchorEl={anchorEl}
           anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
+            vertical: "top",
+            horizontal: "center",
           }}
           transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
+            vertical: "bottom",
+            horizontal: "center",
           }}
           onClose={handlePopoverClose}
           disableRestoreFocus
         >
           <Typography>
-            I use Pop <br /> POWERRRR.
+            Here comes <br /> item stats <br /> each stat in a new line.
           </Typography>
         </Popover>
       </Paper>
