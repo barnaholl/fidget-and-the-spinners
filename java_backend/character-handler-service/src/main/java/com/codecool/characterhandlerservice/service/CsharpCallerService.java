@@ -1,7 +1,6 @@
 package com.codecool.characterhandlerservice.service;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,7 +15,6 @@ public class CsharpCallerService {
 
     @Value("${csharp.service.url}")
     private String csharpServerUrl;
-
 
     public String connectionTest(){
         return restTemplate.getForObject(csharpServerUrl+"/api/test", String.class);
