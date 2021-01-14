@@ -84,8 +84,9 @@ services:
       dockerfile: Dockerfile.dev
     container_name: csharp
     environment:
-      - EUREKA_CLIENT_SERVICEURL=http://server-registry:8761/eureka/
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-registry:8761/eureka/
+      - ASPNETCORE_EUREKA_CLIENT_SERVICEURL=http://server-registry:8761/eureka/
+      - ASPNETCORE_EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-registry:8761/eureka/
+      - ASPNETCORE_PROFILES_CSHARP_BACKEND_FIDGET_SPINNERS_APPLICATIONURL=http:/csharp:5000/
     tty: true
     depends_on:
       - server-registry
