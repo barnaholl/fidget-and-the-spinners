@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import "../App.css";
-import Avatar from "../images/avatarjedi.png";
+import Avatar from "../images/Jedi.png";
 import DefaultItemIcon from "../images/Icons/DefaultComputerIcon.png";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,7 +26,7 @@ export default function CharacterEquipment() {
   const classes = useStyles();
 
   return (
-    <Grid container justify="center" spacing={0}>
+    <Grid container justify='center' spacing={1}>
       <Grid item xs={6}>
         <div className={classes.item}></div>
       </Grid>
@@ -34,7 +34,7 @@ export default function CharacterEquipment() {
         <div className={classes.item}></div>
       </Grid>
       <Grid item xs={10}>
-        <img src={Avatar} alt="avataricon" className={classes.avatarImage} />
+        <img src={Avatar} alt='avataricon' className={classes.avatarImage} />
       </Grid>
       <Grid item xs={4}>
         <div className={classes.item}></div>

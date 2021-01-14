@@ -23,7 +23,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final RestTemplate template;
+    //TODO:Needed a new restTemplate for god knows why->find out!
+    private final RestTemplate template=new RestTemplate();
 
     @Value("${user.handler.service.url}")
     private String baseUrl;

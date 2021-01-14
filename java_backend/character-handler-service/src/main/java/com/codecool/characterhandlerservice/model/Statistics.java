@@ -1,6 +1,7 @@
 package com.codecool.characterhandlerservice.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Statistics {
     @GeneratedValue
     private Long id;
 
+    @JsonBackReference
     @OneToOne(mappedBy = "characterStatistics")
     private GameCharacter gameCharacter;
 

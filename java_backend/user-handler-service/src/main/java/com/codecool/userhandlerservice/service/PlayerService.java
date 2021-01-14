@@ -21,6 +21,7 @@ public class PlayerService {
     public PlayerService(PlayerRepository allPlayers) {
         this.allPlayers = allPlayers;
         encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
     }
 
     public Optional<Player> getPlayerById(Long id) {

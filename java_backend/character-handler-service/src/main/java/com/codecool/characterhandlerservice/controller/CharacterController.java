@@ -17,27 +17,14 @@ public class CharacterController {
 
     private final CharacterService characterService;
 
-    // FIX THE ANNOTATIONS BECAUSE IT CAUSE INFINITE OBJECT LOOPS!!!!!!!!!!!!!!!!!!!!!!
-/*
-Fix after decided how userId will get.
     @GetMapping("")
-    public ResponseEntity<GameCharacter> getCharacter() {
-        return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
-    }*/
-
-    @GetMapping("/{userId}")
-    public ResponseEntity<GameCharacter> getCharacter(@PathVariable(value = "userId") Long userId) {
+    public ResponseEntity<GameCharacter> getCharacter(@RequestParam("userId") Long userId) {
         return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
     }
 
-/*    @PostMapping("/{characterName}")
-    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestBody Long userId, String characterName) {
-        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
-    }*/
-    @PostMapping("/save/{userId}/{characterName}")
-    public ResponseEntity<GameCharacter> saveNewCharacter(@PathVariable(value = "userId") Long userId,
-                                                          @PathVariable(value = "characterName") String characterName) {
-        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
+    @PostMapping("")
+    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestParam("userId") Long userId, @RequestParam("characterName") String characterName,@RequestParam("characterClass") String characterClass) {
+        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName, characterClass));
     }
 
     @PutMapping("")
@@ -54,4 +41,5 @@ Fix after decided how userId will get.
     public ResponseEntity<Map<Long,Long>> getAllCharacterIdAndLevel() {
         return ResponseEntity.ok(characterService.getAllCharacterIdAndLevel());
     }
+
 }
