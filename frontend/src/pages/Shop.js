@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import CharacterWindow from "../components/CharacterWindow";
 import Inventory from "../components/Inventory";
-import ShopInventory from "../components/ShopWindow";
+import ShopInventory from "../components/ShopInventory";
 import Navbar from "../layout/Navbar";
 import { useStyles } from "../StyleComponents";
 import Merchant from "../images/Merchant.png";
@@ -23,8 +23,8 @@ export default function Shop() {
           <img
             src={Merchant}
             alt='merchant'
-            width='941px'
-            height='1953px'
+            width='235px'
+            height='487px'
             className={classes.merchant}
           />
           <ShopInventory />
