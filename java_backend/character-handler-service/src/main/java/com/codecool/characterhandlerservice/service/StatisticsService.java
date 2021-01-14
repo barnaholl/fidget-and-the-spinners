@@ -37,4 +37,13 @@ public class StatisticsService {
                                         .orElseThrow(()->new EntityNotFoundException());
         return gameCharacter.getCharacterStatistics();
     }
+
+    public void updateStatisticsByCharacterId(Long characterId, Statistics newStatistics){
+        GameCharacter gameCharacter = characterRepository.findById(characterId)
+                .orElseThrow(()->new EntityNotFoundException());
+
+        gameCharacter.setCharacterStatistics(newStatistics);
+
+        characterRepository.save(gameCharacter);
+    }
 }
