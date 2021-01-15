@@ -55,7 +55,9 @@ function ItemSlot(props) {
           disableRestoreFocus
         >
           <Typography>
-            Here comes <br /> item stats <br /> each stat in a new line.
+            - Here comes <br />
+            - item stats <br />
+            - each stat <br />- in a new line.
           </Typography>
         </Popover>
       </Paper>
