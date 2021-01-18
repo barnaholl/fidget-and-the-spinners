@@ -13,6 +13,7 @@ import { StatProvider } from "./contexts/StatProvider";
 import { QuestProvider } from "./contexts/QuestProvider";
 import { InventoryProvider } from "./contexts/InventoryProvider";
 import Shop from "./pages/Shop";
+import FightScreen from "./fight_components/pve/FightScreen";
 
 // const Footer = styled.footer`
 //   width: -webkit-fill-available;
@@ -42,6 +43,7 @@ function App() {
             <Route path="/kitchen" component={Kitchen} />
           </QuestProvider>
         </StatProvider>
+        <Route exact path="/fight" component={FightScreen} />
         {/* <Footer>
           <Copyright />
         </Footer> */}
