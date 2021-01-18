@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import AccessAlarmRoundedIcon from "@material-ui/icons/AccessAlarmRounded";
 import MonetizationOnRoundedIcon from "@material-ui/icons/MonetizationOnRounded";
 import CloudUploadRoundedIcon from "@material-ui/icons/CloudUploadRounded";
+import Questor from "../images/Questor2.png";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -74,9 +75,8 @@ export default function QuestModal() {
 
   return (
     <>
-      <button type='button' onClick={handleOpen}>
-        Take Quest
-      </button>
+      <img src={Questor} alt='questor' onClick={handleOpen} />
+
       <Modal
         aria-labelledby='spring-modal-title'
         aria-describedby='spring-modal-description'
@@ -94,6 +94,7 @@ export default function QuestModal() {
             <h2 id='spring-modal-title'>Take Quest</h2>
             <p id='spring-modal-description'>Choose your quest here</p>
             <button
+              className={classes.paper}
               onClick={() => {
                 return setActualQuest(quests[0]);
               }}
@@ -101,6 +102,7 @@ export default function QuestModal() {
               Quest 1
             </button>
             <button
+              className={classes.paper}
               onClick={() => {
                 setActualQuest(quests[1]);
               }}
@@ -108,6 +110,7 @@ export default function QuestModal() {
               Quest 2
             </button>
             <button
+              className={classes.paper}
               onClick={() => {
                 setActualQuest(quests[2]);
               }}
