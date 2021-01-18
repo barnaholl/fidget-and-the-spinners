@@ -14,6 +14,7 @@ import { QuestProvider } from "./contexts/QuestProvider";
 import { InventoryProvider } from "./contexts/InventoryProvider";
 import Shop from "./pages/Shop";
 import FightScreen from "./fight_components/pve/FightScreen";
+import ArenaScreen from "./fight_components/arena/ArenaScreen";
 
 // const Footer = styled.footer`
 //   width: -webkit-fill-available;
@@ -44,6 +45,7 @@ function App() {
           </QuestProvider>
         </StatProvider>
         <Route exact path="/fight" component={FightScreen} />
+        <Route exact path="/arena" component={ArenaScreen} />
         {/* <Footer>
           <Copyright />
         </Footer> */}
