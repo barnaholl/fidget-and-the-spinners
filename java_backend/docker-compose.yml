@@ -87,7 +87,7 @@ services:
     environment:
       - ASPNETCORE_EUREKA_CLIENT_SERVICEURL=http://server-registry:8761/eureka/
       - ASPNETCORE_EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-registry:8761/eureka/
-      - eureka:instance:hostName=http://fight-service:5000/
+      - eureka__instance__hostName=fight-service
       - profiles:csharp_backend_fidget_spinners:applicationUrl=http://fight-service:5000/
     tty: true
     depends_on:
