@@ -34,7 +34,7 @@ public class GameCharacter {
 
 
     @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.PERSIST})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Equipment characterEquipment;
