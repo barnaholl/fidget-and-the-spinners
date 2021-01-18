@@ -1,5 +1,6 @@
 package com.codecool.characterhandlerservice.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Item {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Equipment equipment;
 
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     private Inventory inventory;
 
