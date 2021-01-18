@@ -10,10 +10,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class PlayerService {
 
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate=new RestTemplate();
 
     @Value("${user.handler.service.url}")
     private String baseUrl;

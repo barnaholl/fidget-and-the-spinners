@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/character")
@@ -16,13 +18,13 @@ public class CharacterController {
     private final CharacterService characterService;
 
     @GetMapping("")
-    public ResponseEntity<GameCharacter> getCharacter(@RequestBody Long userId) {
+    public ResponseEntity<GameCharacter> getCharacter(@RequestParam("userId") Long userId) {
         return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
     }
 
     @PostMapping("")
-    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestBody Long userId, String characterName) {
-        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName));
+    public ResponseEntity<GameCharacter> saveNewCharacter(@RequestParam("userId") Long userId, @RequestParam("characterName") String characterName,@RequestParam("characterClass") String characterClass) {
+        return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName, characterClass));
     }
 
     @PutMapping("")
@@ -34,4 +36,10 @@ public class CharacterController {
     public ResponseEntity<Boolean> deleteCharacter(@RequestBody GameCharacter gameCharacter) {
         return ResponseEntity.ok(characterService.deleteCharacter(gameCharacter));
     }
+
+    @GetMapping("/characterLevels")
+    public ResponseEntity<Map<Long,Long>> getAllCharacterIdAndLevel() {
+        return ResponseEntity.ok(characterService.getAllCharacterIdAndLevel());
+    }
+
 }
