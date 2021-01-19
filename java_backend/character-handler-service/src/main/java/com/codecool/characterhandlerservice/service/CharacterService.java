@@ -26,12 +26,14 @@ public class CharacterService {
     public GameCharacter getCharacterByUserId(Long userId) {
         return characterRepository
                 .getCharacterByUserId(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Character not found by user id"));
+                .orElseThrow(() -> new EntityNotFoundException("Character not found by user id: "+userId));
     }
 
     public GameCharacter saveNewCharacter(Long userId, String characterName, String characterClass) {
-
-        GameCharacter newGameCharacter = initializeNewCharacter(userId, characterName, convertStringToCharacterClass(characterClass) );
+        if(userId<=0){
+            throw new IllegalArgumentException("UserId("+userId+") has to be a positive number");
+        }
+        GameCharacter newGameCharacter = initializeNewCharacter(userId, characterName, convertStringToCharacterClass(characterClass));
         return characterRepository.save(newGameCharacter);
     }
 
@@ -68,7 +70,6 @@ public class CharacterService {
                 return enumClass;
             }
         }
-
         throw new NoResultException("CharacterClass: "+characterClass+" is not exist, try one of these: "+ Arrays.toString(CharacterClass.values()));
     }
 
