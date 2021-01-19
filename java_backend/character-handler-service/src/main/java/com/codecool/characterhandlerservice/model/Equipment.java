@@ -17,27 +17,27 @@ public class Equipment {
     private Long id;
 
     @ToString.Exclude
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     private Item language;
 
     @ToString.Exclude
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     private Item idea;
 
     @ToString.Exclude
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     private Item framework;
 
     @ToString.Exclude
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     private Item computer;
 
     @ToString.Exclude
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     private Item accessory;
 

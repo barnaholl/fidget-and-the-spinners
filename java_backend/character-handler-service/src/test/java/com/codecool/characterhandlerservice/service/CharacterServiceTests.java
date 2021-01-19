@@ -86,6 +86,26 @@ public class CharacterServiceTests {
         assertThat(newCharacter.get().getUserId()).isNotEqualTo(gameCharacter.getUserId());
     }
 
+    @Test
+    void deleteCharacterThrowsErrorForBadId(){
+        GameCharacter gameCharacter= GameCharacter.builder().userId(1L).build();
+        characterRepository.save(gameCharacter);
+
+        Assertions.assertThrows(EntityNotFoundException.class,() -> characterService.deleteCharacter(2L));
+
+    }
+
+    @Test
+    void deleteCharacterRepositoryIsEmpty(){
+        GameCharacter gameCharacter= GameCharacter.builder().userId(1L).build();
+        characterRepository.save(gameCharacter);
+
+        characterService.deleteCharacter(1L);
+        List<GameCharacter> gameCharacterList=characterRepository.findAll();
+
+        assertThat(gameCharacterList.size()).isEqualTo(0);
+    }
+
 
     @Test
     void getCharacterByUserIdThrowsErrorForBadId(){

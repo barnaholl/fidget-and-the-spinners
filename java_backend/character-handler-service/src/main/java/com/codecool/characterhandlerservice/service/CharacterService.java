@@ -77,9 +77,9 @@ public class CharacterService {
         return characterRepository.save(gameCharacter);
     }
 
-    public boolean deleteCharacter(GameCharacter gameCharacter) {
-        characterRepository.delete(gameCharacter);
-        return characterRepository.getCharacterByUserId(gameCharacter.getUserId()).isEmpty();
+    public void deleteCharacter(Long characterId) {
+        characterRepository.findById(characterId).orElseThrow(EntityNotFoundException::new);
+        characterRepository.deleteById(characterId);
     }
 
     public Map<Long,Long> getAllCharacterIdAndLevel() {

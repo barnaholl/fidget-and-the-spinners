@@ -24,7 +24,7 @@ public class Inventory {
 
     @JsonManagedReference
     @Singular
-    @OneToMany(mappedBy = "inventory", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "inventory", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Item> inventoryItems;
