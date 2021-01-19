@@ -1,4 +1,4 @@
-package com.codecool.characterhandlerservice;
+package com.codecool.characterhandlerservice.service;
 
 import com.codecool.characterhandlerservice.model.GameCharacter;
 import com.codecool.characterhandlerservice.repository.CharacterRepository;
