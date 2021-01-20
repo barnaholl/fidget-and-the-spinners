@@ -14,9 +14,20 @@ namespace csharp_backend_fidget_spinners
 {
     public class Startup
     {
-        
+
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                                  });
+            });
+
             services.AddControllers();
             services.AddScoped<IEnemyGenerator, EnemyGeneratorService>();
             services.AddScoped<IFightSimulator, FightSimulator>();
