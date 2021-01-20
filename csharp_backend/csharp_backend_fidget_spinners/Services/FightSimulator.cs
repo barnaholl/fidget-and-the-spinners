@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using csharp_backend_fidget_spinners.Models;
-using csharp_backend_fidget_spinners.Services;
 using csharp_backend_fidget_spinners.Services.CustomLogObj;
 using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 
@@ -12,39 +9,35 @@ namespace csharp_backend_fidget_spinners.Services
     public class FightSimulator : IFightSimulator
     {
         private Character CurrentCharacter;
-        private IEnemyGenerator EnemyGeneratorService;
         private Enemy Enemy;
-        private Random RNG;
         private List<FightLog> FightLog;
 
-        public FightSimulator()
-        {
-        }
 
-        public List<FightLog> Fight(Character player, IEnemyGenerator enemyGenerator)
+        public void InitializeService(Character player, Enemy enemy)
         {
             CurrentCharacter = player;
-            EnemyGeneratorService = enemyGenerator;
-            RNG = new Random();
+            Enemy = enemy;
             FightLog = new List<FightLog>();
+        }
 
-            Enemy = EnemyGeneratorService.GenerateEnemy(CurrentCharacter);
+        public async Task<List<FightLog>> Fight()
+        {
 
-
-            while(CurrentCharacter.MotivationLevel > 0 && Enemy.HP > 0)
+            while(CurrentCharacter.Motivation > 0 && Enemy.HP > 0)
             {
-                int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.BlockChance);
+                int dealtDamage = CurrentCharacter.CalculateDamage(Enemy.CompilerErrorChance, Enemy.Class);
+                dealtDamage -= DamageMinusArmor(dealtDamage);
                 Enemy.HP -= dealtDamage;
 
-                LogRounds(CurrentCharacter.Name, dealtDamage);
+                await LogRounds(CurrentCharacter.Name, dealtDamage);
 
                 if (Enemy.HP > 0)
                 {
-                    dealtDamage = Enemy.CalculateEnemyDMG(CurrentCharacter.BlockChance);
+                    dealtDamage = Enemy.CalculateEnemyDMG(CurrentCharacter.DebugChance);
 
-                    CurrentCharacter.MotivationLevel -= dealtDamage;
+                    CurrentCharacter.Motivation -= dealtDamage;
 
-                    LogRounds(Enemy.Name, dealtDamage);
+                    await LogRounds(Enemy.Name, dealtDamage);
                 }
                 
             }
@@ -52,27 +45,40 @@ namespace csharp_backend_fidget_spinners.Services
             return FightLog;
         }
 
-        private void LogRounds(string attackersName, int damageDealt)
+        private async Task LogRounds(string attackersName, int damageDealt)
         {
             FightLog.Add(new FightLog
             {
                 DamageDealer = attackersName,
                 DealtDMG = damageDealt,
-                OurHealthPoint = CurrentCharacter.MotivationLevel,
+                OurHealthPoint = CurrentCharacter.Motivation,
                 EnemyHealthPoint = Enemy.HP
             });
         }
 
-        private bool ChanceGenerator(float chance)
+        public int DamageMinusArmor(int damage)
         {
-            bool isBlock = false;
+            return (damage - (Enemy.Armor / 2) > 0) ? (Enemy.Armor / 2) : 0;
+        }
 
-            if (RNG.Next(0, 100) < chance)
-            {
-                isBlock = true;
-            }
+        public int LastKnownCharacterHP()
+        {
+            return CurrentCharacter.Motivation;
+        }
 
-            return isBlock;
+        public int LastKnownEnemyHP()
+        {
+            return Enemy.HP;
+        }
+
+        public Character GetPlayerCharacter()
+        {
+            return CurrentCharacter;
+        }
+
+        public Enemy GetEnemy()
+        {
+            return Enemy;
         }
     }
 }
