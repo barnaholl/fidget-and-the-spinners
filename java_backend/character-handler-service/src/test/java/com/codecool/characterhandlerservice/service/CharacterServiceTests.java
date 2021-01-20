@@ -10,11 +10,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,114 +23,6 @@ public class CharacterServiceTests {
 
     @Autowired
     private CharacterRepository characterRepository;
-
-    @Test
-    void getCharacterByUserIdThrowsErrorForEmptyRepository(){
-        Assertions.assertThrows(EntityNotFoundException.class, ()-> characterService.getCharacterByUserId(1L));
-    }
-
-    @Test
-    void getCharacterByUserIdSaveToRepository(){
-        characterService.saveNewCharacter(1L,"Test","FRONT_END");
-
-        Optional<GameCharacter> gameCharacter=characterRepository.findById(1L);
-
-        assertThat(gameCharacter).isNotNull();
-    }
-
-    @Test
-    void getCharacterByUserIdSaveToRepositoryMultipleTimes(){
-        characterService.saveNewCharacter(1L,"Test","FRONT_END");
-        characterService.saveNewCharacter(2L,"Test2","FRONT_END");
-        characterService.saveNewCharacter(3L,"Test3","FRONT_END");
-
-        List<GameCharacter> gameCharacterList=characterRepository.findAll();
-
-        assertThat(gameCharacterList).isNotEmpty();
-    }
-
-
-    @Test
-    void updateCharacterOverridesGameCharacter(){
-        GameCharacter gameCharacter= GameCharacter.builder().userId(1L).build();
-        characterRepository.save(gameCharacter);
-
-        characterService.updateCharacter(GameCharacter.builder().id(1L).userId(2L).build());
-
-        List<GameCharacter> gameCharacterList=characterRepository.findAll();
-        assertThat(gameCharacterList.size()).isEqualTo(1);
-    }
-
-    @Test
-    void updateCharacterKeepsId(){
-        GameCharacter gameCharacter= GameCharacter.builder().userId(1L).build();
-        characterRepository.save(gameCharacter);
-
-        characterService.updateCharacter(GameCharacter.builder().id(1L).userId(2L).build());
-
-        Optional<GameCharacter> newCharacter=characterRepository.findById(1L);
-        assertThat(newCharacter.get().getId()).isEqualTo(gameCharacter.getId());
-    }
-
-    @Test
-    void updateCharacterChangeUserId(){
-        GameCharacter gameCharacter= GameCharacter.builder().userId(1L).build();
-        characterRepository.save(gameCharacter);
-
-        characterService.updateCharacter(GameCharacter.builder().id(1L).userId(2L).build());
-
-        Optional<GameCharacter> newCharacter=characterRepository.findById(1L);
-        assertThat(newCharacter.get().getUserId()).isNotEqualTo(gameCharacter.getUserId());
-    }
-
-    @Test
-    void deleteCharacterThrowsErrorForBadId(){
-        GameCharacter gameCharacter= GameCharacter.builder().userId(1L).build();
-        characterRepository.save(gameCharacter);
-
-        Assertions.assertThrows(EntityNotFoundException.class,() -> characterService.deleteCharacter(2L));
-
-    }
-
-    @Test
-    void deleteCharacterRepositoryIsEmpty(){
-        GameCharacter gameCharacter= GameCharacter.builder().userId(1L).build();
-        characterRepository.save(gameCharacter);
-
-        characterService.deleteCharacter(1L);
-        List<GameCharacter> gameCharacterList=characterRepository.findAll();
-
-        assertThat(gameCharacterList.size()).isEqualTo(0);
-    }
-
-
-    @Test
-    void getCharacterByUserIdThrowsErrorForBadId(){
-        GameCharacter newCharacter= GameCharacter.builder().userId(1L).build();
-        characterRepository.save(newCharacter);
-    }
-
-    @Test
-    void getCharacterByUserIdFindsEntity(){
-        GameCharacter newCharacter= GameCharacter.builder().userId(1L).build();
-        characterRepository.save(newCharacter);
-
-        GameCharacter gameCharacter=characterService.getCharacterByUserId(1L);
-
-        assertThat(gameCharacter).isNotNull();
-    }
-
-    @ParameterizedTest
-    @ValueSource(longs = {0,-1,-10,Long.MIN_VALUE})
-    void saveNewCharacterThrowsExceptionForBadId(long param){
-        Assertions.assertThrows(IllegalArgumentException.class, ()-> characterService.saveNewCharacter(param,"TestName","FRONT_END"));
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"","aaaa","front_end","FRONT_ENd"})
-    void saveNewCharacterThrowsExceptionForBadClass(String param){
-        Assertions.assertThrows(NoResultException.class, ()-> characterService.saveNewCharacter(1L,"TestName",param));
-    }
 
     @Test
     void getAllCharacterIdAndLevelMapIsEmpty(){
