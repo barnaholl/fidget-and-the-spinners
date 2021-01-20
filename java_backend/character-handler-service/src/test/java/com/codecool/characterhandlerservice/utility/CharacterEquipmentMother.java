@@ -2,7 +2,6 @@ package com.codecool.characterhandlerservice.utility;
 
 import com.codecool.characterhandlerservice.model.Equipment;
 import com.codecool.characterhandlerservice.model.GameCharacter;
-import com.codecool.characterhandlerservice.model.Item;
 
 public class CharacterEquipmentMother {
 

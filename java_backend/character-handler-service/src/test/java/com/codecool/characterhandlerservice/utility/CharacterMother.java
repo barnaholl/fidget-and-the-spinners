@@ -18,7 +18,9 @@ public class CharacterMother {
 
         newGameCharacter.setCharacterStatistics(CharacterStatisticsMother.getCharacterStatistics(newGameCharacter));
         newGameCharacter.setCharacterInventory(CharacterInventoryMother.getInventoryWithSomeItems(newGameCharacter));
-        newGameCharacter.setCharacterEquipment();
+        newGameCharacter.setCharacterEquipment(CharacterEquipmentMother.getEmptyEquipment(newGameCharacter));
+
+        return newGameCharacter;
     }
 
 }
