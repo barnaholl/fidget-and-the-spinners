@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using csharp_backend_fidget_spinners.Models;
-using csharp_backend_fidget_spinners.Services;
 using csharp_backend_fidget_spinners.Services.CustomLogObj;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using csharp_backend_fidget_spinners.Services.ServiceInterfaces;
 
@@ -17,18 +13,17 @@ namespace csharp_backend_fidget_spinners.Controller
     public class FightController : ControllerBase
     {
         private readonly IFightSimulator _fightSimulator;
-        private readonly IEnemyGenerator _enemyGenerator;
 
-        public FightController(IFightSimulator fightSimualtor, IEnemyGenerator enemyGenerator)
+        public FightController(IFightSimulator fightSimualtor)
         {
             _fightSimulator = fightSimualtor;
-            _enemyGenerator = enemyGenerator;
         }
 
         [HttpPost]
-        public List<FightLog> SimulateFight([FromBody] Character player)
+        public async Task<List<FightLog>> SimulateFight([FromBody] CharacterEnemyWrapper fighters)
         {
-            return _fightSimulator.Fight(player, _enemyGenerator);
+            _fightSimulator.InitializeService(fighters.Player, fighters.Enemy);
+            return await _fightSimulator.Fight();
         }
     }
 }

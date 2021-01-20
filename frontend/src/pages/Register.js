@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     padding: 20,
     color: "white",
-    opacity: 0.7,
+    opacity: 0.8,
     borderRadius: 10,
     backgroundColor: "black",
     flexDirection: "column",

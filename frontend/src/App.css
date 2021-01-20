@@ -62,27 +62,6 @@
   width: 100px;
 }
 
-#username {
-  color: white;
-  border-color: white;
-  border: solid;
-  border-radius: 50px;
-}
-
-#email {
-  color: white;
-  border-color: white;
-  border: solid;
-  border-radius: 50px;
-}
-
-#password {
-  color: white;
-  border-color: white;
-  border: solid;
-  border-radius: 50px;
-}
-
 #username-label {
   color: white;
 }

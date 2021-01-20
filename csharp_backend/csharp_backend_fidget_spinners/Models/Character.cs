@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp_backend_fidget_spinners.Models
 {
-    //Our Character in the game!!
+    //Our Character in the game!
     public class Character
     {
         private Random RNG;
@@ -20,27 +20,57 @@ namespace csharp_backend_fidget_spinners.Models
         public string Name { get; set; }
         public int CharacterLevel { get; set; }
         //HP
-        public int MotivationLevel { get; set; }
+        public int Motivation { get; set; }
         public int Energy { get; set; }
         public int ProblemSolving { get; set; }
         public int Design { get; set; }
         public int Algorithm { get; set; }
         public int Testing { get; set; }
-        public int BlockChance { get; set; }
-        public int CriticalDamageChance { get; set; }
+        public int CleanCode { get; set; }
+        public int DebugChance { get; set; }
+        public int FastCoding { get; set; }
 
+        public int CalculateDamage(int opponentsBlockChance, EnemyClassENUM _class)
+        {
+            if (RNG.Next(0, 100) < opponentsBlockChance) return 0;
+
+            int damage = 10 + RNG.Next(0, 10);
+
+            damage += Design + ProblemSolving + Testing + Algorithm + CleanCode;
+
+            switch (_class)
+            {
+                case EnemyClassENUM.Frontend:
+                    damage += Design * 2 + CleanCode;
+                    break;
+                case EnemyClassENUM.Backend:
+                    damage += ProblemSolving * 2 + Algorithm * 2;
+                    break;
+                case EnemyClassENUM.DevOps:
+                    damage += Convert.ToInt32(ProblemSolving * 1.5 + Testing);
+                    break;
+                case EnemyClassENUM.Testing:
+                    damage += Testing * 2 + CleanCode;
+                    break;
+            }
+
+            if (RNG.Next(0, 100) > FastCoding)
+            {
+                damage *= 2;
+            }
+
+            return damage;
+        }
 
         public int CalculateDamage(int opponentsBlockChance)
         {
             if (RNG.Next(0, 100) < opponentsBlockChance) return 0;
 
             int damage = 10 + RNG.Next(0, 10);
-            damage += Convert.ToInt32(Design * 1.5);
-            damage += Convert.ToInt32(ProblemSolving * 1.5);
-            damage += Convert.ToInt32(Testing * 1.5);
-            damage += Convert.ToInt32(Algorithm * 1.5);
 
-            if (RNG.Next(0, 100) > CriticalDamageChance)
+            damage += Design + ProblemSolving + Testing + Algorithm + CleanCode; 
+
+            if (RNG.Next(0, 100) > FastCoding)
             {
                 damage *= 2;
             }

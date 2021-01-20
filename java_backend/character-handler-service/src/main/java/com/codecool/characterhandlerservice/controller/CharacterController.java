@@ -33,8 +33,9 @@ public class CharacterController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity<Boolean> deleteCharacter(@RequestBody GameCharacter gameCharacter) {
-        return ResponseEntity.ok(characterService.deleteCharacter(gameCharacter));
+    public ResponseEntity<String> deleteCharacter(@RequestParam("characterId") Long characterId) {
+        characterService.deleteCharacter(characterId);
+        return ResponseEntity.ok("Character deleted with id: "+characterId);
     }
 
     @GetMapping("/characterLevels")
