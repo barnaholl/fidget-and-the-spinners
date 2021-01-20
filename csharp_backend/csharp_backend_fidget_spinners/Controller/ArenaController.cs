@@ -21,6 +21,45 @@ namespace csharp_backend_fidget_spinners.Controller
         }
 
 
+        [HttpGet]
+        public List<Character> GetPlayersForFrontend()
+        {
+            return new List<Character>
+            {
+                new Character
+                {
+                    ID = 1,
+                    Name = "Test",
+                    CharacterLevel = 10,
+                    Motivation = 500,
+                    Energy = 100,
+                    ProblemSolving = 3,
+                    Design = 6,
+                    Algorithm = 4,
+                    Testing = 3,
+                    CleanCode = 5,
+                    DebugChance = 1,
+                    FastCoding = 1
+                },
+                new Character
+                {
+                    ID = 2,
+                    Name = "Enemy",
+                    CharacterLevel = 10,
+                    Motivation = 600,
+                    Energy = 100,
+                    ProblemSolving = 4,
+                    Design = 5,
+                    Algorithm = 6,
+                    Testing = 5,
+                    CleanCode = 5,
+                    DebugChance = 1,
+                    FastCoding = 1
+                }
+            };
+        }
+
+
         [HttpPost]
         public async Task<List<ArenaFightLog>> ArenaFight([FromBody] List<Character> players)
         {
