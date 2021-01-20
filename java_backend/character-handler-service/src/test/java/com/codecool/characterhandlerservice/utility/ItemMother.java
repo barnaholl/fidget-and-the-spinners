@@ -2,7 +2,7 @@ package com.codecool.characterhandlerservice.utility;
 
 import com.codecool.characterhandlerservice.model.*;
 
-public class CharacterItemMother {
+public class ItemMother {
 
     public static Item getInventoryItem(Inventory inventory) {
         return Item.builder()

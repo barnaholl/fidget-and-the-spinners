@@ -16,9 +16,9 @@ public class CharacterMother {
                 .characterExperience((long) 2000)
                 .build();
 
-        newGameCharacter.setCharacterStatistics(CharacterStatisticsMother.getCharacterStatistics(newGameCharacter));
-        newGameCharacter.setCharacterInventory(CharacterInventoryMother.getInventoryWithSomeItems(newGameCharacter));
-        newGameCharacter.setCharacterEquipment(CharacterEquipmentMother.getEmptyEquipment(newGameCharacter));
+        newGameCharacter.setCharacterStatistics(StatisticsMother.getCharacterStatistics(newGameCharacter));
+        newGameCharacter.setCharacterInventory(InventoryMother.getInventoryWithSomeItems(newGameCharacter));
+        newGameCharacter.setCharacterEquipment(EquipmentMother.getEmptyEquipment(newGameCharacter));
 
         return newGameCharacter;
     }

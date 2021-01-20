@@ -3,7 +3,7 @@ package com.codecool.characterhandlerservice.utility;
 import com.codecool.characterhandlerservice.model.GameCharacter;
 import com.codecool.characterhandlerservice.model.Statistics;
 
-public class CharacterStatisticsMother {
+public class StatisticsMother {
 
     public static Statistics getCharacterStatistics(GameCharacter gameCharacter) {
         return Statistics.builder()

@@ -3,7 +3,6 @@ package com.codecool.characterhandlerservice.service;
 import com.codecool.characterhandlerservice.model.GameCharacter;
 import com.codecool.characterhandlerservice.repository.CharacterRepository;
 import com.codecool.characterhandlerservice.repository.ItemRepository;
-import com.codecool.characterhandlerservice.utility.CharacterInventoryMother;
 import com.codecool.characterhandlerservice.utility.CharacterMother;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
