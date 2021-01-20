@@ -3,6 +3,7 @@ package com.codecool.characterhandlerservice.service;
 import com.codecool.characterhandlerservice.model.GameCharacter;
 import com.codecool.characterhandlerservice.repository.CharacterRepository;
 import com.codecool.characterhandlerservice.repository.ItemRepository;
+import com.codecool.characterhandlerservice.utility.CharacterInventoryMother;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -30,6 +31,8 @@ public class InventoryServiceTest {
     @Test
     public void getInventoryByCharacterIdTest() {
         GameCharacter gameCharacter = new GameCharacter();
+        gameCharacter.setCharacterInventory(CharacterInventoryMother
+                .getInventoryWithSomeItems(gameCharacter));
         Long savedId = characterRepository.save(gameCharacter).getId();
 
         assertThat(inventoryService.getInventoryByCharacterId(savedId)

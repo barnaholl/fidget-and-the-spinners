@@ -14,12 +14,11 @@ public class CharacterMother {
                 .characterName("TesterCharacter")
                 .energyLevel(2000)
                 .characterExperience((long) 2000)
-                .characterInventory()
-                .characterEquipment()
                 .build();
 
         newGameCharacter.setCharacterStatistics(CharacterStatisticsMother.getCharacterStatistics(newGameCharacter));
-
+        newGameCharacter.setCharacterInventory(CharacterInventoryMother.getInventoryWithSomeItems(newGameCharacter));
+        newGameCharacter.setCharacterEquipment();
     }
 
 }
