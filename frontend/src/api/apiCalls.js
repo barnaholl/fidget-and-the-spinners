@@ -3,7 +3,7 @@ import axios from "axios";
  
 
 export const fetchStatsApi = async () => {
-  return await axios.get("http://localhost:5000/stats/1");
+  return await axios.get(`http://localhost:8762/character-handler/statistics/?characterId=${characterId}`);
 };
 
 export const fetchQuestsApi = async () => {
@@ -11,13 +11,18 @@ export const fetchQuestsApi = async () => {
 };
 
 export const fetchInventoryItemsApi = async () => {
-  return await axios.get("http://localhost:5000/inventory");
+  return await axios.get(`http://localhost:8762/character-handler/inventory/?characterId=${characterId}`);
 };
 
-export const fetchEquipmentItemsApi = async () => {
-  return await axios.get("http://localhost:5000/equipment");
+export const fetchEquipmentItemsApi = async (characterId) => {
+  return await axios.get(`http://localhost:8762/character-handler/equipment/?characterId=${characterId}`);
 };
 
 export const fetchShopItemsApi = async () => {
-  return await axios.get("http://localhost:5000/shop");
+  return await axios.get(`http://localhost:8762/shop-handler/getItemsByCharacterId/?characterId=${characterId}`); 
 };
+
+export const fetchCharacterApi = async (userId) => {
+  return await axios.get(`http://localhost:8762/character-handler/character/?userId=${userId}`)
+};
+
