@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "../App.css";
+import { fetchLoginApi } from "../api/apiPosts";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -83,6 +84,7 @@ export default function Login() {
             variant='contained'
             color='primary'
             className={classes.submit}
+            onClick={() =>fetchLoginApi(username, password)}
           >
             Sign In
           </Button>

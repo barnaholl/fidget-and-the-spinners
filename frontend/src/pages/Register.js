@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import "../App.css";
-import { gatewayApi } from "../api/apiPosts";
+import { fetchRegisterApi } from "../api/apiPosts";
 
 const usernameRegex =
   "^(?=.{3,16}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
@@ -157,7 +157,7 @@ export default function Register() {
               color="primary"
               className={classes.submit}
               onClick={() => {
-                gatewayApi(username, password, email);
+                fetchRegisterApi(username, password, email);
               }}
             >
               Play Now
