@@ -18,7 +18,7 @@ function AvatarSelector(avatar, setAvatar, avatarList, direction) {
   if (index >= avatarList.length - 1 && direction === 1) {
     index = 0;
   } else if (index <= 0 && direction === -1) {
-    index = 5;
+    index = avatarList.length - 1;
   } else {
     index += direction;
   }
@@ -30,16 +30,16 @@ function AvatarSelector(avatar, setAvatar, avatarList, direction) {
 function CharacterCustomizer() {
   const [avatarList] = useState([Alien, Hacker, Jedi, Frenchman, Ninja]);
   const [avatar, setAvatar] = useState(avatarList[0]);
-  const backgroundList = [Nature, Mountains, Polar, Snow];
-  const [background, setBackground] = useState([backgroundList[0]]);
+  const [backgroundList] = useState([Nature, Mountains, Polar, Snow]);
+  const [background, setBackground] = useState(backgroundList[0]);
 
   return (
     <div className='character-creation-div'>
       <div className='left-arrows'>
         <Button
-          onClick={() =>
-            AvatarSelector(background, setBackground, backgroundList, -1)
-          }
+          onClick={() => {
+            AvatarSelector(background, setBackground, backgroundList, -1);
+          }}
         >
           <KeyboardArrowLeftIcon />
         </Button>
@@ -74,9 +74,9 @@ function CharacterCustomizer() {
       </div>
       <div className='right-arrows'>
         <Button
-          onClick={() =>
-            AvatarSelector(background, setBackground, backgroundList, 1)
-          }
+          onClick={() => {
+            AvatarSelector(background, setBackground, backgroundList, 1);
+          }}
         >
           <KeyboardArrowRightIcon />
         </Button>

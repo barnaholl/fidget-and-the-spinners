@@ -27,14 +27,14 @@ public class GameCharacter {
     private CharacterClass characterClass;
 
     @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Inventory characterInventory;
 
 
     @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Equipment characterEquipment;

@@ -1,4 +1,4 @@
-package com.codecool.characterhandlerservice;
+package com.codecool.characterhandlerservice.controller;
 
 import com.codecool.characterhandlerservice.controller.CharacterController;
 import com.codecool.characterhandlerservice.model.GameCharacter;
@@ -12,6 +12,8 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -25,6 +27,22 @@ public class CharacterControllerTests {
 
     @Autowired
     private CharacterRepository characterRepository;
+
+    @Test
+    void getCharacterIsSuccessful() throws Exception {
+        characterRepository.save(GameCharacter.builder().userId(1L).build());
+        RequestBuilder request = MockMvcRequestBuilders.get("/character/?userId=1");
+        mockMvc = MockMvcBuilders.standaloneSetup(characterController).build();
+        mockMvc.perform(request).andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    void getCharacter() throws Exception {
+        characterRepository.save(GameCharacter.builder().userId(1L).build());
+        RequestBuilder request = MockMvcRequestBuilders.get("/character/?userId=2");
+        mockMvc = MockMvcBuilders.standaloneSetup(characterController).build();
+        mockMvc.perform(request).andExpect(result -> assertTrue(result.getResolvedException() instanceof Exception));
+    }
 
     @Test
     void getNewItemByCharacterIdAndCharacterLevelIsSuccessful() throws Exception {

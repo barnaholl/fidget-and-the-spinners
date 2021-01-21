@@ -33,7 +33,9 @@ namespace csharp_backend_fidget_spinners
             });
 
             services.AddControllers();
-            services.AddDiscoveryClient(Configuration);
+
+            //services.AddDiscoveryClient(Configuration);
+
             services.AddScoped<IEnemyGenerator, EnemyGeneratorService>();
             services.AddScoped<IQuestGenerator, QuestGeneratorService>();
             services.AddScoped<IArenaFightSimulator, ArenaSimulator>();
@@ -59,7 +61,8 @@ namespace csharp_backend_fidget_spinners
                 endpoints.MapControllers()
                 .RequireCors(MyAllowSpecificOrigins);
             });
-            app.UseDiscoveryClient();
+
+            //app.UseDiscoveryClient();
         }
     }
 }

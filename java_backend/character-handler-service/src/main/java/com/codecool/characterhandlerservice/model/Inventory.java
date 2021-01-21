@@ -1,6 +1,7 @@
 package com.codecool.characterhandlerservice.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,10 +22,12 @@ public class Inventory {
     @OneToOne(mappedBy = "characterInventory")
     private GameCharacter gameCharacter;
 
+    @JsonManagedReference
     @Singular
-    @OneToMany(mappedBy = "equipment", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "inventory", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private List<Item> InventoryItems;
+    private List<Item> inventoryItems;
+
 
 }
