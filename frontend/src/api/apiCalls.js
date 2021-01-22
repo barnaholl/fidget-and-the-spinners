@@ -1,8 +1,7 @@
 import axios from "axios";
 
  
-
-export const fetchStatsApi = async () => {
+export const fetchStatsApi = async (characterId) => {
   return await axios.get(`http://localhost:8762/character-handler/statistics/?characterId=${characterId}`);
 };
 
@@ -10,7 +9,7 @@ export const fetchQuestsApi = async () => {
   return await axios.get("http://localhost:5000/quests");
 };
 
-export const fetchInventoryItemsApi = async () => {
+export const fetchInventoryItemsApi = async (characterId) => {
   return await axios.get(`http://localhost:8762/character-handler/inventory/?characterId=${characterId}`);
 };
 
@@ -18,7 +17,7 @@ export const fetchEquipmentItemsApi = async (characterId) => {
   return await axios.get(`http://localhost:8762/character-handler/equipment/?characterId=${characterId}`);
 };
 
-export const fetchShopItemsApi = async () => {
+export const fetchShopItemsApi = async (characterId) => {
   return await axios.get(`http://localhost:8762/shop-handler/getItemsByCharacterId/?characterId=${characterId}`); 
 };
 
