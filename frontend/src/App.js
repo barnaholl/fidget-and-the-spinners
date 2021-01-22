@@ -12,10 +12,11 @@ import Kitchen from "./pages/Kitchen";
 import { StatProvider } from "./contexts/StatProvider";
 import { QuestProvider } from "./contexts/QuestProvider";
 import { InventoryProvider } from "./contexts/InventoryProvider";
+import { CharacterProvider } from "./contexts/CharacterProvider";
 import Shop from "./pages/Shop";
 import FightScreen from "./fight_components/pve/FightScreen";
 import ArenaScreen from "./fight_components/arena/ArenaScreen";
-
+import Quests from "./components/Quests";
 // const Footer = styled.footer`
 //   width: -webkit-fill-available;
 //   bottom: 0;
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <CharacterProvider>
         <StatProvider>
           <Route
             exact
@@ -46,6 +48,8 @@ function App() {
         </StatProvider>
         <Route exact path="/fight" component={FightScreen} />
         <Route exact path="/arena" component={ArenaScreen} />
+        <Route exact path="/quest" component={Quests} />
+        </CharacterProvider>
         {/* <Footer>
           <Copyright />
         </Footer> */}

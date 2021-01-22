@@ -17,7 +17,6 @@ const Opponents = (props) => {
     const [getPlayerHP, setPlayerHP] = useState(0);
     const [getEnemyHP, setEnemyHP] = useState(0);
     const [displayedDMG, setDisplayedDMG] = useState(" -1 ");
-    const [actualDMGDealer, setActualDMGDealer] = useState("No one ");
     const [playerShootsFireball, setPlayerShootsFireball] = useState(false);
     const [enemyShootsTaco, setEnemyShootsTaco] = useState(false);
     const [slashImageShown, setSlashImageShown] = useState(false);
@@ -55,7 +54,6 @@ const Opponents = (props) => {
 
             await TurnOffDamageIndicators();
 
-            await ChangeDMGDealer(fightlog[i].damageDealer);
             await ChangeDisplayedDMG(fightlog[i].dealtDMG);
 
             var didWeAttack = fightlog[i].damageDealer === getPlayer.name;
@@ -116,10 +114,6 @@ const Opponents = (props) => {
 
     const ChangeDisplayedDMG = async (newDMG) => {
         await setDisplayedDMG(newDMG);
-    }
-
-    const ChangeDMGDealer = async (newName) => {
-        await setActualDMGDealer(newName);
     }
 
     const AxiosGetPlayer = async () => {
@@ -251,7 +245,6 @@ const Opponents = (props) => {
         await AxiosGetPlayer();
         await AxiosGetEnemy();
         await setLoading(false);
-        console.log("GET EVERYONE IN HERE");
     }
 
     if(getLoading && sendRequestForEnemy && sendRequestForPlayer)
@@ -263,8 +256,6 @@ const Opponents = (props) => {
         
         if(!getFightLoading)
         {
-
-            var consoleLoggerText = actualDMGDealer + " dealt " + displayedDMG + " damage to its opponent! Yikes.";
 
             content = (
             <Container className="players">
@@ -335,8 +326,6 @@ const Opponents = (props) => {
             </FighterDiv>
             <FightButton onClick={FightEvent}>Fight!</FightButton>
 
-            <DMGShowerDiv>{consoleLoggerText}</DMGShowerDiv>
-
         </Container>)
         } 
         else
@@ -404,9 +393,9 @@ const FighterDiv = styled.div`
 
     box-shadow: -9px 9px 6px 5px rgba(0,0,0,0.2);
     border: 2px solid black;
-    max-height: 751px;
+    max-height: 600px;
     height: auto;
-    min-height: 550px;
+    min-height: 575px;
     width: 292px;
     margin-top: 60px;
     background-color: #f9aeae;
@@ -515,6 +504,7 @@ const FighterDiv = styled.div`
         padding-left: 2px;
         padding-top: 3px;
         margin-top: 0px;
+        padding-left: 6px;
     }
 
 `
@@ -529,18 +519,5 @@ const FightButton = styled.button`
     position: absolute;
     font-size: 20px;
 `
-
-const DMGShowerDiv = styled.div`
-    position: absolute;
-    height: 27px;   
-    width: auto;
-    border: 2px solid black;
-    font-weight: 600;
-    padding-left: 4px;
-    padding-right: 4px;
-    top: 815px;
-    left: 765px;
-`
-
 
 export default Opponents;

@@ -19,8 +19,9 @@ namespace csharp_backend_fidget_spinners.Controller
         }
 
         [HttpPost]
-        public List<Quest> QuestGenerator(Character player)
+        public List<Quest> QuestGenerator([FromBody] Character player)
         {
+            System.Console.WriteLine(player.ToString());
             return _questGenerator.GenerateQuestList(player);
         }
     }

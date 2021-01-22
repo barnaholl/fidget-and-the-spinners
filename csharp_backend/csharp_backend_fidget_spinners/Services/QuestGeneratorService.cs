@@ -81,19 +81,20 @@ namespace csharp_backend_fidget_spinners.Services
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "medium"));
-
-                return quests;
-            } else if (player.Energy < 4)
+            } 
+            else if (player.Energy < 4)
             {
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "short"));
-
-                return quests;
+            } 
+            else
+            {
+                quests.Add(GenerateQuest(player, "short"));
+                quests.Add(GenerateQuest(player, "medium"));
+                quests.Add(GenerateQuest(player, "long"));
             }
-            quests.Add(GenerateQuest(player, "short"));
-            quests.Add(GenerateQuest(player, "medium"));
-            quests.Add(GenerateQuest(player, "long"));
+
 
             return quests;
         }

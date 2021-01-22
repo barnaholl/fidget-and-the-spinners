@@ -78,5 +78,10 @@ namespace csharp_backend_fidget_spinners.Models
             return damage;
         }
 
+        public override string ToString()
+        {
+            return $"Name: {Name} Energy: {Energy} Level: {CharacterLevel}";
+        }
+
     }
 }

@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { fetchQuestsApi } from "../api/apiCalls";
+import { postCharToGetQuests } from "../api/apiPosts";
 
 export const QuestContext = createContext();
 
@@ -7,8 +7,9 @@ export function QuestProvider(props) {
   const [quests, setQuests] = useState([]);
   const [actualQuest, setActualQuest] = useState([]);
 
-  function fetchQuests() {
-    fetchQuestsApi().then((data) => setQuests(data.data));
+  async function fetchQuests(character) {
+    await postCharToGetQuests(character).then((res) => setQuests(res.data));
+    console.log("szívrepedést kapok geci");
   }
 
   return (
