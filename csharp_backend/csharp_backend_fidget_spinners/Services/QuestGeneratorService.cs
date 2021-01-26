@@ -84,7 +84,7 @@ namespace csharp_backend_fidget_spinners.Services
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "medium"));
             }
-            else if (player.Energy < 4)
+            else
             {
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "short"));
