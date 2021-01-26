@@ -96,10 +96,18 @@ public class AuthController {
     }
 
     @GetMapping("/current-user/{jwtToken}")
-    public String getCurrentUsername(@PathVariable String jwtToken) {
+    public Player getCurrentUsername(@PathVariable String jwtToken) {
         UsernamePasswordAuthenticationToken userToken = jwtTokenUtil
                 .validateTokenAndExtractUserSpringToken(jwtToken);
-        return userToken == null ? "" : userToken.getName();
+        if(userToken == null){
+            return null;
+        }
+        else{
+            return playerService.findByUsername(userToken.getName());
+        }
+
+
+
     }
 
     @GetMapping("/current-user-object")

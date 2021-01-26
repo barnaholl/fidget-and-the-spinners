@@ -13,7 +13,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "../App.css";
 import { FetchLoginApi } from "../api/apiPosts";
+import { fetchUserByToken } from "../api/apiCalls";
 import { Redirect } from "react-router-dom";
+import { red } from "@material-ui/core/colors";
+import { useCookies } from 'react-cookie';
+import Cookies from 'js-cookie'
 
 
 
@@ -39,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  error:{
+    color:red,
+    display: "none",
+    visibility: "hidden"
+  }
 }));
 
 export default function Login() {
@@ -47,7 +56,9 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [isLoginSuccessful, setisLoginSuccessful] = useState(false);
+  const [isLoginErrorVisible, setisLoginErrorVisible] = useState(false);
+
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
 
 
@@ -97,11 +108,15 @@ export default function Login() {
             variant='contained'
             color='primary'
             className={classes.submit}
-            onClick={() =>FetchLoginApi(username, password)}
+            onClick={() => {
+              FetchLoginApi(username,password).then(console.log(Cookies.get));
+            }}                     
+          
+         
           >
             Sign In
           </Button>
-          
+          <div className={classes.error} id="">Invalid username or password</div>
 
           <Grid container>
             <Grid item xs>

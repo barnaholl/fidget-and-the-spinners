@@ -30,7 +30,7 @@ export const FetchLoginApi = async (username, password) => {
     {
       withCredentials: true,
     }
-  ).then((data) => console.log(data))
+  )
   .catch((error) => {
     if(error.response) {
       console.log("Error during login ", error);

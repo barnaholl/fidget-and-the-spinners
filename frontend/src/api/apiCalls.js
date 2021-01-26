@@ -25,3 +25,7 @@ export const fetchCharacterApi = async (userId) => {
   return await axios.get(`http://localhost:8762/character-handler/character/?userId=${userId}`)
 };
 
+export const fetchUserByToken = async (jwtToken) => {
+  return await axios.get(`http://localhost:8762/current-user/${jwtToken}`)
+};
+

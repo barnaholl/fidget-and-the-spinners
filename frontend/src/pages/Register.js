@@ -149,7 +149,7 @@ export default function Register() {
               />
             </Grid>
           </Grid>
-          <Link to={"/username/character-creation"}>
+          <Link to={"/login"}>
             <Button
               type="submit"
               fullWidth
