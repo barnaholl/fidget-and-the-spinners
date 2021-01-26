@@ -1,4 +1,7 @@
 import axios from "axios";
+import React,{useState} from "react";
+
+
 
 export const fetchRegisterApi = async (username, password, email) => {
   return await axios.post(
@@ -11,10 +14,13 @@ export const fetchRegisterApi = async (username, password, email) => {
     {
       withCredentials: true,
     }
-  );
+  ).then((data) => console.log(data));
 };
 
-export const fetchLoginApi = async (username, password) => {
+export const FetchLoginApi = async (username, password) => {
+
+//  const [isLoginValid, setIsLoginValid] = useState();
+
   return await axios.post(
     "http://localhost:8762/login",
     {
@@ -24,7 +30,13 @@ export const fetchLoginApi = async (username, password) => {
     {
       withCredentials: true,
     }
-  );
+  ).then((data) => console.log(data))
+  .catch((error) => {
+    if(error.response) {
+      console.log("Error during login ", error);
+      //setIsLoginValid(false);
+    }
+  });
 };
 
 export const fetchLogoutApi = async () => {

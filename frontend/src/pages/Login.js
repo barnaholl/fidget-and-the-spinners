@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,7 +12,10 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "../App.css";
-import { fetchLoginApi } from "../api/apiPosts";
+import { FetchLoginApi } from "../api/apiPosts";
+import { Redirect } from "react-router-dom";
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,6 +44,13 @@ const useStyles = makeStyles((theme) => ({
 export default function Login() {
   const classes = useStyles();
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [isLoginSuccessful, setisLoginSuccessful] = useState(false);
+
+
+
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -62,6 +72,8 @@ export default function Login() {
             name='username'
             autoComplete='username'
             autoFocus
+            onChange={(e) => setUsername(e.target.value)}
+
           />
           <TextField
             variant='outlined'
@@ -73,21 +85,24 @@ export default function Login() {
             type='password'
             id='password'
             autoComplete='current-password'
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value='remember' color='primary' />}
             label='Remember me'
           />
+          
           <Button
-            type='submit'
             fullWidth
             variant='contained'
             color='primary'
             className={classes.submit}
-            onClick={() =>fetchLoginApi(username, password)}
+            onClick={() =>FetchLoginApi(username, password)}
           >
             Sign In
           </Button>
+          
+
           <Grid container>
             <Grid item xs>
               <Link href='#' variant='body2'>
