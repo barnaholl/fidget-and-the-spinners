@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     borderRadius: "7%",
+    margin: "10px",
   },
   rewards: {
     display: "flex",
@@ -75,11 +76,11 @@ export default function QuestModal() {
 
   return (
     <>
-      <img src={Questor} alt='questor' onClick={handleOpen} />
+      <img src={Questor} alt="questor" onClick={handleOpen} />
 
       <Modal
-        aria-labelledby='spring-modal-title'
-        aria-describedby='spring-modal-description'
+        aria-labelledby="spring-modal-title"
+        aria-describedby="spring-modal-description"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -91,8 +92,8 @@ export default function QuestModal() {
       >
         <Fade in={open} className={classes.paper}>
           <div className={classes.paper}>
-            <h2 id='spring-modal-title'>Take Quest</h2>
-            <p id='spring-modal-description'>Choose your quest here</p>
+            <h2 id="spring-modal-title">Take Quest</h2>
+            <p id="spring-modal-description">Choose your quest here</p>
             <button
               className={classes.paper}
               onClick={() => {
