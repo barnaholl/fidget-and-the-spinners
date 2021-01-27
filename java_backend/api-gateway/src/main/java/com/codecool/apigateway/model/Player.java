@@ -13,6 +13,7 @@ import java.util.Set;
 @Builder
 public class Player {
 
+    private Long id;
     private String userName;
     private String hashedPassword;
     private Set<Role> roles;

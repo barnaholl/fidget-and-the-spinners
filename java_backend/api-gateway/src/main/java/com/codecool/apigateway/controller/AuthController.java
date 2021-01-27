@@ -59,14 +59,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserCredentials player, HttpServletResponse response) {
+    public ResponseEntity<Long> login(@RequestBody UserCredentials player, HttpServletResponse response) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 player.getUsername(),
                 player.getPassword()
         ));
+        Long loginPlayerId = playerService.getUserIdByUsername(player.getUsername());
         String jwtToken = jwtTokenUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
-        return ResponseEntity.ok().body(player.getUsername());
+        return ResponseEntity.ok().body(loginPlayerId);
     }
 
     @PostMapping("/logout")

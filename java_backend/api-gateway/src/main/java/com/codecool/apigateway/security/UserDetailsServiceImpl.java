@@ -32,7 +32,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -49,6 +48,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                         .collect(Collectors.toList())
         );
+    }
+
+    public Long getPlayerIdByUsername(String username) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        headers.add("username", username);
+        HttpEntity<String> entity = new HttpEntity<>(username, headers);
+        Player player = template.exchange(baseUrl + "/player?username=" + username, HttpMethod.GET, entity, Player.class).getBody();
+        assert player != null;
+        return player.getId();
     }
 
 }

@@ -2,6 +2,7 @@ package com.codecool.apigateway.service;
 
 import com.codecool.apigateway.model.Player;
 import com.codecool.apigateway.model.UserCredentials;
+import com.codecool.apigateway.security.UserDetailsServiceImpl;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PlayerService {
 
     private final RestTemplate restTemplate=new RestTemplate();
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Value("${user.handler.service.url}")
     private String baseUrl;
@@ -45,6 +48,10 @@ public class PlayerService {
     @NoArgsConstructor
     public static class PlayerList {
         private List<Player> players;
+    }
+
+    public Long getUserIdByUsername(String username) {
+        return userDetailsService.getPlayerIdByUsername(username);
     }
 
 }

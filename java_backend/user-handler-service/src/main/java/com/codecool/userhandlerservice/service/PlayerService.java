@@ -4,6 +4,7 @@ import com.codecool.userhandlerservice.model.Player;
 import com.codecool.userhandlerservice.model.Role;
 import com.codecool.userhandlerservice.model.UserCredentials;
 import com.codecool.userhandlerservice.repository.PlayerRepository;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
