@@ -33,7 +33,7 @@ function App() {
         <StatProvider>
           <Route
             exact
-            path="/username/character-creation"
+            path="/:username/character-creation"
             component={CharacterCreation}
           />
           <InventoryProvider>
