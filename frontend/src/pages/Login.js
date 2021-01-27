@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,6 +18,7 @@ import { Redirect } from "react-router-dom";
 import { red } from "@material-ui/core/colors";
 import { useCookies } from "react-cookie";
 import Cookies from "js-cookie";
+import { UserIdContext } from "../contexts/UserIdProvider";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+  const { userId, setUserId } = useContext(UserIdContext);
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
@@ -104,8 +106,8 @@ export default function Login() {
               color="primary"
               className={classes.submit}
               onClick={() => {
-                FetchLoginApi(username, password).then(
-                  console.log(Cookies.get)
+                FetchLoginApi(username, password).then((data) =>
+                  setUserId(data.data)
                 );
               }}
             >
