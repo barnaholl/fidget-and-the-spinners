@@ -43,15 +43,6 @@ public class AuthController {
         if (playerService.findByEmail(email) != null) {
             return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Email already used!");
         }
-        if (!validator.isValidUsername(username)) {
-            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Not a valid username!");
-        }
-        if (!validator.isValidPassword(password)) {
-            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Not a valid password!");
-        }
-        if (!validator.isValidEmail(email)) {
-            return ResponseEntity.status(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS).body("Not a valid email!");
-        }
         playerService.registerNewPlayerData(player);
         return ResponseEntity.ok().body(player.getUsername());
     }
