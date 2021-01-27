@@ -73,7 +73,7 @@ function CharacterCreation() {
             ))}
           </TableBody>
         </Table>
-        <Link to={"/character"}>
+        <Link to={"/login"}>
           <Button
             type="submit"
             fullWidth
