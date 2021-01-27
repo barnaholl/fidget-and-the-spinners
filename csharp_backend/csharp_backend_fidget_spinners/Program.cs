@@ -21,6 +21,10 @@ namespace csharp_backend_fidget_spinners
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+		.ConfigureAppConfiguration((hostingContext, config) =>
+            	{
+                	config.AddEnvironmentVariables();
+            	});
     }
 }

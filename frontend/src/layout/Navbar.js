@@ -4,12 +4,10 @@ import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { Link } from "react-router-dom";
-import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import NavBarBg from "../images/backgrounds/NavBarBg.png";
 
 const drawerWidth = 240;
 
@@ -39,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundImage: `url(${NavBarBg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    borderRadius: "0px 20px 20px 0px",
+    opacity: 0.7,
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -47,11 +50,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
   },
+  image: {
+    width: "100%",
+  },
 }));
 
 export default function LeftSideBar() {
   const classes = useStyles();
-
   return (
     <Container className={classes.root}>
       <CssBaseline />
@@ -78,10 +83,15 @@ export default function LeftSideBar() {
                 color="primary"
                 size="medium"
               >
-                <ListItem button key={Object.entries(item)[0][0]}>
-                  <ListItemIcon></ListItemIcon>
-                  <ListItemText primary={Object.entries(item)[0][0]} />
-                </ListItem>
+                <img
+                  className={classes.image}
+                  src={
+                    require(`../images/buttons/${
+                      Object.entries(item)[0][0]
+                    }.png`).default
+                  }
+                  alt={Object.entries(item)[0][0]}
+                />
               </Button>
             </Link>
           ))}

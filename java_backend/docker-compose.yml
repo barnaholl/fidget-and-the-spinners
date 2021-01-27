@@ -1,0 +1,111 @@
+version: "3"
+services:
+  server-registry:
+    build: server-registry/
+    container_name: server-registry
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build: api-gateway/
+    container_name: api-gateway
+#    expose:
+#      - "8762"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
+    depends_on:
+      - server-registry
+    ports:
+      - "8762:8762"
+
+  character-handler-service:
+    build: character-handler-service/
+    container_name: character-handler-service
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/fats_character
+      - spring.datasource.username=fats
+      - spring.datasource.password=fatsfats
+      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
+      - csharp.service.url=http://fight-service:5000
+    depends_on:
+      - server-registry
+      - postgres
+    ports:
+      - "8081:8081"
+
+  user-handler-service:
+    build: user-handler-service/
+    container_name: user-handler-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/fats_users
+      - SPRING_DATASOURCE_USERNAME=fats
+      - SPRING_DATASOURCE_PASSWORD=fatsfats
+      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
+    depends_on:
+      - server-registry
+      - postgres
+
+  shop-handler-service:
+    build: shop-handler-service/
+    container_name: shop-handler-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/fats_shop
+      - SPRING_DATASOURCE_USERNAME=fats
+      - SPRING_DATASOURCE_PASSWORD=fatsfats
+      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
+      - item.handler.service.url=http://item-handler-service:8071
+    depends_on:
+      - server-registry
+      - postgres
+    ports:
+      - "8051:8051"
+
+  item-handler-service:
+    build: item-handler-service/
+    container_name: item-handler-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://server-registry:8761/eureka/
+    depends_on:
+      - server-registry
+    ports:
+      - "8071:8071"
+
+  postgres:
+    image: postgres
+    volumes:
+      - ../docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_MULTIPLE_DATABASES=fats_character, fats_users, fats_shop
+      - POSTGRES_USER=fats
+      - POSTGRES_PASSWORD=fatsfats
+
+  csharp-be:
+    build:
+      context: ../csharp_backend
+      dockerfile: Dockerfile.dev
+    container_name: fight-service
+    environment:
+      - ASPNETCORE_EUREKA_CLIENT_SERVICEURL=http://server-registry:8761/eureka/
+      - ASPNETCORE_EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-registry:8761/eureka/
+      - eureka__instance__hostName=fight-service
+      - profiles:csharp_backend_fidget_spinners:applicationUrl=http://fight-service:5000/
+    tty: true
+    depends_on:
+      - server-registry
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ./csharp_backend/csharp_backend_fidget_spinners/Controller:/app/Controller
+      - ./csharp_backend/csharp_backend_fidget_spinners/Models:/app/Models
+      - ./csharp_backend/csharp_backend_fidget_spinners/Services:/app/Services
+
+  fats-frontend:
+    build: ../frontend/
+    container_name: fats_frontend
+    ports:
+    - "3000:3000"
+    depends_on:
+      - api-gateway
+    stdin_open: true
+
