@@ -13,11 +13,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "../App.css";
 import { FetchLoginApi } from "../api/apiPosts";
-import { fetchUserByToken } from "../api/apiCalls";
-import { Redirect } from "react-router-dom";
 import { red } from "@material-ui/core/colors";
 import { useCookies } from "react-cookie";
-import Cookies from "js-cookie";
 import { UserIdContext } from "../contexts/UserIdProvider";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-  const { userId, setUserId } = useContext(UserIdContext);
+  const { setUserId } = useContext(UserIdContext);
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
