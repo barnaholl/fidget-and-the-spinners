@@ -18,32 +18,35 @@ public class PlayerService {
     private final UserDetailsServiceImpl userDetailsService;
 
     @Value("${user.handler.service.url}")
-    private String baseUrl;
+    private String userHandlerBaseUrl;
+
+    @Value("${character.handler.service.url}")
+    private String characterHandlerBaseUrl;
 
     public Player findUserById(Long id) {
-        return restTemplate.getForEntity(baseUrl + "id?id=" + id, Player.class).getBody();
+        return restTemplate.getForEntity(userHandlerBaseUrl + "id?id=" + id, Player.class).getBody();
     }
 
     public Player findByUsername(String username) {
-        return restTemplate.getForEntity(baseUrl + "player?username=" + username, Player.class).getBody();
+        return restTemplate.getForEntity(userHandlerBaseUrl + "player?username=" + username, Player.class).getBody();
     }
 
     public Player findByEmail(String email) {
-        return restTemplate.getForEntity(baseUrl + "email?email=" + email, Player.class).getBody();
+        return restTemplate.getForEntity(userHandlerBaseUrl + "email?email=" + email, Player.class).getBody();
     }
 
     public List<Player> findAllPlayers() {
-        PlayerList response = restTemplate.getForObject(baseUrl + "all", PlayerList.class);
+        PlayerList response = restTemplate.getForObject(userHandlerBaseUrl + "all", PlayerList.class);
         assert response != null;
         return response.getPlayers();
     }
 
     public void registerNewPlayerData(UserCredentials player) {
-        restTemplate.postForEntity(baseUrl + "register", player, String.class);
+        restTemplate.postForEntity(userHandlerBaseUrl + "register", player, String.class);
     }
 
     public void handlePlayerCharacter(Long loginPlayerId) {
-        restTemplate.postForEntity(baseUrl + "character", player, String.class);
+        restTemplate.postForEntity(characterHandlerBaseUrl + "character", loginPlayerId, Long.class);
     }
 
     @Data
