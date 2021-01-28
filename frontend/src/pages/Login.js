@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,7 +15,7 @@ import Container from "@material-ui/core/Container";
 import "../App.css";
 import { FetchLoginApi } from "../api/apiPosts";
 import { red } from "@material-ui/core/colors";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 import { UserIdContext } from "../contexts/UserIdProvider";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,15 +49,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
-  const { setUserId } = useContext(UserIdContext);
+  const { userId, setUserId } = useContext(UserIdContext);
   const classes = useStyles();
-
+  const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [isLoginErrorVisible, setisLoginErrorVisible] = useState(false);
-
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const handleLogin = () => {
+    FetchLoginApi(username, password).then((data) => setUserId(data.data));
+    if (userId) {
+      history.push("/character");
+    } else {
+      console.log("You shall not pass");
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -97,21 +103,16 @@ export default function Login() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Link to="/character">
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={() => {
-                FetchLoginApi(username, password).then((data) =>
-                  setUserId(data.data)
-                );
-              }}
-            >
-              Sign In
-            </Button>
-          </Link>
+
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleLogin}
+          >
+            Sign In
+          </Button>
           <div className={classes.error} id="">
             Invalid username or password
           </div>
