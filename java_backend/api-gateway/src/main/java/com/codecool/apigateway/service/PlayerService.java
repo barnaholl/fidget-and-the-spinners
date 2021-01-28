@@ -46,10 +46,10 @@ public class PlayerService {
         restTemplate.postForEntity(userHandlerBaseUrl + "register", player, String.class);
     }
 
-    public void handlePlayerCharacter(UserCredentials player) {
+    public void handlePlayerCharacter(String username, Long loginPlayerId) {
         HashMap<String, String> pathVariables = new HashMap<>();
-        pathVariables.put("userId", player.getId().toString());
-        pathVariables.put("username", player.getUsername());
+        pathVariables.put("userId", loginPlayerId.toString());
+        pathVariables.put("username", username);
 
         restTemplate.postForEntity(characterHandlerBaseUrl + "character/first",
                 "", String.class, pathVariables);
