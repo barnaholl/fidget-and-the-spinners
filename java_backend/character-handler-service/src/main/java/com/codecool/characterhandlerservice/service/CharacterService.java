@@ -64,6 +64,21 @@ public class CharacterService {
                 .build();
     }
 
+    private GameCharacter initializeFixCharacter(Long userId, String username) {
+        return GameCharacter.builder()
+                .characterClass(CharacterClass.BACK_END)
+                .characterStatistics(initializeStarterStatistics(CharacterClass.BACK_END))
+                .characterEquipment(initializeNewEquipment())
+                .characterInventory(initializeNewInventory())
+                .characterCurrency(AMOUNT_OF_STARTER_CURRENCY)
+                .characterExperience(AMOUNT_OF_STARTER_EXPERIENCE)
+                .characterLevel(CHARACTER_STARTER_LEVEL)
+                .energyLevel(CHARACTER_STARTER_ENERGY_LEVEL)
+                .characterName(username)
+                .userId(userId)
+                .build();
+    }
+
     private CharacterClass convertStringToCharacterClass(String characterClass) {
         for(CharacterClass enumClass : CharacterClass.values()){
             if(enumClass.name().equals(characterClass)){
@@ -94,10 +109,10 @@ public class CharacterService {
         return result;
     }
 
-    public void checkIfPlayerHasCharacter(Long playerId) {
-        boolean isCharacterPresent = characterRepository.getCharacterByUserId(playerId).isPresent();
+    public void checkIfPlayerHasCharacter(Long userId, String username) {
+        boolean isCharacterPresent = characterRepository.getCharacterByUserId(userId).isPresent();
         if(!isCharacterPresent) {
-            characterRepository.save(GameCharacter.builder().build());
+            characterRepository.save(initializeFixCharacter(userId, username));
         }
     }
 }

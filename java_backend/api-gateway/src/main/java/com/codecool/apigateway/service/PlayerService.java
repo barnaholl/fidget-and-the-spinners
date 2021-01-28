@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -45,8 +46,13 @@ public class PlayerService {
         restTemplate.postForEntity(userHandlerBaseUrl + "register", player, String.class);
     }
 
-    public void handlePlayerCharacter(Long loginPlayerId) {
-        restTemplate.postForEntity(characterHandlerBaseUrl + "character/first", loginPlayerId, Long.class);
+    public void handlePlayerCharacter(UserCredentials player) {
+        HashMap<String, String> pathVariables = new HashMap<>();
+        pathVariables.put("userId", player.getId().toString());
+        pathVariables.put("username", player.getUsername());
+
+        restTemplate.postForEntity(characterHandlerBaseUrl + "character/first",
+                "", String.class, pathVariables);
     }
 
     @Data

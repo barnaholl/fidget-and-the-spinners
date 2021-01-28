@@ -22,9 +22,9 @@ public class CharacterController {
         return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
     }
 
-    @GetMapping("/first")
-    public ResponseEntity<?> checkIfPlayerHasCharacter(@RequestBody Long playerId) {
-        characterService.checkIfPlayerHasCharacter(playerId);
+    @GetMapping("/first/{userId}/{username}")
+    public ResponseEntity<?> checkIfPlayerHasCharacter(@PathVariable Long userId, @PathVariable String username) {
+        characterService.checkIfPlayerHasCharacter(userId, username);
         return ResponseEntity.ok("Character checked.");
     }
 
