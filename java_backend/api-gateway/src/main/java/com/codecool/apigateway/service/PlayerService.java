@@ -46,7 +46,7 @@ public class PlayerService {
     }
 
     public void handlePlayerCharacter(Long loginPlayerId) {
-        restTemplate.postForEntity(characterHandlerBaseUrl + "character", loginPlayerId, Long.class);
+        restTemplate.postForEntity(characterHandlerBaseUrl + "character/first", loginPlayerId, Long.class);
     }
 
     @Data
