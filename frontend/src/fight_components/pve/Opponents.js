@@ -17,7 +17,6 @@ const Opponents = (props) => {
     const [getPlayerHP, setPlayerHP] = useState(0);
     const [getEnemyHP, setEnemyHP] = useState(0);
     const [displayedDMG, setDisplayedDMG] = useState(" -1 ");
-    const [actualDMGDealer, setActualDMGDealer] = useState("No one ");
     const [playerShootsFireball, setPlayerShootsFireball] = useState(false);
     const [enemyShootsTaco, setEnemyShootsTaco] = useState(false);
     const [slashImageShown, setSlashImageShown] = useState(false);
@@ -55,7 +54,6 @@ const Opponents = (props) => {
 
             await TurnOffDamageIndicators();
 
-            await ChangeDMGDealer(fightlog[i].damageDealer);
             await ChangeDisplayedDMG(fightlog[i].dealtDMG);
 
             var didWeAttack = fightlog[i].damageDealer === getPlayer.name;
@@ -116,10 +114,6 @@ const Opponents = (props) => {
 
     const ChangeDisplayedDMG = async (newDMG) => {
         await setDisplayedDMG(newDMG);
-    }
-
-    const ChangeDMGDealer = async (newName) => {
-        await setActualDMGDealer(newName);
     }
 
     const AxiosGetPlayer = async () => {
@@ -263,9 +257,6 @@ const Opponents = (props) => {
         
         if(!getFightLoading)
         {
-
-            var consoleLoggerText = actualDMGDealer + " dealt " + displayedDMG + " damage to its opponent! Yikes.";
-
             content = (
             <Container className="players">
                 <FireballDiv className="FireballPlayer">
@@ -334,8 +325,6 @@ const Opponents = (props) => {
                 </div>
             </FighterDiv>
             <FightButton onClick={FightEvent}>Fight!</FightButton>
-
-            <DMGShowerDiv>{consoleLoggerText}</DMGShowerDiv>
 
         </Container>)
         } 
@@ -529,18 +518,4 @@ const FightButton = styled.button`
     position: absolute;
     font-size: 20px;
 `
-
-const DMGShowerDiv = styled.div`
-    position: absolute;
-    height: 27px;   
-    width: auto;
-    border: 2px solid black;
-    font-weight: 600;
-    padding-left: 4px;
-    padding-right: 4px;
-    top: 815px;
-    left: 765px;
-`
-
-
 export default Opponents;

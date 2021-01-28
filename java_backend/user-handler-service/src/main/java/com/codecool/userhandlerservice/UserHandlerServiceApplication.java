@@ -25,7 +25,7 @@ public class UserHandlerServiceApplication {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.ant("/{username}"))
+				.paths(PathSelectors.ant("/**"))
 				.build();
 	}
 }

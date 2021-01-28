@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/dotnet/sdk:3.1
+
+COPY . /app
+
+COPY ./csharp_backend_fidget_spinners/Properties/launchSettings.json /app/csharp_backend_fidget_spinners/Properties/launchSettings.json
+
+WORKDIR /app/csharp_backend_fidget_spinners
+
+RUN dotnet build
+
+RUN dotnet add package Steeltoe.Discovery.Eureka
+
+# Run mv appsettings.json.docker appsettings.json 
+
+ENTRYPOINT dotnet watch run

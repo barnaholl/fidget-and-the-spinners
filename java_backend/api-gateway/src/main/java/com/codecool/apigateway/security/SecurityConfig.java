@@ -59,11 +59,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/current-user-object").authenticated()
                 .antMatchers(HttpMethod.GET,"/current-user/*").authenticated()
                 .antMatchers( "/shop-handler/**").authenticated()
-                .antMatchers( "/character-handler/**").authenticated()
-//                .anyRequest().denyAll()
+                .antMatchers( "/character-handler/**").authenticated();
+/*                .anyRequest().denyAll()
                 .and().logout()
                 .deleteCookies("token")
-                .clearAuthentication(true).invalidateHttpSession(true);
+                .clearAuthentication(true).invalidateHttpSession(true);*/
     }
 
     @Bean

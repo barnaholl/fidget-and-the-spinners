@@ -71,29 +71,24 @@ namespace csharp_backend_fidget_spinners.Services
 
             List<Quest> quests = new List<Quest>();
 
-            if(player.Energy < 1)
+            quests.Add(GenerateQuest(player, "short"));
+
+            if (player.Energy > 9)
             {
-                return quests;
+                quests.Add(GenerateQuest(player, "medium"));
+                quests.Add(GenerateQuest(player, "long"));
             }
 
-            if(player.Energy > 3 && player.Energy < 10)
+            else if (player.Energy > 3 && player.Energy < 10)
             {
-                quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "medium"));
-
-                return quests;
-            } else if (player.Energy < 4)
+            }
+            else
             {
                 quests.Add(GenerateQuest(player, "short"));
                 quests.Add(GenerateQuest(player, "short"));
-                quests.Add(GenerateQuest(player, "short"));
-
-                return quests;
             }
-            quests.Add(GenerateQuest(player, "short"));
-            quests.Add(GenerateQuest(player, "medium"));
-            quests.Add(GenerateQuest(player, "long"));
 
             return quests;
         }
