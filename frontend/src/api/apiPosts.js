@@ -1,19 +1,17 @@
 import axios from "axios";
 
 export const fetchRegisterApi = async (username, password, email) => {
-  return await axios
-    .post(
-      "http://localhost:8762/register",
-      {
-        username: username,
-        password: password,
-        email: email,
-      },
-      {
-        withCredentials: true,
-      }
-    )
-    .then((data) => console.log(data));
+  return await axios.post(
+    "http://localhost:8762/register",
+    {
+      username: username,
+      password: password,
+      email: email,
+    },
+    {
+      withCredentials: true,
+    }
+  );
 };
 
 export const FetchLoginApi = async (username, password) => {
