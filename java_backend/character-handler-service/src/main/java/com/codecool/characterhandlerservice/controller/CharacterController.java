@@ -22,6 +22,12 @@ public class CharacterController {
         return ResponseEntity.ok(characterService.getCharacterByUserId(userId));
     }
 
+    @GetMapping("/first/{playerId}")
+    public ResponseEntity<?> checkIfPlayerHasCharacter(@PathVariable Long playerId) {
+        characterService.checkIfPlayerHasCharacter(playerId);
+        return ResponseEntity.ok("Character checked.");
+    }
+
     @PostMapping("")
     public ResponseEntity<GameCharacter> saveNewCharacter(@RequestParam("userId") Long userId, @RequestParam("characterName") String characterName,@RequestParam("characterClass") String characterClass) {
         return ResponseEntity.ok(characterService.saveNewCharacter(userId, characterName, characterClass));

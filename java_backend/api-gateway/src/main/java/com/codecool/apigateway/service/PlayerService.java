@@ -42,6 +42,10 @@ public class PlayerService {
         restTemplate.postForEntity(baseUrl + "register", player, String.class);
     }
 
+    public void handlePlayerCharacter(Long loginPlayerId) {
+        restTemplate.postForEntity(baseUrl + "character", player, String.class);
+    }
+
     @Data
     @Builder
     @AllArgsConstructor

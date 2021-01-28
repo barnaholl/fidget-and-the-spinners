@@ -93,4 +93,11 @@ public class CharacterService {
         }
         return result;
     }
+
+    public void checkIfPlayerHasCharacter(Long playerId) {
+        boolean isCharacterPresent = characterRepository.getCharacterByUserId(playerId).isPresent();
+        if(!isCharacterPresent) {
+            characterRepository.save(GameCharacter.builder().build());
+        }
+    }
 }
