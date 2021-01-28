@@ -65,6 +65,7 @@ public class AuthController {
                 player.getPassword()
         ));
         Long loginPlayerId = playerService.getUserIdByUsername(player.getUsername());
+
         String jwtToken = jwtTokenUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
         return ResponseEntity.ok().body(loginPlayerId);
