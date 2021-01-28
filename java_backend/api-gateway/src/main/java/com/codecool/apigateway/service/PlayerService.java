@@ -51,7 +51,7 @@ public class PlayerService {
         pathVariables.put("userId", loginPlayerId.toString());
         pathVariables.put("username", username);
 
-        restTemplate.postForEntity(characterHandlerBaseUrl + "character/first",
+        restTemplate.postForEntity(characterHandlerBaseUrl + "character/first/{userId}/{username}",
                 "", String.class, pathVariables);
     }
 
