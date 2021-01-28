@@ -40,7 +40,8 @@ const ArenaFight = (props) => {
         
         var postBody = JSON.stringify([getPlayer, getEnemy]);
         
-        const response = await axios.post("http://localhost:56675/api/arena", postBody, requestOptions);
+        const response = await axios.post("http://localhost:5000/api/arena", postBody, requestOptions);
+        console.log(response);
   
         await setFightingLoading(false);
         await loopOverFightLog(response.data);
@@ -112,7 +113,8 @@ const ArenaFight = (props) => {
 
     const AxiosGetPlayers = async () => {
         
-        var response = await axios("http://localhost:56675/api/arena");
+        var response = await axios("http://localhost:5000/api/arena");
+        console.log(response);
         
         
         await setPlayer(response.data[0]);
