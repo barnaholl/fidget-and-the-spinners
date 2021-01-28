@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import { fetchLogoutApi } from "../api/apiPosts";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -51,6 +53,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LeftSideBar() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleLogout = () => {
+    fetchLogoutApi();
+    history.push("/login");
+  };
 
   return (
     <Container className={classes.root}>
@@ -65,6 +73,7 @@ export default function LeftSideBar() {
         contentalign="center"
       >
         <div className={classes.toolbar} />
+        <Button onClick={handleLogout}> Logout </Button>
         <Divider />
         <List>
           {barIcons.map((item) => (
