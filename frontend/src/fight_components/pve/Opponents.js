@@ -38,7 +38,7 @@ const Opponents = (props) => {
         
         var postBody = JSON.stringify({player: getPlayer, enemy: getEnemy});
         
-        const response = await axios.post("http://localhost:56675/api/fight", postBody, requestOptions);
+        const response = await axios.post("http://fight-service:5000/api/fight", postBody, requestOptions);
 
         await setPlayerHP(getPlayer.motivation);
         await setEnemyHP(getEnemy.hp);
@@ -119,7 +119,7 @@ const Opponents = (props) => {
     const AxiosGetPlayer = async () => {
         await setSendRequestForPlayer(false);
 
-        var response = await axios("http://localhost:56675/api/character");
+        var response = await axios("http://fight-service:5000/api/character");
         await setPlayer(response.data);
         await setPlayerHP(getPlayer.motivation);
 
@@ -137,7 +137,7 @@ const Opponents = (props) => {
 
         var postBody = JSON.stringify({player: getPlayer});
 
-        var response = await axios.post("http://localhost:56675/api/enemy", postBody, requestOptions);
+        var response = await axios.post("http://fight-service:5000/api/enemy", postBody, requestOptions);
 
         await setEnemy(response.data);
         await setEnemyHP(getEnemy.hp);
