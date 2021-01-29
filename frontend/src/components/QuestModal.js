@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import AccessAlarmRoundedIcon from "@material-ui/icons/AccessAlarmRounded";
 import MonetizationOnRoundedIcon from "@material-ui/icons/MonetizationOnRounded";
 import CloudUploadRoundedIcon from "@material-ui/icons/CloudUploadRounded";
-import Questor from "../images/Questor2.png";
+import Questor from "../images/Questor.png";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -76,7 +76,7 @@ export default function QuestModal() {
 
   return (
     <>
-      <img src={Questor} alt="questor" onClick={handleOpen} />
+      <img src={Questor} alt="questor" width="833px" height="625px" onClick={handleOpen} />
 
       <Modal
         aria-labelledby="spring-modal-title"

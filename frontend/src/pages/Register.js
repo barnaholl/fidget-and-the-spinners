@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  whiteShark: {
+    color: "white",
+  },
 }));
 
 export default function Register() {
@@ -90,6 +93,7 @@ export default function Register() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 validators={[`matchRegexp:${usernameRegex}`]}
+                className={classes.whiteShark}
                 errorMessages={[
                   "Please enter a 3-16 character long username, use letters A-Z, numbers 0-9 and , or _",
                 ]}
@@ -107,6 +111,7 @@ export default function Register() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 validators={[`isEmail`]}
+                className={classes.whiteShark}
                 errorMessages={["Please enter a valid email address"]}
               />
             </Grid>
@@ -121,6 +126,7 @@ export default function Register() {
                 id="password"
                 autoComplete="current-password"
                 value={password}
+                className={classes.whiteShark}
                 onChange={(e) => setPassword(e.target.value)}
                 validators={[`matchRegexp:${passwordRegex}`]}
                 errorMessages={["8- long, at least one: A-Z, a-z, 0-9"]}
@@ -139,6 +145,7 @@ export default function Register() {
                 value={passwordRepeat}
                 onChange={(e) => setPasswordRepeat(e.target.value)}
                 validators={[`isPasswordMatch`]}
+                className={classes.whiteShark}
                 errorMessages={["Passwords are not matching"]}
               />
             </Grid>

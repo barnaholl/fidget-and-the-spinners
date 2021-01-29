@@ -17,6 +17,7 @@ import { FetchLoginApi } from "../api/apiPosts";
 import { red } from "@material-ui/core/colors";
 // import { useCookies } from "react-cookie";
 import { UserIdContext } from "../contexts/UserIdProvider";
+import { withTheme } from "styled-components";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

@@ -39,7 +39,6 @@ const Opponents = (props) => {
         var postBody = JSON.stringify({player: getPlayer, enemy: getEnemy});
         
         const response = await axios.post("http://localhost:5000/api/fight", postBody, requestOptions);
-        console.log(response);
 
         await setPlayerHP(getPlayer.motivation);
         await setEnemyHP(getEnemy.hp);
@@ -49,7 +48,6 @@ const Opponents = (props) => {
     }
 
     const loopOverFightLog = async (fightlog) => {
-        console.log(fightlog);
 
         for (var i=0; i < fightlog.length;i++) {
 
@@ -121,7 +119,6 @@ const Opponents = (props) => {
         await setSendRequestForPlayer(false);
 
         var response = await axios("http://localhost:5000/api/character");
-        console.log(response);
         await setPlayer(response.data);
         await setPlayerHP(getPlayer.motivation);
 
@@ -140,7 +137,6 @@ const Opponents = (props) => {
         var postBody = JSON.stringify({player: getPlayer});
 
         var response = await axios.post("http://localhost:5000/api/enemy", postBody, requestOptions);
-        console.log(response);
 
         await setEnemy(response.data);
         await setEnemyHP(getEnemy.hp);

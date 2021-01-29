@@ -23,8 +23,8 @@ export default function Shop() {
           <img
             src={Merchant}
             alt='merchant'
-            width='235px'
-            height='487px'
+            width='410px'
+            height='242px'
             className={classes.merchant}
           />
           <ShopInventory />

@@ -41,7 +41,6 @@ const ArenaFight = (props) => {
         var postBody = JSON.stringify([getPlayer, getEnemy]);
         
         const response = await axios.post("http://localhost:5000/api/arena", postBody, requestOptions);
-        console.log(response);
   
         await setFightingLoading(false);
         await loopOverFightLog(response.data);
@@ -49,7 +48,6 @@ const ArenaFight = (props) => {
 
 
     const loopOverFightLog = async (fightlog) => {
-        console.log(fightlog);
 
         for (var i=0; i < fightlog.length;i++) {
 
@@ -114,7 +112,6 @@ const ArenaFight = (props) => {
     const AxiosGetPlayers = async () => {
         
         var response = await axios("http://localhost:5000/api/arena");
-        console.log(response);
         
         
         await setPlayer(response.data[0]);
@@ -312,7 +309,6 @@ const ArenaFight = (props) => {
         //--------------The fight did not started yet---------------------
         content = (
             <Container className="players">
-
                 <FighterDiv className="firstPlayer">
                     <div className="firstPlayerImageDiv">
                         <img src={playerPNG} alt="PlayerPicture"></img>

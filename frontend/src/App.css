@@ -17,6 +17,10 @@
   border-radius: 50px;
 }
 
+.MuiInputBase-input {
+  color: white !important;
+}
+
 .character-creation-div {
   display: flex !important;
   flex-flow: row nowrap !important;
